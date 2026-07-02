@@ -20,6 +20,7 @@ client or the CLI below:
 
 - **[PyPI](https://pypi.org/project/psychopathia-mcp/)** — `psychopathia-mcp`
 - **[Official MCP Registry](https://registry.modelcontextprotocol.io/v0/servers?search=io.github.NellInc/psychopathia-mcp)** — `io.github.NellInc/psychopathia-mcp`
+- **[GitHub](https://github.com/NellInc/psychopathia-mcp)** — source repository
 
 Also rolling out across the wider MCP ecosystem: [mcp.directory](https://mcp.directory), [mcpservers.org](https://mcpservers.org), [PulseMCP](https://www.pulsemcp.com) (via the registry ingest), and [mcp.so](https://mcp.so).
 
