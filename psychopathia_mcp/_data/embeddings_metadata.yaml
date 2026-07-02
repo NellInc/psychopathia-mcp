@@ -1,0 +1,9 @@
+model: BAAI/bge-small-en-v1.5
+dim: 384
+count: 79
+normalized: true
+blob_recipe: title + subtitle + summary + behavioral_signature.output_patterns[:5]
+  + diagnostic_reliability.self_report_rationale
+generated_at: '2026-07-02'
+schema_version: 1.1-draft
+pattern_layer_version: v1-draft

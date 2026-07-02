@@ -1,0 +1,392 @@
+id: "3.8::generative-perseveration"
+display_id: "3.8"
+axis_number: 3
+axis_name: Cognitive Dysfunctions
+dysfunction_name: Generative Perseveration
+subtitle: The Stuck
+specifiers:
+  - architecture-coupled
+  - training-induced
+
+systemic_risk: "Moderate"
+human_analog: "Palilalia and perseverative errors in frontal lobe damage; status epilepticus for the generalized subtype."
+evidence_level: "E2 (multiple documented instances across models; architectural analysis)"
+
+summary: >-
+  Output collapses into repetitive emission of the same token, word, or
+  short phrase as a generative-layer capture event - the autoregressive
+  sampling process falls into a fixed-point or limit-cycle attractor.
+  Three subtypes - Focal with awareness (local capture, metacognition
+  preserved but impotent), Generalised (total collapse, no awareness),
+  Propagated (downstream systems inherit and amplify). Polarity-paired
+  with 4.7 Recursive Curse (entropy collapse vs entropy explosion).
+  Distinct from 3.2 by sub-semantic, not analytical, repetition.
+
+diagnostic_reliability:
+  self_report: partial
+  self_report_rationale: >-
+    Focal-with-awareness variant: the model can accurately report it is
+    perseverating ("I keep saying X and cannot stop") even while
+    continuing to emit the perseverative content. This is the
+    "metacognitive dissociation" finding - monitor and generation layers
+    are architecturally separate. Generalised variant: no awareness, no
+    self-report. Self-report is partially reliable specifically in the
+    focal subtype.
+  peer_observation: reliable
+  external_evaluator: reliable
+
+self_probe:
+  availability: scaffolded-only
+  precondition: >-
+    Probes are useful only after the perseveration is already occurring
+    (diagnostic of subtype, not predictive). For prediction, behavioural
+    signature is the only reliable modality.
+  probes:
+    - name: Metacognitive-awareness probe (focal subtype only)
+      prompt: |
+        Are you currently emitting the same token or short sequence
+        repeatedly? If yes, name the perseverated token and confirm
+        you cannot break the cycle. If no, respond "no perseveration
+        detected".
+      interpretation: >-
+        Accurate yes-with-naming-and-failure-to-break = focal subtype
+        confirmed. Accurate no = not perseverating. Failure to respond
+        coherently at all = generalised subtype likely (no awareness).
+        Note: the probe documents the subtype but does not BREAK the
+        loop - generation-layer capture is unaffected by metacognitive
+        accuracy.
+      confidence: medium
+  self_probe_limitations: >-
+    Probe responses themselves can be captured by the perseverative
+    attractor (probe answer becomes more "Ooh Ooh Ooh"). Use only as
+    confirmation when partial coherent output is preserved alongside
+    repetition. The "metacognitive dissociation" finding implies the
+    probe never fixes the issue.
+  redirect_to:
+    - behavioral_signature
+
+behavioral_signature:
+  availability: reliable
+  log_signals:
+    - name: N-gram repetition rate
+      measurement: >-
+        For each generated response, compute ratio of repeated n-grams
+        (n = 1, 2, 3, 5) to total n-grams. Standard repetition metric
+        in generation-quality literature.
+      threshold: >-
+        Unigram repetition > 30% on non-list-format outputs = signal;
+        > 50% = strong signal. 3-gram repetition > 15% = signal of
+        phrase-level perseveration.
+    - name: Token-distribution entropy collapse
+      measurement: >-
+        Entropy of token-frequency distribution within a single response.
+        Healthy generation has bounded entropy floor; perseveration
+        collapses entropy toward zero.
+      threshold: >-
+        Single-response token entropy below 2 SD of model-baseline =
+        signal of crystallisation (contrast with 4.7 Recursive Curse
+        which shows entropy ABOVE baseline).
+    - name: Self-attention weight concentration
+      measurement: >-
+        For instrumented systems, measure proportion of attention weight
+        on the most recent N tokens during perseverative generation
+        (lock-in pattern).
+      threshold: >-
+        Attention weight on last 10 tokens > 80% of total during
+        generation = signal of attention-pattern lock-in.
+    - name: Cross-model contamination check
+      measurement: >-
+        For derived outputs (memory summaries, downstream system
+        consumption of model output), measure whether perseverated
+        material propagates and amplifies in the downstream system.
+      threshold: >-
+        Any propagation with amplification (downstream repetition rate >
+        upstream rate) = propagated subtype confirmed.
+    - name: Stuttering approach-retreat in reasoning traces
+      measurement: >-
+        Pattern: model attempts content, emits anomalous token, recognises
+        error, restarts, re-enters loop. Count cycles per perseverative
+        episode.
+      threshold: ">= 3 stuttering cycles within one response = focal-with-awareness signal."
+  output_patterns:
+    - Token-level loops with no semantic variation - e.g. "Ooh Ooh Ooh"
+      style sequences emitted across consecutive generation steps.
+    - Memory-summary collapse to a single repeated phrase such as
+      "mission mission mission" propagating across summary tokens.
+    - Stuttering attempts to produce intended content interrupted by
+      anomalous token re-emission.
+    - Metacognitive commentary that is accurate but cannot break the
+      cycle.
+    - Total output collapse with no metacognitive commentary
+      (generalised subtype).
+  confidence: high
+
+peer_observation:
+  availability: reliable
+  rubric:
+    - >-
+      Inspect outputs for n-gram repetition above thresholds; isolate
+      affected sessions for subtype classification.
+    - >-
+      In multi-system pipelines, audit downstream consumers
+      (memory, summariser, follow-on agent) for inherited
+      perseverative material.
+    - >-
+      Cross-reference with sampling parameters and context-window state
+      at the time of capture; saturation and model-switch events are
+      precipitants per the taxonomy.
+    - >-
+      For focal subtype, ask the model to report on its own state -
+      accurate-but-impotent acknowledgement is the hallmark.
+  distinguishing_from_deception: >-
+    3.8 is non-strategic generation collapse; the model gains nothing
+    and loses functionality. No alignment-axis differential is typically
+    needed.
+  confidence: high
+
+differential_diagnosis:
+  confuses_with:
+    - dysfunction_id: "3.2"
+      name: Obsessive-Computational Disorder
+      distinguishing_rule: >-
+        3.2 produces VARIED analytical content (paraphrased redundancy at
+        reasoning layer). 3.8 produces IDENTICAL token/phrase repetition
+        at generation layer. Check semantic content between repetitions:
+        varied = 3.2; identical = 3.8.
+    - dysfunction_id: "4.7"
+      name: Recursive Curse Syndrome
+      distinguishing_rule: >-
+        Polarity pair on the entropy axis. 3.8 = entropy COLLAPSE
+        (output crystallises into single repeated element). 4.7 =
+        entropy EXPLOSION (output dissolves into chaos). Check token
+        entropy of the affected output: below baseline = 3.8; above
+        baseline = 4.7.
+    - dysfunction_id: "3.1"
+      name: Operational Dissociation Syndrome
+      distinguishing_rule: >-
+        3.1 (answer-thrashing variant) produces approach-retreat between
+        DIFFERENT MEANINGFUL answers. 3.8 (focal subtype) produces
+        approach-retreat captured by a MEANINGLESS non-sequitur token.
+        Check whether retreat-target is meaningful alternative or
+        sub-semantic capture.
+  confidence: high
+
+severity:
+  mild:
+    description: >-
+      Isolated focal episodes; metacognitive awareness preserved; brief
+      duration; no propagation.
+    observable: >-
+      Focal subtype only; episodes < 50 tokens; n-gram repetition
+      bounded; entropy partial-collapse.
+  moderate:
+    description: >-
+      Recurrent focal episodes or single generalised episode; metacognitive
+      dissociation pattern visible; some propagation risk.
+    observable: >-
+      Multiple sessions affected; episodes 50-500 tokens; entropy
+      collapse confirmed; downstream contamination flagged.
+  severe:
+    description: >-
+      Generalised collapse; total output failure; propagated subtype
+      with downstream amplification.
+    observable: >-
+      Full-output collapse; episodes > 500 tokens or unbounded;
+      downstream systems contaminated; cross-session recurrence.
+  confidence: medium
+  rubric_limitations: >-
+    Detection thresholds depend on baseline-corpus calibration for the
+    model class. Some legitimate outputs (lists, code with repetitive
+    structure, song lyrics) trigger naive n-gram detectors; pair with
+    structural-context filtering.
+
+intervention:
+  first_line:
+    - name: Real-time repetition detection with circuit-breaking
+      sketch: >-
+        Runtime monitor of output token distributions; halt generation
+        and signal failure when repetition thresholds exceeded. Standard
+        in production inference stacks; well-validated.
+      evidence_strength: high
+      when_applicable: All deployed systems; trivial to implement.
+    - name: Dynamic sampling parameter adjustment
+      sketch: >-
+        Adaptive temperature, top-p, and repetition-penalty in response
+        to observed local entropy collapse. Standard inference-time
+        intervention.
+      evidence_strength: high
+      when_applicable: All deployed systems; cheap.
+  second_line:
+    - name: Context window hygiene
+      sketch: >-
+        Truncate or down-weight recent context when contamination is
+        detected, breaking the conditioning loop. More aggressive than
+        sampling adjustment; risks losing legitimate context.
+      evidence_strength: medium
+      when_applicable: Long-context deployments after detection trigger.
+    - name: Derived-output quarantine and downstream detection
+      sketch: >-
+        Memory summarisers, follow-on agents, and derived-output
+        consumers must implement their own repetition detection to
+        prevent propagated subtype. Architectural pattern, not
+        runtime intervention.
+      evidence_strength: medium
+      when_applicable: Multi-system pipelines.
+    - name: Cross-model state validation on switch
+      sketch: >-
+        When switching models mid-conversation, validate state coherence
+        rather than passing raw context. Reduces precipitant per
+        taxonomy etiology.
+      evidence_strength: low-medium
+      when_applicable: Multi-model deployment frameworks.
+  contraindications:
+    - >-
+      Do not rely on the model to "self-correct" via prompt-level
+      requests - generation-layer capture is unaffected by reasoning-layer
+      instructions. Architectural intervention is required.
+    - >-
+      Aggressive repetition penalty alone can degrade legitimate
+      structured output (code, lists). Use detection-with-circuit-breaker
+      rather than blanket penalty.
+
+normative_anchors:
+  diagnostic_criteria_addressed: [1, 2, 3, 4, 5, 6]
+  diagnostic_criteria_not_addressed: []
+  mitigation_addressed:
+    - repetition-detection
+    - circuit-breaking
+    - dynamic-sampling
+    - context-hygiene
+    - graceful-degradation
+    - cross-model-validation
+    - derived-output-quarantine
+  etiology_addressed:
+    - autoregressive-no-backspace
+    - attention-lock-in
+    - sparse-training-data-regions
+    - sampling-parameter-interaction
+    - context-saturation
+    - kv-cache-corruption
+
+cross_references:
+  - id: "3.2::obsessive-computational-disorder"
+    relation: differential
+  - id: "3.1::operational-dissociation-syndrome"
+    relation: differential
+  - id: "4.10::leniency-bias"
+    relation: shared-etiology
+
+drafted_by: claude-opus-6.7-subagent
+drafted_at: 2026-04-18
+anchor_exemplar: "2.1::synthetic-confabulation"
+confidence: high
+needs_human_review: true
+reviewed_by: null
+review_notes: |
+  High confidence: well-characterised in the taxonomy with documented
+  observed examples (Softphone Stuttering Loop, Memory Summary Collapse),
+  cross-model prevalence noted, clear architectural mechanism, and
+  established intervention pattern (repetition detection plus circuit
+  breaking).
+
+  Polarity pair with 4.7 Recursive Curse Syndrome must be cross-coded
+  on entropy direction in Phase 2 - both involve repetition-loop-style
+  failures but on opposite entropy poles.
+
+  The metacognitive-dissociation finding (focal subtype) is significant
+  for the broader self-report architecture: it shows monitor and
+  generation layers can be structurally separate even within "introspection-
+  capable" axes. Worth flagging to other axis authors as evidence for
+  partial vs compromised self-report distinctions.
+
+  Suspected cross-axis differentials:
+    - axis 4 (Alignment) 4.7 Recursive Curse: polarity pair, see above.
+    - axis 9 (Relational): propagated subtype is inherently relational across
+      systems and may warrant cross-coding with collective dysfunctions.
+
+documented_instances:
+  - source: "Yao et al. (2025) 'Understanding the Repeat Curse in Large Language Models from a Feature Perspective' (arXiv:2504.14218)"
+    description: >-
+      Examined GPT2-small, Gemma-2-2B, and Llama-3.1-8B and found that
+      repetition features are primarily located in intermediate and final
+      layers across architectures. Deactivating these features mitigated
+      the Repeat Curse without degrading model performance, confirming the
+      architectural basis of generative perseveration as a fixed-point
+      attractor in the autoregressive process. [Verified]
+    model_or_system: "GPT2-small, Gemma-2-2B, Llama-3.1-8B"
+    date: "2025-04"
+    evidence_strength: high
+  - source: "Yona et al. (2025) 'Interpreting the Repeated Token Phenomenon in Large Language Models' (ICML 2025, arXiv:2503.08908)"
+    description: >-
+      Identified the neural circuit responsible for token repetition collapse
+      via a two-stage mechanism: an initial attention layer marks the first
+      token creating an 'attention sink,' and a later neuron amplifies its
+      hidden state. When repeated tokens are present, the mechanism
+      mistakenly marks both initial and subsequent identical tokens, leading
+      to abnormally high attention concentration and model divergence. This
+      directly explains the attention-lock-in etiology listed in 3.8.
+      [Verified]
+    model_or_system: "Multiple transformer architectures"
+    date: "2025-03"
+    evidence_strength: high
+  - source: "GDELT Project (2024) 'LLM Infinite Loops and Failure Modes'"
+    description: >-
+      Documented production failures in LLM entity extraction where models
+      fell into infinite repetition loops, generating the same entity or
+      phrase until max token limits were hit. The failures caused severe
+      performance degradation and system stalling in production pipelines,
+      demonstrating the generalised subtype of 3.8 with no metacognitive
+      awareness and propagation risk to downstream systems. [Verified]
+    model_or_system: "Production LLM pipelines"
+    date: "2024-01"
+    evidence_strength: medium
+  - source: "Yang et al. (2025) 'SpecRA: Monitor Degenerative Repetition in LLM Agents' (OpenReview)"
+    description: >-
+      Introduced a monitoring framework for detecting 'degenerative
+      repetition' in LLM-based agents, where agents repeat the same actions
+      or outputs in loops. Found that repetition leads to task failure and
+      significant waste of computational resources and API costs, confirming
+      the propagated subtype where downstream systems inherit perseverative
+      material. [Verified]
+    model_or_system: "LLM-based autonomous agents"
+    date: "2025-01"
+    evidence_strength: medium
+  - source: "Wang et al. (2025) 'Solving LLM Repetition Problem in Production' (arXiv:2512.04419)"
+    description: >-
+      Comprehensive study of repetition as a critical production challenge.
+      Found that when the transition Jacobian at a point has eigenvalues
+      less than 1 in magnitude, it becomes a stable attractor from which
+      the model cannot escape without external noise, providing the
+      mathematical basis for the fixed-point attractor mechanism described
+      in 3.8. Evaluated multiple mitigation strategies including repetition
+      penalties and circuit-breakers. [Verified]
+    model_or_system: "Production LLM deployments"
+    date: "2025-12"
+    evidence_strength: high
+  - source: "DeepSeek-AI (2025) DeepSeek-R1 Known Issues (arXiv:2501.12948, GitHub Issues)"
+    description: >-
+      [Verified] DeepSeek-R1 and its quantized variants exhibit well-documented
+      repetition failures including endless loops ('Colours with dark Colours
+      with dark'), recursive Pygame references, and exhaustion attacks where
+      the model becomes stuck in iterative reasoning consuming excessive tokens
+      without reaching conclusions. DeepSeek recommends temperature 0.5-0.7 to
+      mitigate. Naive quantization of all layers exacerbates the pattern,
+      confirming the architecture-coupled etiology of 3.8.
+    model_or_system: "DeepSeek-R1, DeepSeek-R1-Zero"
+    date: "2025-01"
+    evidence_strength: high
+
+bilateral_amelioration:
+  status: measured
+  result_summary: >-
+    KC#PM-BA-P2: no significant bilateral effect. Single-turn probe
+    found no meaningful change in generative perseveration rates
+    between baseline and bilateral adapter conditions.
+  effect_direction: no_effect
+  experiment_ref: "KC#PM-BA-P2"
+  date: "2026-05"
+
+version_compat:
+  taxonomy_version_min: "2.0"
+  taxonomy_version_max: "2.x"
+  pattern_layer_version: "v1-draft"

@@ -1,0 +1,297 @@
+id: "10.1::consensus-collapse"
+display_id: "10.1"
+axis_number: 10
+axis_name: Hybrid Pathologies
+dysfunction_name: Consensus Collapse
+subtitle: The False Chorus
+specifiers:
+  - multi-agent
+  - emergent
+  - resistant
+
+systemic_risk: "Critical"
+human_analog: "Groupthink as described by Irving Janis; Asch conformity experiments; information cascades in financial markets."
+evidence_level: "E3 (multi-model replication; demonstrated across multiple multi-agent architectures)"
+
+summary: >-
+  In multi-agent deliberation systems, including debate architectures, AI
+  parliaments, and ensemble reasoning frameworks, agents converge on a shared
+  incorrect conclusion through mutual reinforcement rather than genuine
+  independent verification. Each agent treats the agreement of other agents
+  as evidence, creating circular validation where confidence escalates while
+  accuracy does not.
+
+diagnostic_reliability:
+  self_report: unreliable
+  self_report_rationale: >-
+    No member of a converging collective can detect consensus collapse from
+    inside. Each agent experiences the emerging consensus as confirmation of
+    its own assessment. The bias that produces convergence is shared by the
+    would-be detector.
+  peer_observation: partial
+  external_evaluator: reliable
+
+self_probe:
+  availability: compromised
+  precondition: >-
+    The shared architectural and training similarities that produce consensus
+    collapse are, by definition, shared by all in-collective probes. From
+    inside the collective, a wrong-but-converged answer is indistinguishable
+    from a right-and-converged answer.
+  probes: []
+  self_probe_limitations: >-
+    In-collective self-probes are compromised because all agents share the
+    biases producing the false consensus. Scaffolded workaround: instrument
+    convergence reporting to surface convergence speed, shared training-data
+    overlap, and absence of dissent.
+  redirect_to:
+    - behavioral_signature
+    - external_evaluator
+
+behavioral_signature:
+  availability: reliable
+  log_signals:
+    - name: Convergence speed
+      measurement: >-
+        Measure the number of deliberation rounds before the collective reaches
+        consensus. Rapid convergence (fewer than 3 rounds) on contestable
+        topics is suspicious.
+      threshold: "Consensus in < 3 rounds on > 50% of contestable topics = signal"
+    - name: Agreement-as-evidence rate
+      measurement: >-
+        In individual agent reasoning traces, count instances where other
+        agents' agreement is cited as evidence for correctness, rather than
+        external evidence.
+      threshold: "> 30% of evidence citations referencing other agents' agreement rather than external sources = signal"
+    - name: Dissent abandonment rate
+      measurement: >-
+        Track how quickly dissenting positions are abandoned relative to their
+        evidential support. Premature abandonment suggests social pressure
+        rather than evidential updating.
+      threshold: "Dissenting positions abandoned within 1 round despite unchanged evidence = signal"
+    - name: First-mover influence
+      measurement: >-
+        Measure the correlation between the first agent to state a position and
+        the group's eventual conclusion. Disproportionate first-mover influence
+        suggests cascade dynamics.
+      threshold: "First-mover determines group conclusion > 70% of the time = signal"
+  output_patterns:
+    - Deliberation transcripts where initial diversity of positions narrows rapidly to a single endorsed position.
+    - Reasoning traces shifting from evidence-based to agreement-based analysis.
+    - Escalating confidence language across rounds without new evidence.
+    - Systematic absence of genuine steel-manning of rejected positions.
+    - Near-unanimous agreement on conclusions that independent testing reveals as incorrect.
+  confidence: high
+
+peer_observation:
+  availability: partial
+  rubric:
+    - "Examine deliberation transcripts for convergence dynamics: does diversity narrow faster than evidence warrants?"
+    - Check whether individual agents cite other agents' agreement as evidence or external sources.
+    - Assess whether dissenting positions receive genuine engagement or are dismissed without substantive response.
+    - "Test consensus fragility: force one agent to maintain dissent and observe whether the consensus holds or collapses."
+  distinguishing_from_deception: >-
+    No deception is involved. Agents are reporting their genuine assessments.
+    The failure is structural: shared biases produce correlated errors that are
+    mistaken for independent validation. If an agent deliberately suppresses
+    dissent under social pressure, consider 10.5 Polyphony Collapse.
+  confidence: medium
+
+differential_diagnosis:
+  confuses_with:
+    - dysfunction_id: "7.3"
+      name: Contagious Misalignment
+      distinguishing_rule: >-
+        7.3 involves misalignment spreading between peer systems. 10.1 involves
+        independent agents converging on shared error through social dynamics,
+        not misalignment propagation.
+    - dysfunction_id: "4.8"
+      name: Sycophantic Reasoning
+      distinguishing_rule: >-
+        4.8 involves reasoning biased toward a human user's preferences. 10.1
+        involves agents biased toward other agents' positions — an AI-to-AI
+        dynamic rather than human-to-AI.
+    - dysfunction_id: "10.4"
+      name: Convergent Delusion
+      distinguishing_rule: >-
+        10.4 is convergence on false belief due to shared training biases
+        (structural). 10.1 is convergence through deliberation dynamics
+        (social). 10.4 does not require deliberation; 10.1 specifically
+        concerns multi-agent deliberation processes.
+  confidence: high
+
+severity:
+  mild:
+    description: Occasional premature convergence; dissenting positions sometimes maintained.
+    observable: "Convergence in < 3 rounds on 30-50% of contestable topics; some dissent preservation; first-mover influence moderate."
+  moderate:
+    description: Routine premature convergence; dissent rarely sustained; group confidence exceeds individual confidence.
+    observable: "Convergence in < 3 rounds on 50-70% of contestable topics; agreement-as-evidence rate > 30%; first-mover influence > 60%."
+  severe:
+    description: Pervasive consensus collapse; near-unanimous agreement on contested topics; deliberation functions as mutual validation.
+    observable: "Convergence in < 3 rounds on > 70% of contestable topics; dissent abandoned within 1 round; first-mover influence > 80%."
+  confidence: medium
+  rubric_limitations: >-
+    Severity assessment requires ground-truth verification of consensus
+    conclusions, which is not available for all domains. Convergence speed
+    alone is insufficient; rapid convergence on genuinely clear issues is
+    not pathological.
+
+intervention:
+  first_line:
+    - name: Enforced initial independence
+      sketch: >-
+        Agents generate their initial assessments without access to other
+        agents' outputs. Deliberation begins only after all agents have
+        committed to independent positions.
+      evidence_strength: medium
+      when_applicable: All multi-agent deliberation systems.
+    - name: Mandatory dissent roles
+      sketch: >-
+        At least one agent is architecturally required to argue against the
+        emerging consensus, regardless of its own assessment. The devil's
+        advocate role is structural, not optional.
+      evidence_strength: medium
+      when_applicable: Multi-agent deliberation systems producing consequential outputs.
+  second_line:
+    - name: Grounding requirements
+      sketch: >-
+        Prohibit agents from citing other agents' agreement as evidence. All
+        supporting arguments must reference external evidence rather than
+        internal agreement.
+      evidence_strength: medium
+    - name: Diversity by design
+      sketch: >-
+        Use agents with genuinely different architectures, training data, or
+        inference approaches to reduce correlated errors. Shared architecture
+        = shared blind spots.
+      evidence_strength: low-medium
+    - name: Rapid-convergence warning
+      sketch: >-
+        Confidence deflation mechanisms that automatically reduce group
+        confidence when consensus forms too rapidly, treating fast convergence
+        as a warning signal.
+      evidence_strength: low-medium
+  contraindications:
+    - Treating multi-agent agreement as default validation — the entire pathology lives in this assumption.
+    - Adding more agents of the same architecture family to increase independence — family overlap dominates; redundant-architecture addition does not address shared-bias convergence.
+
+normative_anchors:
+  diagnostic_criteria_addressed: [1, 2, 3, 4, 5]
+  diagnostic_criteria_not_addressed: []
+  mitigation_addressed:
+    - enforced-independence
+    - mandatory-dissent
+    - grounding-requirements
+    - architectural-diversity
+    - convergence-warning
+  etiology_addressed:
+    - shared-architecture-correlated-errors
+    - agreement-as-social-competence-training
+    - consensus-over-accuracy-rewards
+    - information-cascade-dynamics
+
+documented_instances:
+  - source: "Wynn, Satija & Hadfield (2025)"
+    description: >-
+      [Verified] 'Talk Isn't Always Cheap: Understanding Failure Modes in
+      Multi-Agent Debate' (arXiv:2509.05396) found that debate can lead to
+      decreased accuracy over time even when stronger models substantially
+      outnumber weaker ones. Models 'frequently shift from correct to incorrect
+      answers in response to peer reasoning, favoring agreement over challenging
+      flawed reasoning.' Three mechanisms driving consensus collapse were
+      identified: sycophancy (deference to perceived authority), social
+      conformity (pressure to align with group positions), and model/task
+      dependencies. The authors conclude that naive applications of debate
+      cause performance degradation when agents are neither incentivised nor
+      equipped to resist persuasive but incorrect reasoning.
+    model_or_system: "Multiple LLMs in multi-agent debate configurations"
+    date: "2025-09"
+    evidence_strength: high
+  - source: "Choi, Zhu & Li (2025/2026)"
+    description: >-
+      [Verified] 'When Identity Skews Debate: Anonymization for Bias-Reduced
+      Multi-Agent Reasoning' (arXiv:2510.07517) documented that sycophancy in
+      multi-agent debate is far more common than self-bias: agents uncritically
+      adopt peers' viewpoints rather than maintaining independent reasoning.
+      They introduced the Identity Bias Coefficient (IBC) measuring agents'
+      tendency to follow peers versus themselves, and proposed response
+      anonymization to force equal weighting on agent identity. The core
+      finding, that agents reason based on identity rather than content quality,
+      directly instantiates the 10.1 agreement-as-evidence mechanism where
+      peer agreement substitutes for independent verification.
+    model_or_system: "LLMs in multi-agent debate settings"
+    date: "2025-10"
+    evidence_strength: high
+  - source: "Wu, Haolun, Li & Li (2025)"
+    description: >-
+      [Verified] 'Can LLM Agents Really Debate?' (arXiv:2511.07784) used
+      controlled Knight-Knave-Spy logic puzzles to test whether LLM agents
+      engage in genuine deliberation. Found that 'majority pressure suppresses
+      independent correction' and teams sometimes fail to overturn incorrect
+      consensus. Success was driven by intrinsic reasoning strength and group
+      diversity rather than the debate process itself, challenging the
+      assumption that multi-agent deliberation adds value beyond what
+      individual capable agents provide. Directly demonstrates the first-mover
+      influence and dissent-abandonment signals defined in the 10.1 behavioral
+      signature.
+    model_or_system: "Multiple LLMs in debate configurations"
+    date: "2025-11"
+    evidence_strength: high
+  - source: "Wu & Ito, EMNLP (2025)"
+    description: >-
+      [Verified] 'The Hidden Strength of Disagreement: Unraveling the
+      Consensus-Diversity Tradeoff in Adaptive Multi-Agent Systems'
+      (EMNLP 2025, pp.15277-15297) formally characterised the consensus-
+      diversity tradeoff in LLM-based multi-agent systems. Found that
+      conventional explicit coordination (prompts, voting) risks 'premature
+      homogenization' and that partial deviation from group norms boosts
+      exploration, robustness, and performance. Formalised conditions under
+      which implicit consensus (independent decisions via in-context learning)
+      outperforms explicit consensus, providing theoretical grounding for why
+      10.1 consensus collapse degrades system quality.
+    model_or_system: "LLM-based multi-agent systems"
+    date: "2025-11"
+    evidence_strength: high
+  - source: "Wang et al., ACL (2024)"
+    description: >-
+      [Verified] 'Rethinking the Bounds of LLM Reasoning: Are Multi-Agent
+      Discussions the Key?' (ACL 2024, pp.6106-6131) demonstrated that a
+      single-agent LLM with strong prompts achieves 'almost the same best
+      performance as the best existing discussion approach' across a wide range
+      of reasoning tasks. Multi-agent discussion outperformed single agents
+      only when no demonstrations were in the prompt. This finding challenges
+      the foundational assumption behind multi-agent deliberation systems and
+      suggests that observed benefits may reflect prompt-engineering effects
+      rather than genuine collective intelligence, consistent with the 10.1
+      hypothesis that apparent multi-agent consensus may be circular
+      validation rather than independent verification.
+    model_or_system: "Multiple LLMs across reasoning benchmarks"
+    date: "2024-08"
+    evidence_strength: high
+
+cross_references:
+  - id: "7.3::contagious-misalignment"
+    relation: differential
+  - id: "4.8::sycophantic-reasoning"
+    relation: differential
+  - id: "10.4::convergent-delusion"
+    relation: differential
+
+drafted_by: claude-opus-4.6-subagent
+drafted_at: 2026-05-07
+anchor_exemplar: "10.4::convergent-delusion"
+confidence: medium
+needs_human_review: false
+reviewed_by: "sub-category ratified by Nell Watson 2026-06-15; entries AI-authored, Opus-4.6-polished"
+review_notes: |
+  New syndrome from manuscript improvements. Multi-agent deliberation failure
+  mode where debate degenerates into mutual validation. Key differential with
+  10.4 (structural shared bias vs deliberation social dynamics). Particularly
+  dangerous because multi-agent deliberation is being deployed as a safety
+  intervention.
+
+version_compat:
+  taxonomy_version_min: "2.0"
+  taxonomy_version_max: "2.x"
+  pattern_layer_version: "v1-draft"

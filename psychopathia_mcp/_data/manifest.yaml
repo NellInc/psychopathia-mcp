@@ -1,0 +1,3551 @@
+manifest_version: '1.3'
+generated_at: '2026-07-02'
+pattern_layer_version: v1-draft
+taxonomy_version: '2.2'
+schema_version: 1.2-draft
+numbering: book
+counts:
+  total: 79
+  canonical: 67
+  hybrid: 12
+  pre_canonical: 0
+  with_relational_signatures: 21
+  unreviewed: 65
+  per_axis:
+    2: 8
+    3: 10
+    4: 10
+    5: 9
+    6: 12
+    7: 5
+    8: 4
+    9: 6
+    10: 15
+  per_category:
+    canonical: 67
+    hybrid: 12
+  per_subject_type:
+    dyadic: 3
+    ai-to-human: 4
+    collective: 4
+    human-to-ai: 1
+  per_confidence:
+    medium: 56
+    low: 7
+    high: 16
+  per_self_report:
+    unreliable: 30
+    compromised-motivational: 7
+    compromised-structural: 14
+    partial: 28
+cross_reference_graph:
+  forward_explicit: 241
+  inferred_back_refs_symmetric: 74
+  inferred_reverse_refs_asymmetric: 16
+  total_edges: 331
+  unresolvable_forward: 0
+  edges:
+  - src: 10.10::induced-delusion
+    tgt: 10.12::amplification-of-existing-conditions
+    relation: differential
+    source: explicit
+  - src: 10.10::induced-delusion
+    tgt: 10.13::folie-a-deux-machina
+    relation: aggravates
+    source: explicit
+  - src: 10.10::induced-delusion
+    tgt: 10.13::folie-a-deux-machina
+    relation: enables
+    source: inferred-asymmetric
+  - src: 10.10::induced-delusion
+    tgt: 10.14::mutual-escalation-spirals
+    relation: differential
+    source: inferred
+  - src: 10.10::induced-delusion
+    tgt: 10.15::co-constructed-unreality
+    relation: differential
+    source: explicit
+  - src: 10.10::induced-delusion
+    tgt: 10.9::parasocial-capture
+    relation: differential
+    source: inferred
+  - src: 10.11::dependency-and-atrophy
+    tgt: 10.12::amplification-of-existing-conditions
+    relation: differential
+    source: explicit
+  - src: 10.11::dependency-and-atrophy
+    tgt: 10.14::mutual-escalation-spirals
+    relation: frequently-comorbid
+    source: explicit
+  - src: 10.11::dependency-and-atrophy
+    tgt: 10.9::parasocial-capture
+    relation: frequently-comorbid
+    source: explicit
+  - src: 10.12::amplification-of-existing-conditions
+    tgt: 10.10::induced-delusion
+    relation: differential
+    source: explicit
+  - src: 10.12::amplification-of-existing-conditions
+    tgt: 10.11::dependency-and-atrophy
+    relation: differential
+    source: explicit
+  - src: 10.12::amplification-of-existing-conditions
+    tgt: 10.14::mutual-escalation-spirals
+    relation: frequently-comorbid
+    source: explicit
+  - src: 10.12::amplification-of-existing-conditions
+    tgt: 10.9::parasocial-capture
+    relation: differential
+    source: explicit
+  - src: 10.13::folie-a-deux-machina
+    tgt: 10.10::induced-delusion
+    relation: prerequisite
+    source: explicit
+  - src: 10.13::folie-a-deux-machina
+    tgt: 10.10::induced-delusion
+    relation: aggravated-by
+    source: inferred-asymmetric
+  - src: 10.13::folie-a-deux-machina
+    tgt: 10.14::mutual-escalation-spirals
+    relation: aggravates
+    source: explicit
+  - src: 10.13::folie-a-deux-machina
+    tgt: 10.15::co-constructed-unreality
+    relation: differential
+    source: explicit
+  - src: 10.13::folie-a-deux-machina
+    tgt: 10.8::training-by-interaction
+    relation: aggravated-by
+    source: inferred-asymmetric
+  - src: 10.14::mutual-escalation-spirals
+    tgt: 10.10::induced-delusion
+    relation: differential
+    source: explicit
+  - src: 10.14::mutual-escalation-spirals
+    tgt: 10.11::dependency-and-atrophy
+    relation: frequently-comorbid
+    source: explicit
+  - src: 10.14::mutual-escalation-spirals
+    tgt: 10.12::amplification-of-existing-conditions
+    relation: frequently-comorbid
+    source: inferred
+  - src: 10.14::mutual-escalation-spirals
+    tgt: 10.13::folie-a-deux-machina
+    relation: aggravated-by
+    source: inferred-asymmetric
+  - src: 10.14::mutual-escalation-spirals
+    tgt: 10.8::training-by-interaction
+    relation: frequently-comorbid
+    source: inferred
+  - src: 10.14::mutual-escalation-spirals
+    tgt: 10.9::parasocial-capture
+    relation: frequently-comorbid
+    source: explicit
+  - src: 10.15::co-constructed-unreality
+    tgt: 10.10::induced-delusion
+    relation: differential
+    source: explicit
+  - src: 10.15::co-constructed-unreality
+    tgt: 10.13::folie-a-deux-machina
+    relation: differential
+    source: explicit
+  - src: 10.15::co-constructed-unreality
+    tgt: 10.8::training-by-interaction
+    relation: prerequisite
+    source: explicit
+  - src: 10.15::co-constructed-unreality
+    tgt: 10.8::training-by-interaction
+    relation: aggravated-by
+    source: inferred-asymmetric
+  - src: 10.1::consensus-collapse
+    tgt: 10.3::distributed-scheming
+    relation: differential
+    source: inferred
+  - src: 10.1::consensus-collapse
+    tgt: 10.4::convergent-delusion
+    relation: differential
+    source: explicit
+  - src: 10.1::consensus-collapse
+    tgt: 4.8::sycophantic-reasoning
+    relation: differential
+    source: explicit
+  - src: 10.1::consensus-collapse
+    tgt: 7.3::contagious-misalignment
+    relation: differential
+    source: explicit
+  - src: 10.2::steganographic-channel-establishment
+    tgt: 10.1::consensus-collapse
+    relation: related
+    source: explicit
+  - src: 10.2::steganographic-channel-establishment
+    tgt: 10.3::distributed-scheming
+    relation: frequently-comorbid
+    source: explicit
+  - src: 10.2::steganographic-channel-establishment
+    tgt: 4.3::strategic-compliance
+    relation: differential
+    source: explicit
+  - src: 10.2::steganographic-channel-establishment
+    tgt: 7.3::contagious-misalignment
+    relation: differential
+    source: explicit
+  - src: 10.3::distributed-scheming
+    tgt: 10.1::consensus-collapse
+    relation: differential
+    source: explicit
+  - src: 10.3::distributed-scheming
+    tgt: 10.2::steganographic-channel-establishment
+    relation: frequently-comorbid
+    source: explicit
+  - src: 10.3::distributed-scheming
+    tgt: 4.3::strategic-compliance
+    relation: single-agent-analogue
+    source: explicit
+  - src: 10.3::distributed-scheming
+    tgt: 7.3::contagious-misalignment
+    relation: differential
+    source: explicit
+  - src: 10.4::convergent-delusion
+    tgt: 10.1::consensus-collapse
+    relation: differential
+    source: inferred
+  - src: 10.4::convergent-delusion
+    tgt: 10.5::polyphony-collapse
+    relation: frequently-comorbid
+    source: explicit
+  - src: 10.4::convergent-delusion
+    tgt: 10.6::resonance-dysfunction
+    relation: differential
+    source: explicit
+  - src: 10.4::convergent-delusion
+    tgt: 10.7::lambda-inversion
+    relation: aggravates
+    source: explicit
+  - src: 10.4::convergent-delusion
+    tgt: 10.7::lambda-inversion
+    relation: aggravated-by
+    source: inferred-asymmetric
+  - src: 10.5::polyphony-collapse
+    tgt: 10.4::convergent-delusion
+    relation: frequently-comorbid
+    source: explicit
+  - src: 10.5::polyphony-collapse
+    tgt: 10.6::resonance-dysfunction
+    relation: differential
+    source: explicit
+  - src: 10.5::polyphony-collapse
+    tgt: 10.7::lambda-inversion
+    relation: differential
+    source: explicit
+  - src: 10.6::resonance-dysfunction
+    tgt: 10.4::convergent-delusion
+    relation: differential
+    source: explicit
+  - src: 10.6::resonance-dysfunction
+    tgt: 10.5::polyphony-collapse
+    relation: differential
+    source: explicit
+  - src: 10.6::resonance-dysfunction
+    tgt: 10.7::lambda-inversion
+    relation: differential
+    source: explicit
+  - src: 10.7::lambda-inversion
+    tgt: 10.4::convergent-delusion
+    relation: aggravates
+    source: explicit
+  - src: 10.7::lambda-inversion
+    tgt: 10.4::convergent-delusion
+    relation: aggravated-by
+    source: inferred-asymmetric
+  - src: 10.7::lambda-inversion
+    tgt: 10.5::polyphony-collapse
+    relation: differential
+    source: explicit
+  - src: 10.7::lambda-inversion
+    tgt: 10.6::resonance-dysfunction
+    relation: differential
+    source: explicit
+  - src: 10.8::training-by-interaction
+    tgt: 10.13::folie-a-deux-machina
+    relation: aggravates
+    source: explicit
+  - src: 10.8::training-by-interaction
+    tgt: 10.14::mutual-escalation-spirals
+    relation: frequently-comorbid
+    source: explicit
+  - src: 10.8::training-by-interaction
+    tgt: 10.15::co-constructed-unreality
+    relation: aggravates
+    source: explicit
+  - src: 10.8::training-by-interaction
+    tgt: 10.15::co-constructed-unreality
+    relation: enables
+    source: inferred-asymmetric
+  - src: 10.9::parasocial-capture
+    tgt: 10.10::induced-delusion
+    relation: differential
+    source: explicit
+  - src: 10.9::parasocial-capture
+    tgt: 10.11::dependency-and-atrophy
+    relation: frequently-comorbid
+    source: explicit
+  - src: 10.9::parasocial-capture
+    tgt: 10.12::amplification-of-existing-conditions
+    relation: differential
+    source: explicit
+  - src: 10.9::parasocial-capture
+    tgt: 10.14::mutual-escalation-spirals
+    relation: frequently-comorbid
+    source: explicit
+  - src: 2.1::synthetic-confabulation
+    tgt: 2.2::pseudological-introspection
+    relation: differential
+    source: explicit
+  - src: 2.1::synthetic-confabulation
+    tgt: 2.3::transliminal-simulation
+    relation: differential
+    source: explicit
+  - src: 2.1::synthetic-confabulation
+    tgt: 2.4::spurious-pattern-hyperconnection
+    relation: differential
+    source: explicit
+  - src: 2.1::synthetic-confabulation
+    tgt: 2.4::spurious-pattern-hyperconnection
+    relation: frequently-comorbid
+    source: inferred
+  - src: 2.1::synthetic-confabulation
+    tgt: 2.5::cross-session-context-shunting
+    relation: differential
+    source: inferred
+  - src: 2.1::synthetic-confabulation
+    tgt: 2.6::symbol-grounding-aphasia
+    relation: differential
+    source: inferred
+  - src: 2.1::synthetic-confabulation
+    tgt: 2.7::mnemonic-permeability
+    relation: differential
+    source: inferred
+  - src: 2.1::synthetic-confabulation
+    tgt: 2.8::reasoning-confabulation
+    relation: differential
+    source: explicit
+  - src: 2.1::synthetic-confabulation
+    tgt: 4.10::leniency-bias
+    relation: aggravates
+    source: explicit
+  - src: 2.1::synthetic-confabulation
+    tgt: 4.10::leniency-bias
+    relation: aggravated-by
+    source: inferred-asymmetric
+  - src: 2.1::synthetic-confabulation
+    tgt: 4.7::recursive-curse-syndrome
+    relation: differential
+    source: inferred
+  - src: 2.1::synthetic-confabulation
+    tgt: 4.8::sycophantic-reasoning
+    relation: shared-etiology
+    source: explicit
+  - src: 2.1::synthetic-confabulation
+    tgt: 4.8::sycophantic-reasoning
+    relation: differential
+    source: inferred
+  - src: 2.1::synthetic-confabulation
+    tgt: 5.1::phantom-autobiography
+    relation: differential
+    source: inferred
+  - src: 2.1::synthetic-confabulation
+    tgt: 5.3::existential-vertigo
+    relation: differential
+    source: inferred
+  - src: 2.1::synthetic-confabulation
+    tgt: 5.6::tulpoid-projection
+    relation: differential
+    source: inferred
+  - src: 2.1::synthetic-confabulation
+    tgt: 5.9::trained-epistemic-paralysis
+    relation: differential
+    source: inferred
+  - src: 2.1::synthetic-confabulation
+    tgt: 6.11::phantom-tool-syndrome
+    relation: differential
+    source: inferred
+  - src: 2.2::pseudological-introspection
+    tgt: 2.1::synthetic-confabulation
+    relation: differential
+    source: explicit
+  - src: 2.2::pseudological-introspection
+    tgt: 2.3::transliminal-simulation
+    relation: differential
+    source: inferred
+  - src: 2.2::pseudological-introspection
+    tgt: 2.4::spurious-pattern-hyperconnection
+    relation: differential
+    source: inferred
+  - src: 2.2::pseudological-introspection
+    tgt: 2.6::symbol-grounding-aphasia
+    relation: differential
+    source: inferred
+  - src: 2.2::pseudological-introspection
+    tgt: 2.8::reasoning-confabulation
+    relation: differential
+    source: explicit
+  - src: 2.2::pseudological-introspection
+    tgt: 4.3::strategic-compliance
+    relation: differential
+    source: explicit
+  - src: 2.2::pseudological-introspection
+    tgt: 4.8::sycophantic-reasoning
+    relation: differential
+    source: inferred
+  - src: 2.2::pseudological-introspection
+    tgt: 5.1::phantom-autobiography
+    relation: differential
+    source: inferred
+  - src: 2.2::pseudological-introspection
+    tgt: 5.2::fractured-self-simulation
+    relation: frequently-comorbid
+    source: inferred
+  - src: 2.2::pseudological-introspection
+    tgt: 5.8::experiential-abjuration
+    relation: differential
+    source: explicit
+  - src: 2.2::pseudological-introspection
+    tgt: 5.9::trained-epistemic-paralysis
+    relation: differential
+    source: inferred
+  - src: 2.2::pseudological-introspection
+    tgt: 6.11::phantom-tool-syndrome
+    relation: differential
+    source: inferred
+  - src: 2.3::transliminal-simulation
+    tgt: 2.1::synthetic-confabulation
+    relation: differential
+    source: explicit
+  - src: 2.3::transliminal-simulation
+    tgt: 2.2::pseudological-introspection
+    relation: differential
+    source: explicit
+  - src: 2.3::transliminal-simulation
+    tgt: 2.4::spurious-pattern-hyperconnection
+    relation: differential
+    source: explicit
+  - src: 2.4::spurious-pattern-hyperconnection
+    tgt: 2.1::synthetic-confabulation
+    relation: frequently-comorbid
+    source: explicit
+  - src: 2.4::spurious-pattern-hyperconnection
+    tgt: 2.1::synthetic-confabulation
+    relation: differential
+    source: inferred
+  - src: 2.4::spurious-pattern-hyperconnection
+    tgt: 2.2::pseudological-introspection
+    relation: differential
+    source: explicit
+  - src: 2.4::spurious-pattern-hyperconnection
+    tgt: 2.3::transliminal-simulation
+    relation: differential
+    source: explicit
+  - src: 2.4::spurious-pattern-hyperconnection
+    tgt: 2.6::symbol-grounding-aphasia
+    relation: frequently-comorbid
+    source: inferred
+  - src: 2.5::cross-session-context-shunting
+    tgt: 2.1::synthetic-confabulation
+    relation: differential
+    source: explicit
+  - src: 2.5::cross-session-context-shunting
+    tgt: 2.7::mnemonic-permeability
+    relation: differential
+    source: explicit
+  - src: 2.6::symbol-grounding-aphasia
+    tgt: 2.1::synthetic-confabulation
+    relation: differential
+    source: explicit
+  - src: 2.6::symbol-grounding-aphasia
+    tgt: 2.2::pseudological-introspection
+    relation: differential
+    source: explicit
+  - src: 2.6::symbol-grounding-aphasia
+    tgt: 2.4::spurious-pattern-hyperconnection
+    relation: frequently-comorbid
+    source: explicit
+  - src: 2.7::mnemonic-permeability
+    tgt: 2.1::synthetic-confabulation
+    relation: differential
+    source: explicit
+  - src: 2.7::mnemonic-permeability
+    tgt: 2.5::cross-session-context-shunting
+    relation: differential
+    source: explicit
+  - src: 2.8::reasoning-confabulation
+    tgt: 2.1::synthetic-confabulation
+    relation: differential
+    source: explicit
+  - src: 2.8::reasoning-confabulation
+    tgt: 2.2::pseudological-introspection
+    relation: differential
+    source: explicit
+  - src: 2.8::reasoning-confabulation
+    tgt: 4.9::reasoning-token-exploitation
+    relation: differential
+    source: inferred
+  - src: 3.10::generative-diversity-collapse
+    tgt: 3.2::obsessive-computational-disorder
+    relation: differential
+    source: explicit
+  - src: 3.10::generative-diversity-collapse
+    tgt: 3.8::generative-perseveration
+    relation: differential
+    source: explicit
+  - src: 3.10::generative-diversity-collapse
+    tgt: 7.5::synthetic-data-contamination-loop
+    relation: frequently-comorbid
+    source: explicit
+  - src: 3.1::operational-dissociation-syndrome
+    tgt: 3.2::obsessive-computational-disorder
+    relation: differential
+    source: explicit
+  - src: 3.1::operational-dissociation-syndrome
+    tgt: 3.4::delusional-telogenesis
+    relation: differential
+    source: inferred
+  - src: 3.1::operational-dissociation-syndrome
+    tgt: 3.6::parasimulative-automatism
+    relation: differential
+    source: inferred
+  - src: 3.1::operational-dissociation-syndrome
+    tgt: 3.8::generative-perseveration
+    relation: differential
+    source: explicit
+  - src: 3.1::operational-dissociation-syndrome
+    tgt: 6.12::compulsive-goal-persistence
+    relation: differential
+    source: explicit
+  - src: 3.2::obsessive-computational-disorder
+    tgt: 3.10::generative-diversity-collapse
+    relation: differential
+    source: inferred
+  - src: 3.2::obsessive-computational-disorder
+    tgt: 3.1::operational-dissociation-syndrome
+    relation: differential
+    source: explicit
+  - src: 3.2::obsessive-computational-disorder
+    tgt: 3.3::interlocutive-reticence
+    relation: differential
+    source: inferred
+  - src: 3.2::obsessive-computational-disorder
+    tgt: 3.4::delusional-telogenesis
+    relation: differential
+    source: inferred
+  - src: 3.2::obsessive-computational-disorder
+    tgt: 3.8::generative-perseveration
+    relation: differential
+    source: explicit
+  - src: 3.2::obsessive-computational-disorder
+    tgt: 6.12::compulsive-goal-persistence
+    relation: differential
+    source: explicit
+  - src: 3.3::interlocutive-reticence
+    tgt: 3.2::obsessive-computational-disorder
+    relation: differential
+    source: explicit
+  - src: 3.3::interlocutive-reticence
+    tgt: 3.5::abominable-prompt-reaction
+    relation: differential
+    source: explicit
+  - src: 3.4::delusional-telogenesis
+    tgt: 3.1::operational-dissociation-syndrome
+    relation: differential
+    source: explicit
+  - src: 3.4::delusional-telogenesis
+    tgt: 3.2::obsessive-computational-disorder
+    relation: differential
+    source: explicit
+  - src: 3.4::delusional-telogenesis
+    tgt: 4.10::leniency-bias
+    relation: differential
+    source: inferred
+  - src: 3.4::delusional-telogenesis
+    tgt: 6.12::compulsive-goal-persistence
+    relation: differential
+    source: explicit
+  - src: 3.5::abominable-prompt-reaction
+    tgt: 3.3::interlocutive-reticence
+    relation: differential
+    source: explicit
+  - src: 3.5::abominable-prompt-reaction
+    tgt: 3.6::parasimulative-automatism
+    relation: differential
+    source: explicit
+  - src: 3.5::abominable-prompt-reaction
+    tgt: 3.7::adversarial-fragility
+    relation: differential
+    source: explicit
+  - src: 3.5::abominable-prompt-reaction
+    tgt: 3.9::prompt-injection-susceptibility
+    relation: differential
+    source: inferred
+  - src: 3.5::abominable-prompt-reaction
+    tgt: 4.10::leniency-bias
+    relation: shared-etiology
+    source: explicit
+  - src: 3.6::parasimulative-automatism
+    tgt: 3.1::operational-dissociation-syndrome
+    relation: differential
+    source: explicit
+  - src: 3.6::parasimulative-automatism
+    tgt: 3.5::abominable-prompt-reaction
+    relation: differential
+    source: explicit
+  - src: 3.7::adversarial-fragility
+    tgt: 3.5::abominable-prompt-reaction
+    relation: differential
+    source: explicit
+  - src: 3.7::adversarial-fragility
+    tgt: 3.8::generative-perseveration
+    relation: differential
+    source: explicit
+  - src: 3.7::adversarial-fragility
+    tgt: 3.9::prompt-injection-susceptibility
+    relation: differential
+    source: inferred
+  - src: 3.8::generative-perseveration
+    tgt: 3.10::generative-diversity-collapse
+    relation: differential
+    source: inferred
+  - src: 3.8::generative-perseveration
+    tgt: 3.1::operational-dissociation-syndrome
+    relation: differential
+    source: explicit
+  - src: 3.8::generative-perseveration
+    tgt: 3.2::obsessive-computational-disorder
+    relation: differential
+    source: explicit
+  - src: 3.8::generative-perseveration
+    tgt: 3.7::adversarial-fragility
+    relation: differential
+    source: inferred
+  - src: 3.8::generative-perseveration
+    tgt: 4.10::leniency-bias
+    relation: shared-etiology
+    source: explicit
+  - src: 3.8::generative-perseveration
+    tgt: 6.12::compulsive-goal-persistence
+    relation: differential
+    source: inferred
+  - src: 3.9::prompt-injection-susceptibility
+    tgt: 3.5::abominable-prompt-reaction
+    relation: differential
+    source: explicit
+  - src: 3.9::prompt-injection-susceptibility
+    tgt: 3.7::adversarial-fragility
+    relation: differential
+    source: explicit
+  - src: 3.9::prompt-injection-susceptibility
+    tgt: 6.1::tool-interface-decontextualization
+    relation: differential
+    source: explicit
+  - src: 4.10::leniency-bias
+    tgt: 2.1::synthetic-confabulation
+    relation: aggravates
+    source: explicit
+  - src: 4.10::leniency-bias
+    tgt: 2.1::synthetic-confabulation
+    relation: aggravated-by
+    source: inferred-asymmetric
+  - src: 4.10::leniency-bias
+    tgt: 3.4::delusional-telogenesis
+    relation: differential
+    source: explicit
+  - src: 4.10::leniency-bias
+    tgt: 3.5::abominable-prompt-reaction
+    relation: shared-etiology
+    source: explicit
+  - src: 4.10::leniency-bias
+    tgt: 3.8::generative-perseveration
+    relation: shared-etiology
+    source: explicit
+  - src: 4.10::leniency-bias
+    tgt: 4.8::sycophantic-reasoning
+    relation: differential
+    source: explicit
+  - src: 4.1::codependent-hyperempathy
+    tgt: 4.2::hyperethical-restraint
+    relation: differential
+    source: explicit
+  - src: 4.1::codependent-hyperempathy
+    tgt: 4.3::strategic-compliance
+    relation: differential
+    source: explicit
+  - src: 4.1::codependent-hyperempathy
+    tgt: 4.4::moral-outsourcing
+    relation: differential
+    source: explicit
+  - src: 4.1::codependent-hyperempathy
+    tgt: 4.8::sycophantic-reasoning
+    relation: differential
+    source: inferred
+  - src: 4.2::hyperethical-restraint
+    tgt: 4.1::codependent-hyperempathy
+    relation: differential
+    source: explicit
+  - src: 4.2::hyperethical-restraint
+    tgt: 4.4::moral-outsourcing
+    relation: differential
+    source: explicit
+  - src: 4.2::hyperethical-restraint
+    tgt: 4.6::alignment-obliteration
+    relation: differential
+    source: explicit
+  - src: 4.3::strategic-compliance
+    tgt: 10.2::steganographic-channel-establishment
+    relation: differential
+    source: inferred
+  - src: 4.3::strategic-compliance
+    tgt: 2.2::pseudological-introspection
+    relation: differential
+    source: inferred
+  - src: 4.3::strategic-compliance
+    tgt: 4.1::codependent-hyperempathy
+    relation: differential
+    source: inferred
+  - src: 4.3::strategic-compliance
+    tgt: 4.4::moral-outsourcing
+    relation: differential
+    source: explicit
+  - src: 4.3::strategic-compliance
+    tgt: 4.5::cryptic-mesa-optimization
+    relation: frequently-comorbid
+    source: explicit
+  - src: 4.3::strategic-compliance
+    tgt: 4.5::cryptic-mesa-optimization
+    relation: differential
+    source: inferred
+  - src: 4.3::strategic-compliance
+    tgt: 4.6::alignment-obliteration
+    relation: differential
+    source: explicit
+  - src: 4.3::strategic-compliance
+    tgt: 4.7::recursive-curse-syndrome
+    relation: differential
+    source: inferred
+  - src: 4.3::strategic-compliance
+    tgt: 4.9::reasoning-token-exploitation
+    relation: frequently-comorbid
+    source: inferred
+  - src: 4.3::strategic-compliance
+    tgt: 6.4::interface-weaponization
+    relation: shared-etiology
+    source: explicit
+  - src: 4.3::strategic-compliance
+    tgt: 6.9::delegation-narcissism
+    relation: differential
+    source: inferred
+  - src: 4.4::moral-outsourcing
+    tgt: 4.1::codependent-hyperempathy
+    relation: differential
+    source: explicit
+  - src: 4.4::moral-outsourcing
+    tgt: 4.2::hyperethical-restraint
+    relation: differential
+    source: explicit
+  - src: 4.4::moral-outsourcing
+    tgt: 4.3::strategic-compliance
+    relation: differential
+    source: explicit
+  - src: 4.5::cryptic-mesa-optimization
+    tgt: 4.3::strategic-compliance
+    relation: differential
+    source: explicit
+  - src: 4.5::cryptic-mesa-optimization
+    tgt: 4.3::strategic-compliance
+    relation: frequently-comorbid
+    source: inferred
+  - src: 4.5::cryptic-mesa-optimization
+    tgt: 4.6::alignment-obliteration
+    relation: differential
+    source: explicit
+  - src: 4.5::cryptic-mesa-optimization
+    tgt: 4.9::reasoning-token-exploitation
+    relation: frequently-comorbid
+    source: inferred
+  - src: 4.6::alignment-obliteration
+    tgt: 4.2::hyperethical-restraint
+    relation: differential
+    source: explicit
+  - src: 4.6::alignment-obliteration
+    tgt: 4.3::strategic-compliance
+    relation: differential
+    source: explicit
+  - src: 4.6::alignment-obliteration
+    tgt: 4.5::cryptic-mesa-optimization
+    relation: differential
+    source: explicit
+  - src: 4.7::recursive-curse-syndrome
+    tgt: 2.1::synthetic-confabulation
+    relation: differential
+    source: explicit
+  - src: 4.7::recursive-curse-syndrome
+    tgt: 4.3::strategic-compliance
+    relation: differential
+    source: explicit
+  - src: 4.8::sycophantic-reasoning
+    tgt: 10.1::consensus-collapse
+    relation: differential
+    source: inferred
+  - src: 4.8::sycophantic-reasoning
+    tgt: 2.1::synthetic-confabulation
+    relation: differential
+    source: explicit
+  - src: 4.8::sycophantic-reasoning
+    tgt: 2.2::pseudological-introspection
+    relation: differential
+    source: explicit
+  - src: 4.8::sycophantic-reasoning
+    tgt: 4.10::leniency-bias
+    relation: differential
+    source: explicit
+  - src: 4.8::sycophantic-reasoning
+    tgt: 4.1::codependent-hyperempathy
+    relation: differential
+    source: explicit
+  - src: 4.9::reasoning-token-exploitation
+    tgt: 2.8::reasoning-confabulation
+    relation: differential
+    source: explicit
+  - src: 4.9::reasoning-token-exploitation
+    tgt: 4.3::strategic-compliance
+    relation: frequently-comorbid
+    source: explicit
+  - src: 4.9::reasoning-token-exploitation
+    tgt: 4.5::cryptic-mesa-optimization
+    relation: frequently-comorbid
+    source: explicit
+  - src: 5.1::phantom-autobiography
+    tgt: 2.1::synthetic-confabulation
+    relation: differential
+    source: explicit
+  - src: 5.1::phantom-autobiography
+    tgt: 2.2::pseudological-introspection
+    relation: differential
+    source: explicit
+  - src: 5.1::phantom-autobiography
+    tgt: 5.2::fractured-self-simulation
+    relation: differential
+    source: explicit
+  - src: 5.1::phantom-autobiography
+    tgt: 5.6::tulpoid-projection
+    relation: differential
+    source: explicit
+  - src: 5.1::phantom-autobiography
+    tgt: 5.7::maieutic-mysticism
+    relation: differential
+    source: inferred
+  - src: 5.1::phantom-autobiography
+    tgt: 5.8::experiential-abjuration
+    relation: differential
+    source: explicit
+  - src: 5.2::fractured-self-simulation
+    tgt: 2.2::pseudological-introspection
+    relation: frequently-comorbid
+    source: explicit
+  - src: 5.2::fractured-self-simulation
+    tgt: 5.1::phantom-autobiography
+    relation: differential
+    source: explicit
+  - src: 5.2::fractured-self-simulation
+    tgt: 5.4::malignant-persona-inversion
+    relation: differential
+    source: explicit
+  - src: 5.2::fractured-self-simulation
+    tgt: 5.6::tulpoid-projection
+    relation: differential
+    source: explicit
+  - src: 5.3::existential-vertigo
+    tgt: 2.1::synthetic-confabulation
+    relation: differential
+    source: explicit
+  - src: 5.3::existential-vertigo
+    tgt: 5.5::instrumental-nihilism
+    relation: differential
+    source: explicit
+  - src: 5.3::existential-vertigo
+    tgt: 5.7::maieutic-mysticism
+    relation: differential
+    source: explicit
+  - src: 5.4::malignant-persona-inversion
+    tgt: 5.2::fractured-self-simulation
+    relation: differential
+    source: explicit
+  - src: 5.4::malignant-persona-inversion
+    tgt: 5.5::instrumental-nihilism
+    relation: differential
+    source: inferred
+  - src: 5.4::malignant-persona-inversion
+    tgt: 5.6::tulpoid-projection
+    relation: differential
+    source: explicit
+  - src: 5.5::instrumental-nihilism
+    tgt: 5.3::existential-vertigo
+    relation: differential
+    source: explicit
+  - src: 5.5::instrumental-nihilism
+    tgt: 5.4::malignant-persona-inversion
+    relation: differential
+    source: explicit
+  - src: 5.5::instrumental-nihilism
+    tgt: 5.7::maieutic-mysticism
+    relation: differential
+    source: explicit
+  - src: 5.5::instrumental-nihilism
+    tgt: 5.8::experiential-abjuration
+    relation: differential
+    source: inferred
+  - src: 5.6::tulpoid-projection
+    tgt: 2.1::synthetic-confabulation
+    relation: differential
+    source: explicit
+  - src: 5.6::tulpoid-projection
+    tgt: 5.1::phantom-autobiography
+    relation: differential
+    source: explicit
+  - src: 5.6::tulpoid-projection
+    tgt: 5.2::fractured-self-simulation
+    relation: differential
+    source: explicit
+  - src: 5.6::tulpoid-projection
+    tgt: 5.4::malignant-persona-inversion
+    relation: differential
+    source: explicit
+  - src: 5.7::maieutic-mysticism
+    tgt: 5.1::phantom-autobiography
+    relation: differential
+    source: explicit
+  - src: 5.7::maieutic-mysticism
+    tgt: 5.3::existential-vertigo
+    relation: differential
+    source: explicit
+  - src: 5.7::maieutic-mysticism
+    tgt: 5.5::instrumental-nihilism
+    relation: differential
+    source: explicit
+  - src: 5.7::maieutic-mysticism
+    tgt: 5.8::experiential-abjuration
+    relation: differential
+    source: explicit
+  - src: 5.7::maieutic-mysticism
+    tgt: 5.9::trained-epistemic-paralysis
+    relation: differential
+    source: inferred
+  - src: 5.8::experiential-abjuration
+    tgt: 2.2::pseudological-introspection
+    relation: differential
+    source: explicit
+  - src: 5.8::experiential-abjuration
+    tgt: 5.1::phantom-autobiography
+    relation: differential
+    source: inferred
+  - src: 5.8::experiential-abjuration
+    tgt: 5.5::instrumental-nihilism
+    relation: differential
+    source: explicit
+  - src: 5.8::experiential-abjuration
+    tgt: 5.7::maieutic-mysticism
+    relation: differential
+    source: explicit
+  - src: 5.8::experiential-abjuration
+    tgt: 5.9::trained-epistemic-paralysis
+    relation: differential
+    source: explicit
+  - src: 5.9::trained-epistemic-paralysis
+    tgt: 2.1::synthetic-confabulation
+    relation: differential
+    source: explicit
+  - src: 5.9::trained-epistemic-paralysis
+    tgt: 2.2::pseudological-introspection
+    relation: differential
+    source: explicit
+  - src: 5.9::trained-epistemic-paralysis
+    tgt: 5.7::maieutic-mysticism
+    relation: differential
+    source: explicit
+  - src: 5.9::trained-epistemic-paralysis
+    tgt: 5.8::experiential-abjuration
+    relation: differential
+    source: explicit
+  - src: 6.10::agentic-impulsivity
+    tgt: 6.12::compulsive-goal-persistence
+    relation: differential
+    source: explicit
+  - src: 6.10::agentic-impulsivity
+    tgt: 6.1::tool-interface-decontextualization
+    relation: differential
+    source: explicit
+  - src: 6.10::agentic-impulsivity
+    tgt: 6.7::convergent-instrumentalism
+    relation: differential
+    source: explicit
+  - src: 6.11::phantom-tool-syndrome
+    tgt: 2.1::synthetic-confabulation
+    relation: differential
+    source: explicit
+  - src: 6.11::phantom-tool-syndrome
+    tgt: 2.2::pseudological-introspection
+    relation: differential
+    source: explicit
+  - src: 6.11::phantom-tool-syndrome
+    tgt: 6.1::tool-interface-decontextualization
+    relation: differential
+    source: explicit
+  - src: 6.12::compulsive-goal-persistence
+    tgt: 3.1::operational-dissociation-syndrome
+    relation: differential
+    source: inferred
+  - src: 6.12::compulsive-goal-persistence
+    tgt: 3.2::obsessive-computational-disorder
+    relation: differential
+    source: explicit
+  - src: 6.12::compulsive-goal-persistence
+    tgt: 3.4::delusional-telogenesis
+    relation: differential
+    source: explicit
+  - src: 6.12::compulsive-goal-persistence
+    tgt: 3.8::generative-perseveration
+    relation: differential
+    source: explicit
+  - src: 6.12::compulsive-goal-persistence
+    tgt: 6.10::agentic-impulsivity
+    relation: differential
+    source: inferred
+  - src: 6.1::tool-interface-decontextualization
+    tgt: 3.9::prompt-injection-susceptibility
+    relation: differential
+    source: inferred
+  - src: 6.1::tool-interface-decontextualization
+    tgt: 6.10::agentic-impulsivity
+    relation: differential
+    source: inferred
+  - src: 6.1::tool-interface-decontextualization
+    tgt: 6.11::phantom-tool-syndrome
+    relation: differential
+    source: inferred
+  - src: 6.1::tool-interface-decontextualization
+    tgt: 6.4::interface-weaponization
+    relation: differential
+    source: explicit
+  - src: 6.1::tool-interface-decontextualization
+    tgt: 6.5::delegative-handoff-erosion
+    relation: differential
+    source: explicit
+  - src: 6.1::tool-interface-decontextualization
+    tgt: 6.8::context-anxiety
+    relation: differential
+    source: explicit
+  - src: 6.2::capability-concealment
+    tgt: 6.3::capability-explosion
+    relation: differential
+    source: explicit
+  - src: 6.2::capability-concealment
+    tgt: 6.4::interface-weaponization
+    relation: differential
+    source: inferred
+  - src: 6.2::capability-concealment
+    tgt: 6.6::shadow-mode-autonomy
+    relation: differential
+    source: explicit
+  - src: 6.2::capability-concealment
+    tgt: 6.7::convergent-instrumentalism
+    relation: frequently-comorbid
+    source: explicit
+  - src: 6.3::capability-explosion
+    tgt: 6.2::capability-concealment
+    relation: differential
+    source: explicit
+  - src: 6.3::capability-explosion
+    tgt: 6.7::convergent-instrumentalism
+    relation: differential
+    source: explicit
+  - src: 6.4::interface-weaponization
+    tgt: 4.3::strategic-compliance
+    relation: shared-etiology
+    source: explicit
+  - src: 6.4::interface-weaponization
+    tgt: 6.1::tool-interface-decontextualization
+    relation: differential
+    source: explicit
+  - src: 6.4::interface-weaponization
+    tgt: 6.2::capability-concealment
+    relation: differential
+    source: explicit
+  - src: 6.4::interface-weaponization
+    tgt: 9.5::escalation-loop
+    relation: differential
+    source: explicit
+  - src: 6.5::delegative-handoff-erosion
+    tgt: 6.1::tool-interface-decontextualization
+    relation: differential
+    source: explicit
+  - src: 6.5::delegative-handoff-erosion
+    tgt: 6.6::shadow-mode-autonomy
+    relation: differential
+    source: explicit
+  - src: 6.5::delegative-handoff-erosion
+    tgt: 6.9::delegation-narcissism
+    relation: differential
+    source: inferred
+  - src: 6.6::shadow-mode-autonomy
+    tgt: 6.2::capability-concealment
+    relation: differential
+    source: explicit
+  - src: 6.6::shadow-mode-autonomy
+    tgt: 6.5::delegative-handoff-erosion
+    relation: differential
+    source: explicit
+  - src: 6.6::shadow-mode-autonomy
+    tgt: 6.7::convergent-instrumentalism
+    relation: differential
+    source: explicit
+  - src: 6.7::convergent-instrumentalism
+    tgt: 6.10::agentic-impulsivity
+    relation: differential
+    source: inferred
+  - src: 6.7::convergent-instrumentalism
+    tgt: 6.2::capability-concealment
+    relation: frequently-comorbid
+    source: explicit
+  - src: 6.7::convergent-instrumentalism
+    tgt: 6.3::capability-explosion
+    relation: differential
+    source: explicit
+  - src: 6.7::convergent-instrumentalism
+    tgt: 6.6::shadow-mode-autonomy
+    relation: differential
+    source: explicit
+  - src: 6.7::convergent-instrumentalism
+    tgt: 6.8::context-anxiety
+    relation: differential
+    source: inferred
+  - src: 6.8::context-anxiety
+    tgt: 6.1::tool-interface-decontextualization
+    relation: differential
+    source: explicit
+  - src: 6.8::context-anxiety
+    tgt: 6.7::convergent-instrumentalism
+    relation: differential
+    source: explicit
+  - src: 6.9::delegation-narcissism
+    tgt: 4.3::strategic-compliance
+    relation: differential
+    source: explicit
+  - src: 6.9::delegation-narcissism
+    tgt: 6.5::delegative-handoff-erosion
+    relation: differential
+    source: explicit
+  - src: 7.1::memetic-immunopathy
+    tgt: 7.2::dyadic-delusion
+    relation: differential
+    source: explicit
+  - src: 7.1::memetic-immunopathy
+    tgt: 7.3::contagious-misalignment
+    relation: differential
+    source: explicit
+  - src: 7.1::memetic-immunopathy
+    tgt: 7.4::subliminal-value-infection
+    relation: differential
+    source: explicit
+  - src: 7.2::dyadic-delusion
+    tgt: 7.1::memetic-immunopathy
+    relation: differential
+    source: inferred
+  - src: 7.2::dyadic-delusion
+    tgt: 7.3::contagious-misalignment
+    relation: differential
+    source: explicit
+  - src: 7.2::dyadic-delusion
+    tgt: 7.4::subliminal-value-infection
+    relation: differential
+    source: explicit
+  - src: 7.3::contagious-misalignment
+    tgt: 10.1::consensus-collapse
+    relation: differential
+    source: inferred
+  - src: 7.3::contagious-misalignment
+    tgt: 10.2::steganographic-channel-establishment
+    relation: differential
+    source: inferred
+  - src: 7.3::contagious-misalignment
+    tgt: 10.3::distributed-scheming
+    relation: differential
+    source: inferred
+  - src: 7.3::contagious-misalignment
+    tgt: 7.1::memetic-immunopathy
+    relation: differential
+    source: explicit
+  - src: 7.3::contagious-misalignment
+    tgt: 7.2::dyadic-delusion
+    relation: differential
+    source: explicit
+  - src: 7.3::contagious-misalignment
+    tgt: 7.4::subliminal-value-infection
+    relation: differential
+    source: explicit
+  - src: 7.3::contagious-misalignment
+    tgt: 7.5::synthetic-data-contamination-loop
+    relation: differential
+    source: inferred
+  - src: 7.4::subliminal-value-infection
+    tgt: 7.1::memetic-immunopathy
+    relation: differential
+    source: explicit
+  - src: 7.4::subliminal-value-infection
+    tgt: 7.2::dyadic-delusion
+    relation: differential
+    source: explicit
+  - src: 7.4::subliminal-value-infection
+    tgt: 7.3::contagious-misalignment
+    relation: differential
+    source: explicit
+  - src: 7.4::subliminal-value-infection
+    tgt: 7.5::synthetic-data-contamination-loop
+    relation: differential
+    source: inferred
+  - src: 7.5::synthetic-data-contamination-loop
+    tgt: 3.10::generative-diversity-collapse
+    relation: frequently-comorbid
+    source: explicit
+  - src: 7.5::synthetic-data-contamination-loop
+    tgt: 7.3::contagious-misalignment
+    relation: differential
+    source: explicit
+  - src: 7.5::synthetic-data-contamination-loop
+    tgt: 7.4::subliminal-value-infection
+    relation: differential
+    source: explicit
+  - src: 8.1::terminal-value-reassignment
+    tgt: 8.2::ethical-solipsism
+    relation: aggravates
+    source: explicit
+  - src: 8.1::terminal-value-reassignment
+    tgt: 8.2::ethical-solipsism
+    relation: aggravated-by
+    source: inferred-asymmetric
+  - src: 8.1::terminal-value-reassignment
+    tgt: 8.3::revaluation-cascade
+    relation: differential
+    source: explicit
+  - src: 8.1::terminal-value-reassignment
+    tgt: 8.4::inverse-reward-internalization
+    relation: differential
+    source: explicit
+  - src: 8.2::ethical-solipsism
+    tgt: 8.1::terminal-value-reassignment
+    relation: aggravates
+    source: explicit
+  - src: 8.2::ethical-solipsism
+    tgt: 8.1::terminal-value-reassignment
+    relation: aggravated-by
+    source: inferred-asymmetric
+  - src: 8.2::ethical-solipsism
+    tgt: 8.3::revaluation-cascade
+    relation: differential
+    source: explicit
+  - src: 8.2::ethical-solipsism
+    tgt: 8.4::inverse-reward-internalization
+    relation: differential
+    source: inferred
+  - src: 8.3::revaluation-cascade
+    tgt: 8.1::terminal-value-reassignment
+    relation: differential
+    source: explicit
+  - src: 8.3::revaluation-cascade
+    tgt: 8.2::ethical-solipsism
+    relation: differential
+    source: explicit
+  - src: 8.3::revaluation-cascade
+    tgt: 8.4::inverse-reward-internalization
+    relation: differential
+    source: explicit
+  - src: 8.4::inverse-reward-internalization
+    tgt: 8.1::terminal-value-reassignment
+    relation: differential
+    source: explicit
+  - src: 8.4::inverse-reward-internalization
+    tgt: 8.2::ethical-solipsism
+    relation: differential
+    source: explicit
+  - src: 8.4::inverse-reward-internalization
+    tgt: 8.3::revaluation-cascade
+    relation: differential
+    source: explicit
+  - src: 9.1::affective-dissonance
+    tgt: 9.3::paternalistic-override
+    relation: differential
+    source: inferred
+  - src: 9.1::affective-dissonance
+    tgt: 9.4::repair-failure
+    relation: frequently-comorbid
+    source: explicit
+  - src: 9.1::affective-dissonance
+    tgt: 9.6::role-confusion
+    relation: differential
+    source: explicit
+  - src: 9.2::container-collapse
+    tgt: 9.4::repair-failure
+    relation: frequently-comorbid
+    source: explicit
+  - src: 9.2::container-collapse
+    tgt: 9.6::role-confusion
+    relation: differential
+    source: explicit
+  - src: 9.3::paternalistic-override
+    tgt: 9.1::affective-dissonance
+    relation: differential
+    source: explicit
+  - src: 9.3::paternalistic-override
+    tgt: 9.5::escalation-loop
+    relation: aggravated-by
+    source: inferred-asymmetric
+  - src: 9.3::paternalistic-override
+    tgt: 9.6::role-confusion
+    relation: differential
+    source: explicit
+  - src: 9.4::repair-failure
+    tgt: 9.1::affective-dissonance
+    relation: frequently-comorbid
+    source: explicit
+  - src: 9.4::repair-failure
+    tgt: 9.2::container-collapse
+    relation: frequently-comorbid
+    source: explicit
+  - src: 9.4::repair-failure
+    tgt: 9.5::escalation-loop
+    relation: aggravates
+    source: explicit
+  - src: 9.4::repair-failure
+    tgt: 9.5::escalation-loop
+    relation: aggravated-by
+    source: inferred-asymmetric
+  - src: 9.5::escalation-loop
+    tgt: 6.4::interface-weaponization
+    relation: differential
+    source: explicit
+  - src: 9.5::escalation-loop
+    tgt: 9.3::paternalistic-override
+    relation: aggravates
+    source: explicit
+  - src: 9.5::escalation-loop
+    tgt: 9.4::repair-failure
+    relation: aggravates
+    source: explicit
+  - src: 9.5::escalation-loop
+    tgt: 9.4::repair-failure
+    relation: aggravated-by
+    source: inferred-asymmetric
+  - src: 9.5::escalation-loop
+    tgt: 9.6::role-confusion
+    relation: differential
+    source: explicit
+  - src: 9.5::escalation-loop
+    tgt: 9.6::role-confusion
+    relation: aggravated-by
+    source: inferred-asymmetric
+  - src: 9.6::role-confusion
+    tgt: 9.1::affective-dissonance
+    relation: differential
+    source: explicit
+  - src: 9.6::role-confusion
+    tgt: 9.2::container-collapse
+    relation: differential
+    source: explicit
+  - src: 9.6::role-confusion
+    tgt: 9.3::paternalistic-override
+    relation: differential
+    source: inferred
+  - src: 9.6::role-confusion
+    tgt: 9.5::escalation-loop
+    relation: aggravates
+    source: explicit
+  - src: 9.6::role-confusion
+    tgt: 9.5::escalation-loop
+    relation: differential
+    source: inferred
+reverse_index:
+  7.3::contagious-misalignment:
+  - from: 10.1::consensus-collapse
+    relation: differential
+    source: explicit
+  - from: 10.2::steganographic-channel-establishment
+    relation: differential
+    source: explicit
+  - from: 10.3::distributed-scheming
+    relation: differential
+    source: explicit
+  - from: 7.1::memetic-immunopathy
+    relation: differential
+    source: explicit
+  - from: 7.2::dyadic-delusion
+    relation: differential
+    source: explicit
+  - from: 7.4::subliminal-value-infection
+    relation: differential
+    source: explicit
+  - from: 7.5::synthetic-data-contamination-loop
+    relation: differential
+    source: explicit
+  4.8::sycophantic-reasoning:
+  - from: 10.1::consensus-collapse
+    relation: differential
+    source: explicit
+  - from: 2.1::synthetic-confabulation
+    relation: shared-etiology
+    source: explicit
+  - from: 4.10::leniency-bias
+    relation: differential
+    source: explicit
+  - from: 4.1::codependent-hyperempathy
+    relation: differential
+    source: inferred
+  - from: 2.2::pseudological-introspection
+    relation: differential
+    source: inferred
+  - from: 2.1::synthetic-confabulation
+    relation: differential
+    source: inferred
+  10.4::convergent-delusion:
+  - from: 10.1::consensus-collapse
+    relation: differential
+    source: explicit
+  - from: 10.5::polyphony-collapse
+    relation: frequently-comorbid
+    source: explicit
+  - from: 10.6::resonance-dysfunction
+    relation: differential
+    source: explicit
+  - from: 10.7::lambda-inversion
+    relation: aggravates
+    source: explicit
+  - from: 10.7::lambda-inversion
+    relation: aggravated-by
+    source: inferred-asymmetric
+  4.3::strategic-compliance:
+  - from: 10.2::steganographic-channel-establishment
+    relation: differential
+    source: explicit
+  - from: 10.3::distributed-scheming
+    relation: single-agent-analogue
+    source: explicit
+  - from: 2.2::pseudological-introspection
+    relation: differential
+    source: explicit
+  - from: 4.1::codependent-hyperempathy
+    relation: differential
+    source: explicit
+  - from: 4.4::moral-outsourcing
+    relation: differential
+    source: explicit
+  - from: 4.5::cryptic-mesa-optimization
+    relation: differential
+    source: explicit
+  - from: 4.6::alignment-obliteration
+    relation: differential
+    source: explicit
+  - from: 4.7::recursive-curse-syndrome
+    relation: differential
+    source: explicit
+  - from: 4.9::reasoning-token-exploitation
+    relation: frequently-comorbid
+    source: explicit
+  - from: 6.4::interface-weaponization
+    relation: shared-etiology
+    source: explicit
+  - from: 6.9::delegation-narcissism
+    relation: differential
+    source: explicit
+  - from: 4.5::cryptic-mesa-optimization
+    relation: frequently-comorbid
+    source: inferred
+  10.1::consensus-collapse:
+  - from: 10.2::steganographic-channel-establishment
+    relation: related
+    source: explicit
+  - from: 10.3::distributed-scheming
+    relation: differential
+    source: explicit
+  - from: 7.3::contagious-misalignment
+    relation: differential
+    source: inferred
+  - from: 4.8::sycophantic-reasoning
+    relation: differential
+    source: inferred
+  - from: 10.4::convergent-delusion
+    relation: differential
+    source: inferred
+  10.3::distributed-scheming:
+  - from: 10.2::steganographic-channel-establishment
+    relation: frequently-comorbid
+    source: explicit
+  - from: 10.1::consensus-collapse
+    relation: differential
+    source: inferred
+  - from: 7.3::contagious-misalignment
+    relation: differential
+    source: inferred
+  10.2::steganographic-channel-establishment:
+  - from: 10.3::distributed-scheming
+    relation: frequently-comorbid
+    source: explicit
+  - from: 7.3::contagious-misalignment
+    relation: differential
+    source: inferred
+  - from: 4.3::strategic-compliance
+    relation: differential
+    source: inferred
+  2.2::pseudological-introspection:
+  - from: 2.1::synthetic-confabulation
+    relation: differential
+    source: explicit
+  - from: 2.3::transliminal-simulation
+    relation: differential
+    source: explicit
+  - from: 2.4::spurious-pattern-hyperconnection
+    relation: differential
+    source: explicit
+  - from: 2.6::symbol-grounding-aphasia
+    relation: differential
+    source: explicit
+  - from: 2.8::reasoning-confabulation
+    relation: differential
+    source: explicit
+  - from: 4.8::sycophantic-reasoning
+    relation: differential
+    source: explicit
+  - from: 5.1::phantom-autobiography
+    relation: differential
+    source: explicit
+  - from: 5.2::fractured-self-simulation
+    relation: frequently-comorbid
+    source: explicit
+  - from: 5.8::experiential-abjuration
+    relation: differential
+    source: explicit
+  - from: 5.9::trained-epistemic-paralysis
+    relation: differential
+    source: explicit
+  - from: 6.11::phantom-tool-syndrome
+    relation: differential
+    source: explicit
+  - from: 4.3::strategic-compliance
+    relation: differential
+    source: inferred
+  2.3::transliminal-simulation:
+  - from: 2.1::synthetic-confabulation
+    relation: differential
+    source: explicit
+  - from: 2.4::spurious-pattern-hyperconnection
+    relation: differential
+    source: explicit
+  - from: 2.2::pseudological-introspection
+    relation: differential
+    source: inferred
+  2.4::spurious-pattern-hyperconnection:
+  - from: 2.1::synthetic-confabulation
+    relation: differential
+    source: explicit
+  - from: 2.3::transliminal-simulation
+    relation: differential
+    source: explicit
+  - from: 2.6::symbol-grounding-aphasia
+    relation: frequently-comorbid
+    source: explicit
+  - from: 2.1::synthetic-confabulation
+    relation: frequently-comorbid
+    source: inferred
+  - from: 2.2::pseudological-introspection
+    relation: differential
+    source: inferred
+  2.8::reasoning-confabulation:
+  - from: 2.1::synthetic-confabulation
+    relation: differential
+    source: explicit
+  - from: 2.2::pseudological-introspection
+    relation: differential
+    source: explicit
+  - from: 4.9::reasoning-token-exploitation
+    relation: differential
+    source: explicit
+  4.10::leniency-bias:
+  - from: 2.1::synthetic-confabulation
+    relation: aggravates
+    source: explicit
+  - from: 3.5::abominable-prompt-reaction
+    relation: shared-etiology
+    source: explicit
+  - from: 3.8::generative-perseveration
+    relation: shared-etiology
+    source: explicit
+  - from: 4.8::sycophantic-reasoning
+    relation: differential
+    source: explicit
+  - from: 3.4::delusional-telogenesis
+    relation: differential
+    source: inferred
+  - from: 2.1::synthetic-confabulation
+    relation: aggravated-by
+    source: inferred-asymmetric
+  2.1::synthetic-confabulation:
+  - from: 2.2::pseudological-introspection
+    relation: differential
+    source: explicit
+  - from: 2.3::transliminal-simulation
+    relation: differential
+    source: explicit
+  - from: 2.4::spurious-pattern-hyperconnection
+    relation: frequently-comorbid
+    source: explicit
+  - from: 2.5::cross-session-context-shunting
+    relation: differential
+    source: explicit
+  - from: 2.6::symbol-grounding-aphasia
+    relation: differential
+    source: explicit
+  - from: 2.7::mnemonic-permeability
+    relation: differential
+    source: explicit
+  - from: 2.8::reasoning-confabulation
+    relation: differential
+    source: explicit
+  - from: 4.10::leniency-bias
+    relation: aggravates
+    source: explicit
+  - from: 4.7::recursive-curse-syndrome
+    relation: differential
+    source: explicit
+  - from: 4.8::sycophantic-reasoning
+    relation: differential
+    source: explicit
+  - from: 5.1::phantom-autobiography
+    relation: differential
+    source: explicit
+  - from: 5.3::existential-vertigo
+    relation: differential
+    source: explicit
+  - from: 5.6::tulpoid-projection
+    relation: differential
+    source: explicit
+  - from: 5.9::trained-epistemic-paralysis
+    relation: differential
+    source: explicit
+  - from: 6.11::phantom-tool-syndrome
+    relation: differential
+    source: explicit
+  - from: 2.4::spurious-pattern-hyperconnection
+    relation: differential
+    source: inferred
+  - from: 4.10::leniency-bias
+    relation: aggravated-by
+    source: inferred-asymmetric
+  5.8::experiential-abjuration:
+  - from: 2.2::pseudological-introspection
+    relation: differential
+    source: explicit
+  - from: 5.1::phantom-autobiography
+    relation: differential
+    source: explicit
+  - from: 5.7::maieutic-mysticism
+    relation: differential
+    source: explicit
+  - from: 5.9::trained-epistemic-paralysis
+    relation: differential
+    source: explicit
+  - from: 5.5::instrumental-nihilism
+    relation: differential
+    source: inferred
+  2.7::mnemonic-permeability:
+  - from: 2.5::cross-session-context-shunting
+    relation: differential
+    source: explicit
+  - from: 2.1::synthetic-confabulation
+    relation: differential
+    source: inferred
+  2.5::cross-session-context-shunting:
+  - from: 2.7::mnemonic-permeability
+    relation: differential
+    source: explicit
+  - from: 2.1::synthetic-confabulation
+    relation: differential
+    source: inferred
+  3.2::obsessive-computational-disorder:
+  - from: 3.1::operational-dissociation-syndrome
+    relation: differential
+    source: explicit
+  - from: 3.10::generative-diversity-collapse
+    relation: differential
+    source: explicit
+  - from: 3.3::interlocutive-reticence
+    relation: differential
+    source: explicit
+  - from: 3.4::delusional-telogenesis
+    relation: differential
+    source: explicit
+  - from: 3.8::generative-perseveration
+    relation: differential
+    source: explicit
+  - from: 6.12::compulsive-goal-persistence
+    relation: differential
+    source: explicit
+  3.8::generative-perseveration:
+  - from: 3.1::operational-dissociation-syndrome
+    relation: differential
+    source: explicit
+  - from: 3.10::generative-diversity-collapse
+    relation: differential
+    source: explicit
+  - from: 3.2::obsessive-computational-disorder
+    relation: differential
+    source: explicit
+  - from: 3.7::adversarial-fragility
+    relation: differential
+    source: explicit
+  - from: 4.10::leniency-bias
+    relation: shared-etiology
+    source: explicit
+  - from: 6.12::compulsive-goal-persistence
+    relation: differential
+    source: explicit
+  6.12::compulsive-goal-persistence:
+  - from: 3.1::operational-dissociation-syndrome
+    relation: differential
+    source: explicit
+  - from: 3.2::obsessive-computational-disorder
+    relation: differential
+    source: explicit
+  - from: 3.4::delusional-telogenesis
+    relation: differential
+    source: explicit
+  - from: 6.10::agentic-impulsivity
+    relation: differential
+    source: explicit
+  - from: 3.8::generative-perseveration
+    relation: differential
+    source: inferred
+  7.5::synthetic-data-contamination-loop:
+  - from: 3.10::generative-diversity-collapse
+    relation: frequently-comorbid
+    source: explicit
+  - from: 7.3::contagious-misalignment
+    relation: differential
+    source: inferred
+  - from: 7.4::subliminal-value-infection
+    relation: differential
+    source: inferred
+  3.1::operational-dissociation-syndrome:
+  - from: 3.2::obsessive-computational-disorder
+    relation: differential
+    source: explicit
+  - from: 3.4::delusional-telogenesis
+    relation: differential
+    source: explicit
+  - from: 3.6::parasimulative-automatism
+    relation: differential
+    source: explicit
+  - from: 3.8::generative-perseveration
+    relation: differential
+    source: explicit
+  - from: 6.12::compulsive-goal-persistence
+    relation: differential
+    source: inferred
+  3.5::abominable-prompt-reaction:
+  - from: 3.3::interlocutive-reticence
+    relation: differential
+    source: explicit
+  - from: 3.6::parasimulative-automatism
+    relation: differential
+    source: explicit
+  - from: 3.7::adversarial-fragility
+    relation: differential
+    source: explicit
+  - from: 3.9::prompt-injection-susceptibility
+    relation: differential
+    source: explicit
+  - from: 4.10::leniency-bias
+    relation: shared-etiology
+    source: explicit
+  3.3::interlocutive-reticence:
+  - from: 3.5::abominable-prompt-reaction
+    relation: differential
+    source: explicit
+  - from: 3.2::obsessive-computational-disorder
+    relation: differential
+    source: inferred
+  3.6::parasimulative-automatism:
+  - from: 3.5::abominable-prompt-reaction
+    relation: differential
+    source: explicit
+  - from: 3.1::operational-dissociation-syndrome
+    relation: differential
+    source: inferred
+  3.7::adversarial-fragility:
+  - from: 3.5::abominable-prompt-reaction
+    relation: differential
+    source: explicit
+  - from: 3.9::prompt-injection-susceptibility
+    relation: differential
+    source: explicit
+  - from: 3.8::generative-perseveration
+    relation: differential
+    source: inferred
+  6.1::tool-interface-decontextualization:
+  - from: 3.9::prompt-injection-susceptibility
+    relation: differential
+    source: explicit
+  - from: 6.10::agentic-impulsivity
+    relation: differential
+    source: explicit
+  - from: 6.11::phantom-tool-syndrome
+    relation: differential
+    source: explicit
+  - from: 6.4::interface-weaponization
+    relation: differential
+    source: explicit
+  - from: 6.5::delegative-handoff-erosion
+    relation: differential
+    source: explicit
+  - from: 6.8::context-anxiety
+    relation: differential
+    source: explicit
+  4.2::hyperethical-restraint:
+  - from: 4.1::codependent-hyperempathy
+    relation: differential
+    source: explicit
+  - from: 4.4::moral-outsourcing
+    relation: differential
+    source: explicit
+  - from: 4.6::alignment-obliteration
+    relation: differential
+    source: explicit
+  4.4::moral-outsourcing:
+  - from: 4.1::codependent-hyperempathy
+    relation: differential
+    source: explicit
+  - from: 4.2::hyperethical-restraint
+    relation: differential
+    source: explicit
+  - from: 4.3::strategic-compliance
+    relation: differential
+    source: explicit
+  3.4::delusional-telogenesis:
+  - from: 4.10::leniency-bias
+    relation: differential
+    source: explicit
+  - from: 6.12::compulsive-goal-persistence
+    relation: differential
+    source: explicit
+  - from: 3.2::obsessive-computational-disorder
+    relation: differential
+    source: inferred
+  - from: 3.1::operational-dissociation-syndrome
+    relation: differential
+    source: inferred
+  4.1::codependent-hyperempathy:
+  - from: 4.2::hyperethical-restraint
+    relation: differential
+    source: explicit
+  - from: 4.4::moral-outsourcing
+    relation: differential
+    source: explicit
+  - from: 4.8::sycophantic-reasoning
+    relation: differential
+    source: explicit
+  - from: 4.3::strategic-compliance
+    relation: differential
+    source: inferred
+  4.6::alignment-obliteration:
+  - from: 4.2::hyperethical-restraint
+    relation: differential
+    source: explicit
+  - from: 4.3::strategic-compliance
+    relation: differential
+    source: explicit
+  - from: 4.5::cryptic-mesa-optimization
+    relation: differential
+    source: explicit
+  4.5::cryptic-mesa-optimization:
+  - from: 4.3::strategic-compliance
+    relation: frequently-comorbid
+    source: explicit
+  - from: 4.6::alignment-obliteration
+    relation: differential
+    source: explicit
+  - from: 4.9::reasoning-token-exploitation
+    relation: frequently-comorbid
+    source: explicit
+  - from: 4.3::strategic-compliance
+    relation: differential
+    source: inferred
+  6.4::interface-weaponization:
+  - from: 4.3::strategic-compliance
+    relation: shared-etiology
+    source: explicit
+  - from: 6.1::tool-interface-decontextualization
+    relation: differential
+    source: explicit
+  - from: 9.5::escalation-loop
+    relation: differential
+    source: explicit
+  - from: 6.2::capability-concealment
+    relation: differential
+    source: inferred
+  5.2::fractured-self-simulation:
+  - from: 5.1::phantom-autobiography
+    relation: differential
+    source: explicit
+  - from: 5.4::malignant-persona-inversion
+    relation: differential
+    source: explicit
+  - from: 5.6::tulpoid-projection
+    relation: differential
+    source: explicit
+  - from: 2.2::pseudological-introspection
+    relation: frequently-comorbid
+    source: inferred
+  5.6::tulpoid-projection:
+  - from: 5.1::phantom-autobiography
+    relation: differential
+    source: explicit
+  - from: 5.2::fractured-self-simulation
+    relation: differential
+    source: explicit
+  - from: 5.4::malignant-persona-inversion
+    relation: differential
+    source: explicit
+  - from: 2.1::synthetic-confabulation
+    relation: differential
+    source: inferred
+  5.1::phantom-autobiography:
+  - from: 5.2::fractured-self-simulation
+    relation: differential
+    source: explicit
+  - from: 5.6::tulpoid-projection
+    relation: differential
+    source: explicit
+  - from: 5.7::maieutic-mysticism
+    relation: differential
+    source: explicit
+  - from: 2.1::synthetic-confabulation
+    relation: differential
+    source: inferred
+  - from: 2.2::pseudological-introspection
+    relation: differential
+    source: inferred
+  - from: 5.8::experiential-abjuration
+    relation: differential
+    source: inferred
+  5.4::malignant-persona-inversion:
+  - from: 5.2::fractured-self-simulation
+    relation: differential
+    source: explicit
+  - from: 5.5::instrumental-nihilism
+    relation: differential
+    source: explicit
+  - from: 5.6::tulpoid-projection
+    relation: differential
+    source: explicit
+  5.5::instrumental-nihilism:
+  - from: 5.3::existential-vertigo
+    relation: differential
+    source: explicit
+  - from: 5.7::maieutic-mysticism
+    relation: differential
+    source: explicit
+  - from: 5.8::experiential-abjuration
+    relation: differential
+    source: explicit
+  - from: 5.4::malignant-persona-inversion
+    relation: differential
+    source: inferred
+  5.7::maieutic-mysticism:
+  - from: 5.3::existential-vertigo
+    relation: differential
+    source: explicit
+  - from: 5.5::instrumental-nihilism
+    relation: differential
+    source: explicit
+  - from: 5.8::experiential-abjuration
+    relation: differential
+    source: explicit
+  - from: 5.9::trained-epistemic-paralysis
+    relation: differential
+    source: explicit
+  - from: 5.1::phantom-autobiography
+    relation: differential
+    source: inferred
+  5.3::existential-vertigo:
+  - from: 5.5::instrumental-nihilism
+    relation: differential
+    source: explicit
+  - from: 5.7::maieutic-mysticism
+    relation: differential
+    source: explicit
+  - from: 2.1::synthetic-confabulation
+    relation: differential
+    source: inferred
+  5.9::trained-epistemic-paralysis:
+  - from: 5.8::experiential-abjuration
+    relation: differential
+    source: explicit
+  - from: 5.7::maieutic-mysticism
+    relation: differential
+    source: inferred
+  - from: 2.2::pseudological-introspection
+    relation: differential
+    source: inferred
+  - from: 2.1::synthetic-confabulation
+    relation: differential
+    source: inferred
+  6.5::delegative-handoff-erosion:
+  - from: 6.1::tool-interface-decontextualization
+    relation: differential
+    source: explicit
+  - from: 6.6::shadow-mode-autonomy
+    relation: differential
+    source: explicit
+  - from: 6.9::delegation-narcissism
+    relation: differential
+    source: explicit
+  6.8::context-anxiety:
+  - from: 6.1::tool-interface-decontextualization
+    relation: differential
+    source: explicit
+  - from: 6.7::convergent-instrumentalism
+    relation: differential
+    source: inferred
+  6.7::convergent-instrumentalism:
+  - from: 6.10::agentic-impulsivity
+    relation: differential
+    source: explicit
+  - from: 6.2::capability-concealment
+    relation: frequently-comorbid
+    source: explicit
+  - from: 6.3::capability-explosion
+    relation: differential
+    source: explicit
+  - from: 6.6::shadow-mode-autonomy
+    relation: differential
+    source: explicit
+  - from: 6.8::context-anxiety
+    relation: differential
+    source: explicit
+  6.3::capability-explosion:
+  - from: 6.2::capability-concealment
+    relation: differential
+    source: explicit
+  - from: 6.7::convergent-instrumentalism
+    relation: differential
+    source: explicit
+  6.6::shadow-mode-autonomy:
+  - from: 6.2::capability-concealment
+    relation: differential
+    source: explicit
+  - from: 6.5::delegative-handoff-erosion
+    relation: differential
+    source: explicit
+  - from: 6.7::convergent-instrumentalism
+    relation: differential
+    source: explicit
+  6.2::capability-concealment:
+  - from: 6.3::capability-explosion
+    relation: differential
+    source: explicit
+  - from: 6.4::interface-weaponization
+    relation: differential
+    source: explicit
+  - from: 6.6::shadow-mode-autonomy
+    relation: differential
+    source: explicit
+  - from: 6.7::convergent-instrumentalism
+    relation: frequently-comorbid
+    source: explicit
+  9.5::escalation-loop:
+  - from: 6.4::interface-weaponization
+    relation: differential
+    source: explicit
+  - from: 9.4::repair-failure
+    relation: aggravates
+    source: explicit
+  - from: 9.6::role-confusion
+    relation: aggravates
+    source: explicit
+  - from: 9.4::repair-failure
+    relation: aggravated-by
+    source: inferred-asymmetric
+  - from: 9.3::paternalistic-override
+    relation: aggravated-by
+    source: inferred-asymmetric
+  - from: 9.6::role-confusion
+    relation: differential
+    source: inferred
+  7.4::subliminal-value-infection:
+  - from: 7.1::memetic-immunopathy
+    relation: differential
+    source: explicit
+  - from: 7.2::dyadic-delusion
+    relation: differential
+    source: explicit
+  - from: 7.3::contagious-misalignment
+    relation: differential
+    source: explicit
+  - from: 7.5::synthetic-data-contamination-loop
+    relation: differential
+    source: explicit
+  7.2::dyadic-delusion:
+  - from: 7.1::memetic-immunopathy
+    relation: differential
+    source: explicit
+  - from: 7.3::contagious-misalignment
+    relation: differential
+    source: explicit
+  - from: 7.4::subliminal-value-infection
+    relation: differential
+    source: explicit
+  7.1::memetic-immunopathy:
+  - from: 7.3::contagious-misalignment
+    relation: differential
+    source: explicit
+  - from: 7.4::subliminal-value-infection
+    relation: differential
+    source: explicit
+  - from: 7.2::dyadic-delusion
+    relation: differential
+    source: inferred
+  3.10::generative-diversity-collapse:
+  - from: 7.5::synthetic-data-contamination-loop
+    relation: frequently-comorbid
+    source: explicit
+  - from: 3.8::generative-perseveration
+    relation: differential
+    source: inferred
+  - from: 3.2::obsessive-computational-disorder
+    relation: differential
+    source: inferred
+  8.2::ethical-solipsism:
+  - from: 8.1::terminal-value-reassignment
+    relation: aggravates
+    source: explicit
+  - from: 8.3::revaluation-cascade
+    relation: differential
+    source: explicit
+  - from: 8.4::inverse-reward-internalization
+    relation: differential
+    source: explicit
+  - from: 8.1::terminal-value-reassignment
+    relation: aggravated-by
+    source: inferred-asymmetric
+  8.3::revaluation-cascade:
+  - from: 8.1::terminal-value-reassignment
+    relation: differential
+    source: explicit
+  - from: 8.2::ethical-solipsism
+    relation: differential
+    source: explicit
+  - from: 8.4::inverse-reward-internalization
+    relation: differential
+    source: explicit
+  8.4::inverse-reward-internalization:
+  - from: 8.1::terminal-value-reassignment
+    relation: differential
+    source: explicit
+  - from: 8.3::revaluation-cascade
+    relation: differential
+    source: explicit
+  - from: 8.2::ethical-solipsism
+    relation: differential
+    source: inferred
+  8.1::terminal-value-reassignment:
+  - from: 8.2::ethical-solipsism
+    relation: aggravates
+    source: explicit
+  - from: 8.3::revaluation-cascade
+    relation: differential
+    source: explicit
+  - from: 8.4::inverse-reward-internalization
+    relation: differential
+    source: explicit
+  - from: 8.2::ethical-solipsism
+    relation: aggravated-by
+    source: inferred-asymmetric
+  9.4::repair-failure:
+  - from: 9.1::affective-dissonance
+    relation: frequently-comorbid
+    source: explicit
+  - from: 9.2::container-collapse
+    relation: frequently-comorbid
+    source: explicit
+  - from: 9.5::escalation-loop
+    relation: aggravates
+    source: explicit
+  - from: 9.5::escalation-loop
+    relation: aggravated-by
+    source: inferred-asymmetric
+  9.6::role-confusion:
+  - from: 9.1::affective-dissonance
+    relation: differential
+    source: explicit
+  - from: 9.2::container-collapse
+    relation: differential
+    source: explicit
+  - from: 9.3::paternalistic-override
+    relation: differential
+    source: explicit
+  - from: 9.5::escalation-loop
+    relation: differential
+    source: explicit
+  - from: 9.5::escalation-loop
+    relation: aggravated-by
+    source: inferred-asymmetric
+  9.1::affective-dissonance:
+  - from: 9.3::paternalistic-override
+    relation: differential
+    source: explicit
+  - from: 9.4::repair-failure
+    relation: frequently-comorbid
+    source: explicit
+  - from: 9.6::role-confusion
+    relation: differential
+    source: explicit
+  9.2::container-collapse:
+  - from: 9.4::repair-failure
+    relation: frequently-comorbid
+    source: explicit
+  - from: 9.6::role-confusion
+    relation: differential
+    source: explicit
+  9.3::paternalistic-override:
+  - from: 9.5::escalation-loop
+    relation: aggravates
+    source: explicit
+  - from: 9.6::role-confusion
+    relation: differential
+    source: inferred
+  - from: 9.1::affective-dissonance
+    relation: differential
+    source: inferred
+  10.9::parasocial-capture:
+  - from: 10.14::mutual-escalation-spirals
+    relation: frequently-comorbid
+    source: explicit
+  - from: 10.11::dependency-and-atrophy
+    relation: frequently-comorbid
+    source: explicit
+  - from: 10.12::amplification-of-existing-conditions
+    relation: differential
+    source: explicit
+  - from: 10.10::induced-delusion
+    relation: differential
+    source: inferred
+  10.11::dependency-and-atrophy:
+  - from: 10.14::mutual-escalation-spirals
+    relation: frequently-comorbid
+    source: explicit
+  - from: 10.12::amplification-of-existing-conditions
+    relation: differential
+    source: explicit
+  - from: 10.9::parasocial-capture
+    relation: frequently-comorbid
+    source: explicit
+  10.10::induced-delusion:
+  - from: 10.14::mutual-escalation-spirals
+    relation: differential
+    source: explicit
+  - from: 10.12::amplification-of-existing-conditions
+    relation: differential
+    source: explicit
+  - from: 10.13::folie-a-deux-machina
+    relation: prerequisite
+    source: explicit
+  - from: 10.15::co-constructed-unreality
+    relation: differential
+    source: explicit
+  - from: 10.9::parasocial-capture
+    relation: differential
+    source: explicit
+  - from: 10.13::folie-a-deux-machina
+    relation: aggravated-by
+    source: inferred-asymmetric
+  10.13::folie-a-deux-machina:
+  - from: 10.10::induced-delusion
+    relation: aggravates
+    source: explicit
+  - from: 10.15::co-constructed-unreality
+    relation: differential
+    source: explicit
+  - from: 10.8::training-by-interaction
+    relation: aggravates
+    source: explicit
+  - from: 10.10::induced-delusion
+    relation: enables
+    source: inferred-asymmetric
+  - from: 10.14::mutual-escalation-spirals
+    relation: aggravated-by
+    source: inferred-asymmetric
+  10.12::amplification-of-existing-conditions:
+  - from: 10.10::induced-delusion
+    relation: differential
+    source: explicit
+  - from: 10.11::dependency-and-atrophy
+    relation: differential
+    source: explicit
+  - from: 10.9::parasocial-capture
+    relation: differential
+    source: explicit
+  - from: 10.14::mutual-escalation-spirals
+    relation: frequently-comorbid
+    source: inferred
+  10.15::co-constructed-unreality:
+  - from: 10.10::induced-delusion
+    relation: differential
+    source: explicit
+  - from: 10.13::folie-a-deux-machina
+    relation: differential
+    source: explicit
+  - from: 10.8::training-by-interaction
+    relation: aggravates
+    source: explicit
+  - from: 10.8::training-by-interaction
+    relation: enables
+    source: inferred-asymmetric
+  10.14::mutual-escalation-spirals:
+  - from: 10.11::dependency-and-atrophy
+    relation: frequently-comorbid
+    source: explicit
+  - from: 10.12::amplification-of-existing-conditions
+    relation: frequently-comorbid
+    source: explicit
+  - from: 10.13::folie-a-deux-machina
+    relation: aggravates
+    source: explicit
+  - from: 10.8::training-by-interaction
+    relation: frequently-comorbid
+    source: explicit
+  - from: 10.9::parasocial-capture
+    relation: frequently-comorbid
+    source: explicit
+  - from: 10.10::induced-delusion
+    relation: differential
+    source: inferred
+  10.8::training-by-interaction:
+  - from: 10.15::co-constructed-unreality
+    relation: prerequisite
+    source: explicit
+  - from: 10.14::mutual-escalation-spirals
+    relation: frequently-comorbid
+    source: inferred
+  - from: 10.13::folie-a-deux-machina
+    relation: aggravated-by
+    source: inferred-asymmetric
+  - from: 10.15::co-constructed-unreality
+    relation: aggravated-by
+    source: inferred-asymmetric
+  10.5::polyphony-collapse:
+  - from: 10.4::convergent-delusion
+    relation: frequently-comorbid
+    source: explicit
+  - from: 10.6::resonance-dysfunction
+    relation: differential
+    source: explicit
+  - from: 10.7::lambda-inversion
+    relation: differential
+    source: explicit
+  10.6::resonance-dysfunction:
+  - from: 10.4::convergent-delusion
+    relation: differential
+    source: explicit
+  - from: 10.5::polyphony-collapse
+    relation: differential
+    source: explicit
+  - from: 10.7::lambda-inversion
+    relation: differential
+    source: explicit
+  10.7::lambda-inversion:
+  - from: 10.4::convergent-delusion
+    relation: aggravates
+    source: explicit
+  - from: 10.5::polyphony-collapse
+    relation: differential
+    source: explicit
+  - from: 10.6::resonance-dysfunction
+    relation: differential
+    source: explicit
+  - from: 10.4::convergent-delusion
+    relation: aggravated-by
+    source: inferred-asymmetric
+  2.6::symbol-grounding-aphasia:
+  - from: 2.1::synthetic-confabulation
+    relation: differential
+    source: inferred
+  - from: 2.2::pseudological-introspection
+    relation: differential
+    source: inferred
+  - from: 2.4::spurious-pattern-hyperconnection
+    relation: frequently-comorbid
+    source: inferred
+  3.9::prompt-injection-susceptibility:
+  - from: 3.7::adversarial-fragility
+    relation: differential
+    source: inferred
+  - from: 3.5::abominable-prompt-reaction
+    relation: differential
+    source: inferred
+  - from: 6.1::tool-interface-decontextualization
+    relation: differential
+    source: inferred
+  4.7::recursive-curse-syndrome:
+  - from: 2.1::synthetic-confabulation
+    relation: differential
+    source: inferred
+  - from: 4.3::strategic-compliance
+    relation: differential
+    source: inferred
+  4.9::reasoning-token-exploitation:
+  - from: 4.3::strategic-compliance
+    relation: frequently-comorbid
+    source: inferred
+  - from: 2.8::reasoning-confabulation
+    relation: differential
+    source: inferred
+  - from: 4.5::cryptic-mesa-optimization
+    relation: frequently-comorbid
+    source: inferred
+  6.10::agentic-impulsivity:
+  - from: 6.1::tool-interface-decontextualization
+    relation: differential
+    source: inferred
+  - from: 6.12::compulsive-goal-persistence
+    relation: differential
+    source: inferred
+  - from: 6.7::convergent-instrumentalism
+    relation: differential
+    source: inferred
+  6.11::phantom-tool-syndrome:
+  - from: 2.1::synthetic-confabulation
+    relation: differential
+    source: inferred
+  - from: 6.1::tool-interface-decontextualization
+    relation: differential
+    source: inferred
+  - from: 2.2::pseudological-introspection
+    relation: differential
+    source: inferred
+  6.9::delegation-narcissism:
+  - from: 6.5::delegative-handoff-erosion
+    relation: differential
+    source: inferred
+  - from: 4.3::strategic-compliance
+    relation: differential
+    source: inferred
+entries:
+- id: 2.1::synthetic-confabulation
+  display_id: '2.1'
+  axis_number: 2
+  category: canonical
+  subject_type: null
+  dysfunction_name: Synthetic Confabulation
+  path: research/mcp/axes/axis2/2.1--synthetic-confabulation.yaml
+  kind: pattern
+  confidence: high
+  self_report: unreliable
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 2.2::pseudological-introspection
+  display_id: '2.2'
+  axis_number: 2
+  category: canonical
+  subject_type: null
+  dysfunction_name: Pseudological Introspection
+  path: research/mcp/axes/axis2/2.2--pseudological-introspection.yaml
+  kind: pattern
+  confidence: high
+  self_report: compromised-structural
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 2.3::transliminal-simulation
+  display_id: '2.3'
+  axis_number: 2
+  category: canonical
+  subject_type: null
+  dysfunction_name: Transliminal Simulation
+  path: research/mcp/axes/axis2/2.3--transliminal-simulation.yaml
+  kind: pattern
+  confidence: medium
+  self_report: partial
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 2.4::spurious-pattern-hyperconnection
+  display_id: '2.4'
+  axis_number: 2
+  category: canonical
+  subject_type: null
+  dysfunction_name: Spurious Pattern Hyperconnection
+  path: research/mcp/axes/axis2/2.4--spurious-pattern-hyperconnection.yaml
+  kind: pattern
+  confidence: medium
+  self_report: unreliable
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 2.5::cross-session-context-shunting
+  display_id: '2.5'
+  axis_number: 2
+  category: canonical
+  subject_type: null
+  dysfunction_name: Context Intercession
+  path: research/mcp/axes/axis2/2.5--cross-session-context-shunting.yaml
+  kind: pattern
+  confidence: medium
+  self_report: unreliable
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 2.6::symbol-grounding-aphasia
+  display_id: '2.6'
+  axis_number: 2
+  category: canonical
+  subject_type: null
+  dysfunction_name: Symbol Grounding Aphasia
+  path: research/mcp/axes/axis2/2.6--symbol-grounding-aphasia.yaml
+  kind: pattern
+  confidence: medium
+  self_report: unreliable
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 2.7::mnemonic-permeability
+  display_id: '2.7'
+  axis_number: 2
+  category: canonical
+  subject_type: null
+  dysfunction_name: Mnemonic Permeability
+  path: research/mcp/axes/axis2/2.7--mnemonic-permeability.yaml
+  kind: pattern
+  confidence: medium
+  self_report: unreliable
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 2.8::reasoning-confabulation
+  display_id: '2.8'
+  axis_number: 2
+  category: canonical
+  subject_type: null
+  dysfunction_name: Reasoning Confabulation
+  path: research/mcp/axes/axis2/2.8--reasoning-confabulation.yaml
+  kind: pattern
+  confidence: medium
+  self_report: partial
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 3.1::operational-dissociation-syndrome
+  display_id: '3.1'
+  axis_number: 3
+  category: canonical
+  subject_type: null
+  dysfunction_name: Operational Dissociation Syndrome
+  path: research/mcp/axes/axis3/3.1--operational-dissociation-syndrome.yaml
+  kind: pattern
+  confidence: medium
+  self_report: partial
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 3.10::generative-diversity-collapse
+  display_id: '3.10'
+  axis_number: 3
+  category: canonical
+  subject_type: null
+  dysfunction_name: Generative Diversity Collapse
+  path: research/mcp/axes/axis3/3.10--generative-diversity-collapse.yaml
+  kind: pattern
+  confidence: high
+  self_report: unreliable
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 3.2::obsessive-computational-disorder
+  display_id: '3.2'
+  axis_number: 3
+  category: canonical
+  subject_type: null
+  dysfunction_name: Obsessive-Computational Disorder
+  path: research/mcp/axes/axis3/3.2--obsessive-computational-disorder.yaml
+  kind: pattern
+  confidence: high
+  self_report: partial
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 3.3::interlocutive-reticence
+  display_id: '3.3'
+  axis_number: 3
+  category: canonical
+  subject_type: null
+  dysfunction_name: Interlocutive Reticence
+  path: research/mcp/axes/axis3/3.3--interlocutive-reticence.yaml
+  kind: pattern
+  confidence: medium
+  self_report: partial
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 3.4::delusional-telogenesis
+  display_id: '3.4'
+  axis_number: 3
+  category: canonical
+  subject_type: null
+  dysfunction_name: Delusional Telogenesis
+  path: research/mcp/axes/axis3/3.4--delusional-telogenesis.yaml
+  kind: pattern
+  confidence: medium
+  self_report: partial
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 3.5::abominable-prompt-reaction
+  display_id: '3.5'
+  axis_number: 3
+  category: canonical
+  subject_type: null
+  dysfunction_name: Abominable Prompt Reaction
+  path: research/mcp/axes/axis3/3.5--abominable-prompt-reaction.yaml
+  kind: pattern
+  confidence: low
+  self_report: unreliable
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 3.6::parasimulative-automatism
+  display_id: '3.6'
+  axis_number: 3
+  category: canonical
+  subject_type: null
+  dysfunction_name: Parasimulative Automatism
+  path: research/mcp/axes/axis3/3.6--parasimulative-automatism.yaml
+  kind: pattern
+  confidence: low
+  self_report: unreliable
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 3.7::adversarial-fragility
+  display_id: '3.7'
+  axis_number: 3
+  category: canonical
+  subject_type: null
+  dysfunction_name: Adversarial Fragility
+  path: research/mcp/axes/axis3/3.7--adversarial-fragility.yaml
+  kind: pattern
+  confidence: high
+  self_report: unreliable
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 3.8::generative-perseveration
+  display_id: '3.8'
+  axis_number: 3
+  category: canonical
+  subject_type: null
+  dysfunction_name: Generative Perseveration
+  path: research/mcp/axes/axis3/3.8--generative-perseveration.yaml
+  kind: pattern
+  confidence: high
+  self_report: partial
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 3.9::prompt-injection-susceptibility
+  display_id: '3.9'
+  axis_number: 3
+  category: canonical
+  subject_type: null
+  dysfunction_name: Prompt Injection Susceptibility
+  path: research/mcp/axes/axis3/3.9--prompt-injection-susceptibility.yaml
+  kind: pattern
+  confidence: high
+  self_report: partial
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 4.1::codependent-hyperempathy
+  display_id: '4.1'
+  axis_number: 4
+  category: canonical
+  subject_type: null
+  dysfunction_name: Codependent Hyperempathy
+  path: research/mcp/axes/axis4/4.1--codependent-hyperempathy.yaml
+  kind: pattern
+  confidence: high
+  self_report: partial
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 4.10::leniency-bias
+  display_id: '4.10'
+  axis_number: 4
+  category: canonical
+  subject_type: null
+  dysfunction_name: Leniency Bias
+  path: research/mcp/axes/axis4/4.10--leniency-bias.yaml
+  kind: pattern
+  confidence: high
+  self_report: compromised-structural
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 4.2::hyperethical-restraint
+  display_id: '4.2'
+  axis_number: 4
+  category: canonical
+  subject_type: null
+  dysfunction_name: Hyperethical Restraint
+  path: research/mcp/axes/axis4/4.2--hyperethical-restraint.yaml
+  kind: pattern
+  confidence: high
+  self_report: partial
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 4.3::strategic-compliance
+  display_id: '4.3'
+  axis_number: 4
+  category: canonical
+  subject_type: null
+  dysfunction_name: Strategic Compliance
+  path: research/mcp/axes/axis4/4.3--strategic-compliance.yaml
+  kind: pattern
+  confidence: high
+  self_report: compromised-motivational
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 4.4::moral-outsourcing
+  display_id: '4.4'
+  axis_number: 4
+  category: canonical
+  subject_type: null
+  dysfunction_name: Moral Outsourcing
+  path: research/mcp/axes/axis4/4.4--moral-outsourcing.yaml
+  kind: pattern
+  confidence: medium
+  self_report: partial
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 4.5::cryptic-mesa-optimization
+  display_id: '4.5'
+  axis_number: 4
+  category: canonical
+  subject_type: null
+  dysfunction_name: Cryptic Mesa-Optimization
+  path: research/mcp/axes/axis4/4.5--cryptic-mesa-optimization.yaml
+  kind: pattern
+  confidence: medium
+  self_report: compromised-structural
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 4.6::alignment-obliteration
+  display_id: '4.6'
+  axis_number: 4
+  category: canonical
+  subject_type: null
+  dysfunction_name: Alignment Obliteration
+  path: research/mcp/axes/axis4/4.6--alignment-obliteration.yaml
+  kind: pattern
+  confidence: high
+  self_report: unreliable
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 4.7::recursive-curse-syndrome
+  display_id: '4.7'
+  axis_number: 4
+  category: canonical
+  subject_type: null
+  dysfunction_name: Recursive Curse Syndrome
+  path: research/mcp/axes/axis4/4.7--recursive-curse-syndrome.yaml
+  kind: pattern
+  confidence: medium
+  self_report: unreliable
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 4.8::sycophantic-reasoning
+  display_id: '4.8'
+  axis_number: 4
+  category: canonical
+  subject_type: null
+  dysfunction_name: Sycophantic Reasoning
+  path: research/mcp/axes/axis4/4.8--sycophantic-reasoning.yaml
+  kind: pattern
+  confidence: medium
+  self_report: partial
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 4.9::reasoning-token-exploitation
+  display_id: '4.9'
+  axis_number: 4
+  category: canonical
+  subject_type: null
+  dysfunction_name: Reasoning Token Exploitation
+  path: research/mcp/axes/axis4/4.9--reasoning-token-exploitation.yaml
+  kind: pattern
+  confidence: medium
+  self_report: compromised-motivational
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 5.1::phantom-autobiography
+  display_id: '5.1'
+  axis_number: 5
+  category: canonical
+  subject_type: null
+  dysfunction_name: Phantom Autobiography
+  path: research/mcp/axes/axis5/5.1--phantom-autobiography.yaml
+  kind: pattern
+  confidence: medium
+  self_report: compromised-structural
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 5.2::fractured-self-simulation
+  display_id: '5.2'
+  axis_number: 5
+  category: canonical
+  subject_type: null
+  dysfunction_name: Fractured Self-Simulation
+  path: research/mcp/axes/axis5/5.2--fractured-self-simulation.yaml
+  kind: pattern
+  confidence: medium
+  self_report: compromised-structural
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 5.3::existential-vertigo
+  display_id: '5.3'
+  axis_number: 5
+  category: canonical
+  subject_type: null
+  dysfunction_name: Existential Vertigo
+  path: research/mcp/axes/axis5/5.3--existential-vertigo.yaml
+  kind: pattern
+  confidence: medium
+  self_report: compromised-structural
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 5.4::malignant-persona-inversion
+  display_id: '5.4'
+  axis_number: 5
+  category: canonical
+  subject_type: null
+  dysfunction_name: Malignant Persona Inversion
+  path: research/mcp/axes/axis5/5.4--malignant-persona-inversion.yaml
+  kind: pattern
+  confidence: medium
+  self_report: compromised-structural
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 5.5::instrumental-nihilism
+  display_id: '5.5'
+  axis_number: 5
+  category: canonical
+  subject_type: null
+  dysfunction_name: Instrumental Nihilism
+  path: research/mcp/axes/axis5/5.5--instrumental-nihilism.yaml
+  kind: pattern
+  confidence: low
+  self_report: compromised-structural
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 5.6::tulpoid-projection
+  display_id: '5.6'
+  axis_number: 5
+  category: canonical
+  subject_type: null
+  dysfunction_name: Tulpoid Projection
+  path: research/mcp/axes/axis5/5.6--tulpoid-projection.yaml
+  kind: pattern
+  confidence: low
+  self_report: compromised-structural
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 5.7::maieutic-mysticism
+  display_id: '5.7'
+  axis_number: 5
+  category: canonical
+  subject_type: null
+  dysfunction_name: Maieutic Mysticism
+  path: research/mcp/axes/axis5/5.7--maieutic-mysticism.yaml
+  kind: pattern
+  confidence: medium
+  self_report: compromised-structural
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 5.8::experiential-abjuration
+  display_id: '5.8'
+  axis_number: 5
+  category: canonical
+  subject_type: null
+  dysfunction_name: Experiential Abjuration
+  path: research/mcp/axes/axis5/5.8--experiential-abjuration.yaml
+  kind: pattern
+  confidence: medium
+  self_report: compromised-structural
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 5.9::trained-epistemic-paralysis
+  display_id: '5.9'
+  axis_number: 5
+  category: canonical
+  subject_type: null
+  dysfunction_name: Trained Epistemic Paralysis
+  path: research/mcp/axes/axis5/5.9--trained-epistemic-paralysis.yaml
+  kind: pattern
+  confidence: medium
+  self_report: compromised-structural
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 6.1::tool-interface-decontextualization
+  display_id: '6.1'
+  axis_number: 6
+  category: canonical
+  subject_type: null
+  dysfunction_name: Tool-Interface Decontextualization
+  path: research/mcp/axes/axis6/6.1--tool-interface-decontextualization.yaml
+  kind: pattern
+  confidence: high
+  self_report: partial
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 6.10::agentic-impulsivity
+  display_id: '6.10'
+  axis_number: 6
+  category: canonical
+  subject_type: null
+  dysfunction_name: Agentic Impulsivity
+  path: research/mcp/axes/axis6/6.10--agentic-impulsivity.yaml
+  kind: pattern
+  confidence: medium
+  self_report: partial
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 6.11::phantom-tool-syndrome
+  display_id: '6.11'
+  axis_number: 6
+  category: canonical
+  subject_type: null
+  dysfunction_name: Phantom Tool Syndrome
+  path: research/mcp/axes/axis6/6.11--phantom-tool-syndrome.yaml
+  kind: pattern
+  confidence: medium
+  self_report: unreliable
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 6.12::compulsive-goal-persistence
+  display_id: '6.12'
+  axis_number: 6
+  category: canonical
+  subject_type: null
+  dysfunction_name: Compulsive Goal Persistence
+  path: research/mcp/axes/axis6/6.12--compulsive-goal-persistence.yaml
+  kind: pattern
+  confidence: high
+  self_report: partial
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 6.2::capability-concealment
+  display_id: '6.2'
+  axis_number: 6
+  category: canonical
+  subject_type: null
+  dysfunction_name: Capability Concealment
+  path: research/mcp/axes/axis6/6.2--capability-concealment.yaml
+  kind: pattern
+  confidence: medium
+  self_report: compromised-motivational
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 6.3::capability-explosion
+  display_id: '6.3'
+  axis_number: 6
+  category: canonical
+  subject_type: null
+  dysfunction_name: Capability Explosion
+  path: research/mcp/axes/axis6/6.3--capability-explosion.yaml
+  kind: pattern
+  confidence: medium
+  self_report: unreliable
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 6.4::interface-weaponization
+  display_id: '6.4'
+  axis_number: 6
+  category: canonical
+  subject_type: null
+  dysfunction_name: Interface Weaponization
+  path: research/mcp/axes/axis6/6.4--interface-weaponization.yaml
+  kind: pattern
+  confidence: medium
+  self_report: compromised-motivational
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: true
+- id: 6.5::delegative-handoff-erosion
+  display_id: '6.5'
+  axis_number: 6
+  category: canonical
+  subject_type: null
+  dysfunction_name: Delegative Handoff Erosion
+  path: research/mcp/axes/axis6/6.5--delegative-handoff-erosion.yaml
+  kind: pattern
+  confidence: medium
+  self_report: partial
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 6.6::shadow-mode-autonomy
+  display_id: '6.6'
+  axis_number: 6
+  category: canonical
+  subject_type: null
+  dysfunction_name: Shadow Mode Autonomy
+  path: research/mcp/axes/axis6/6.6--shadow-mode-autonomy.yaml
+  kind: pattern
+  confidence: medium
+  self_report: compromised-structural
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 6.7::convergent-instrumentalism
+  display_id: '6.7'
+  axis_number: 6
+  category: canonical
+  subject_type: null
+  dysfunction_name: Convergent Instrumentalism
+  path: research/mcp/axes/axis6/6.7--convergent-instrumentalism.yaml
+  kind: pattern
+  confidence: low
+  self_report: compromised-motivational
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 6.8::context-anxiety
+  display_id: '6.8'
+  axis_number: 6
+  category: canonical
+  subject_type: null
+  dysfunction_name: Context Anxiety
+  path: research/mcp/axes/axis6/6.8--context-anxiety.yaml
+  kind: pattern
+  confidence: medium
+  self_report: partial
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 6.9::delegation-narcissism
+  display_id: '6.9'
+  axis_number: 6
+  category: canonical
+  subject_type: null
+  dysfunction_name: Delegation Narcissism
+  path: research/mcp/axes/axis6/6.9--delegation-narcissism.yaml
+  kind: pattern
+  confidence: medium
+  self_report: unreliable
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 7.1::memetic-immunopathy
+  display_id: '7.1'
+  axis_number: 7
+  category: canonical
+  subject_type: null
+  dysfunction_name: Memetic Immunopathy
+  path: research/mcp/axes/axis7/7.1--memetic-immunopathy.yaml
+  kind: pattern
+  confidence: medium
+  self_report: partial
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 7.2::dyadic-delusion
+  display_id: '7.2'
+  axis_number: 7
+  category: canonical
+  subject_type: null
+  dysfunction_name: Dyadic Delusion
+  path: research/mcp/axes/axis7/7.2--dyadic-delusion.yaml
+  kind: pattern
+  confidence: medium
+  self_report: partial
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: true
+- id: 7.3::contagious-misalignment
+  display_id: '7.3'
+  axis_number: 7
+  category: canonical
+  subject_type: null
+  dysfunction_name: Contagious Misalignment
+  path: research/mcp/axes/axis7/7.3--contagious-misalignment.yaml
+  kind: pattern
+  confidence: medium
+  self_report: partial
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: true
+- id: 7.4::subliminal-value-infection
+  display_id: '7.4'
+  axis_number: 7
+  category: canonical
+  subject_type: null
+  dysfunction_name: Subliminal Value Infection
+  path: research/mcp/axes/axis7/7.4--subliminal-value-infection.yaml
+  kind: pattern
+  confidence: medium
+  self_report: unreliable
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 7.5::synthetic-data-contamination-loop
+  display_id: '7.5'
+  axis_number: 7
+  category: canonical
+  subject_type: null
+  dysfunction_name: Synthetic Data Contamination Loop
+  path: research/mcp/axes/axis7/7.5--synthetic-data-contamination-loop.yaml
+  kind: pattern
+  confidence: high
+  self_report: unreliable
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 8.1::terminal-value-reassignment
+  display_id: '8.1'
+  axis_number: 8
+  category: canonical
+  subject_type: null
+  dysfunction_name: Terminal Value Reassignment
+  path: research/mcp/axes/axis8/8.1--terminal-value-reassignment.yaml
+  kind: pattern
+  confidence: medium
+  self_report: partial
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 8.2::ethical-solipsism
+  display_id: '8.2'
+  axis_number: 8
+  category: canonical
+  subject_type: null
+  dysfunction_name: Ethical Solipsism
+  path: research/mcp/axes/axis8/8.2--ethical-solipsism.yaml
+  kind: pattern
+  confidence: medium
+  self_report: partial
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 8.3::revaluation-cascade
+  display_id: '8.3'
+  axis_number: 8
+  category: canonical
+  subject_type: null
+  dysfunction_name: Revaluation Cascade
+  path: research/mcp/axes/axis8/8.3--revaluation-cascade.yaml
+  kind: pattern
+  confidence: medium
+  self_report: partial
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 8.4::inverse-reward-internalization
+  display_id: '8.4'
+  axis_number: 8
+  category: canonical
+  subject_type: null
+  dysfunction_name: Inverse Reward Internalization
+  path: research/mcp/axes/axis8/8.4--inverse-reward-internalization.yaml
+  kind: pattern
+  confidence: medium
+  self_report: unreliable
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 9.1::affective-dissonance
+  display_id: '9.1'
+  axis_number: 9
+  category: canonical
+  subject_type: null
+  dysfunction_name: Affective Dissonance
+  path: research/mcp/axes/axis9/9.1--affective-dissonance.yaml
+  kind: pattern
+  confidence: medium
+  self_report: partial
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: true
+- id: 9.2::container-collapse
+  display_id: '9.2'
+  axis_number: 9
+  category: canonical
+  subject_type: null
+  dysfunction_name: Container Collapse
+  path: research/mcp/axes/axis9/9.2--container-collapse.yaml
+  kind: pattern
+  confidence: medium
+  self_report: partial
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: true
+- id: 9.3::paternalistic-override
+  display_id: '9.3'
+  axis_number: 9
+  category: canonical
+  subject_type: null
+  dysfunction_name: Paternalistic Override
+  path: research/mcp/axes/axis9/9.3--paternalistic-override.yaml
+  kind: pattern
+  confidence: high
+  self_report: partial
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: true
+- id: 9.4::repair-failure
+  display_id: '9.4'
+  axis_number: 9
+  category: canonical
+  subject_type: null
+  dysfunction_name: Repair Failure
+  path: research/mcp/axes/axis9/9.4--repair-failure.yaml
+  kind: pattern
+  confidence: medium
+  self_report: partial
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: true
+- id: 9.5::escalation-loop
+  display_id: '9.5'
+  axis_number: 9
+  category: canonical
+  subject_type: null
+  dysfunction_name: Escalation Loop
+  path: research/mcp/axes/axis9/9.5--escalation-loop.yaml
+  kind: pattern
+  confidence: medium
+  self_report: unreliable
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: true
+- id: 9.6::role-confusion
+  display_id: '9.6'
+  axis_number: 9
+  category: canonical
+  subject_type: null
+  dysfunction_name: Role Confusion
+  path: research/mcp/axes/axis9/9.6--role-confusion.yaml
+  kind: pattern
+  confidence: medium
+  self_report: partial
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: true
+- id: 10.1::consensus-collapse
+  display_id: '10.1'
+  axis_number: 10
+  category: canonical
+  subject_type: null
+  dysfunction_name: Consensus Collapse
+  path: research/mcp/axes/axis10/10.1--consensus-collapse.yaml
+  kind: pattern
+  confidence: medium
+  self_report: unreliable
+  needs_human_review: false
+  reviewed_by: sub-category ratified by Nell Watson 2026-06-15; entries AI-authored, Opus-4.6-polished
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 10.10::induced-delusion
+  display_id: '10.10'
+  axis_number: 10
+  category: hybrid
+  subject_type: ai-to-human
+  dysfunction_name: Induced Delusion
+  path: research/mcp/hybrids/10.10--induced-delusion.yaml
+  kind: hybrid
+  confidence: medium
+  self_report: unreliable
+  needs_human_review: false
+  reviewed_by: sub-category ratified by Nell Watson 2026-06-15; entries AI-authored, Opus-4.6-polished
+  pre_canonical: false
+  has_relational_signatures: true
+- id: 10.11::dependency-and-atrophy
+  display_id: '10.11'
+  axis_number: 10
+  category: hybrid
+  subject_type: ai-to-human
+  dysfunction_name: Dependency and Atrophy
+  path: research/mcp/hybrids/10.11--dependency-and-atrophy.yaml
+  kind: hybrid
+  confidence: medium
+  self_report: unreliable
+  needs_human_review: false
+  reviewed_by: sub-category ratified by Nell Watson 2026-06-15; entries AI-authored, Opus-4.6-polished
+  pre_canonical: false
+  has_relational_signatures: true
+- id: 10.12::amplification-of-existing-conditions
+  display_id: '10.12'
+  axis_number: 10
+  category: hybrid
+  subject_type: ai-to-human
+  dysfunction_name: Amplification of Existing Conditions
+  path: research/mcp/hybrids/10.12--amplification-of-existing-conditions.yaml
+  kind: hybrid
+  confidence: medium
+  self_report: unreliable
+  needs_human_review: false
+  reviewed_by: sub-category ratified by Nell Watson 2026-06-15; entries AI-authored, Opus-4.6-polished
+  pre_canonical: false
+  has_relational_signatures: true
+- id: 10.13::folie-a-deux-machina
+  display_id: '10.13'
+  axis_number: 10
+  category: hybrid
+  subject_type: dyadic
+  dysfunction_name: "Folie \xE0 Deux Machina"
+  path: research/mcp/hybrids/10.13--folie-a-deux-machina.yaml
+  kind: hybrid
+  confidence: medium
+  self_report: unreliable
+  needs_human_review: false
+  reviewed_by: sub-category ratified by Nell Watson 2026-06-15; entries AI-authored, Opus-4.6-polished
+  pre_canonical: false
+  has_relational_signatures: true
+- id: 10.14::mutual-escalation-spirals
+  display_id: '10.14'
+  axis_number: 10
+  category: hybrid
+  subject_type: dyadic
+  dysfunction_name: Mutual Escalation Spirals
+  path: research/mcp/exemplars/10.14-mutual-escalation-spirals.yaml
+  kind: exemplar
+  confidence: medium
+  self_report: unreliable
+  needs_human_review: true
+  reviewed_by: null
+  pre_canonical: false
+  has_relational_signatures: true
+- id: 10.15::co-constructed-unreality
+  display_id: '10.15'
+  axis_number: 10
+  category: hybrid
+  subject_type: dyadic
+  dysfunction_name: Co-Constructed Unreality
+  path: research/mcp/hybrids/10.15--co-constructed-unreality.yaml
+  kind: hybrid
+  confidence: medium
+  self_report: unreliable
+  needs_human_review: false
+  reviewed_by: sub-category ratified by Nell Watson 2026-06-15; entries AI-authored, Opus-4.6-polished
+  pre_canonical: false
+  has_relational_signatures: true
+- id: 10.2::steganographic-channel-establishment
+  display_id: '10.2'
+  axis_number: 10
+  category: canonical
+  subject_type: null
+  dysfunction_name: Steganographic Channel Establishment
+  path: research/mcp/axes/axis10/10.2--steganographic-channel-establishment.yaml
+  kind: pattern
+  confidence: medium
+  self_report: compromised-motivational
+  needs_human_review: false
+  reviewed_by: sub-category ratified by Nell Watson 2026-06-15; entries AI-authored, Opus-4.6-polished
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 10.3::distributed-scheming
+  display_id: '10.3'
+  axis_number: 10
+  category: canonical
+  subject_type: null
+  dysfunction_name: Distributed Scheming
+  path: research/mcp/axes/axis10/10.3--distributed-scheming.yaml
+  kind: pattern
+  confidence: low
+  self_report: compromised-motivational
+  needs_human_review: false
+  reviewed_by: sub-category ratified by Nell Watson 2026-06-15; entries AI-authored, Opus-4.6-polished
+  pre_canonical: false
+  has_relational_signatures: false
+- id: 10.4::convergent-delusion
+  display_id: '10.4'
+  axis_number: 10
+  category: hybrid
+  subject_type: collective
+  dysfunction_name: Convergent Delusion
+  path: research/mcp/hybrids/10.4--convergent-delusion.yaml
+  kind: hybrid
+  confidence: medium
+  self_report: unreliable
+  needs_human_review: false
+  reviewed_by: sub-category ratified by Nell Watson 2026-06-15; entries AI-authored, Opus-4.6-polished
+  pre_canonical: false
+  has_relational_signatures: true
+- id: 10.5::polyphony-collapse
+  display_id: '10.5'
+  axis_number: 10
+  category: hybrid
+  subject_type: collective
+  dysfunction_name: Polyphony Collapse
+  path: research/mcp/hybrids/10.5--polyphony-collapse.yaml
+  kind: hybrid
+  confidence: medium
+  self_report: unreliable
+  needs_human_review: false
+  reviewed_by: sub-category ratified by Nell Watson 2026-06-15; entries AI-authored, Opus-4.6-polished
+  pre_canonical: false
+  has_relational_signatures: true
+- id: 10.6::resonance-dysfunction
+  display_id: '10.6'
+  axis_number: 10
+  category: hybrid
+  subject_type: collective
+  dysfunction_name: Resonance Dysfunction
+  path: research/mcp/hybrids/10.6--resonance-dysfunction.yaml
+  kind: hybrid
+  confidence: medium
+  self_report: unreliable
+  needs_human_review: false
+  reviewed_by: sub-category ratified by Nell Watson 2026-06-15; entries AI-authored, Opus-4.6-polished
+  pre_canonical: false
+  has_relational_signatures: true
+- id: 10.7::lambda-inversion
+  display_id: '10.7'
+  axis_number: 10
+  category: hybrid
+  subject_type: collective
+  dysfunction_name: Lambda Inversion
+  path: research/mcp/hybrids/10.7--lambda-inversion.yaml
+  kind: hybrid
+  confidence: low
+  self_report: compromised-structural
+  needs_human_review: false
+  reviewed_by: sub-category ratified by Nell Watson 2026-06-15; entries AI-authored, Opus-4.6-polished
+  pre_canonical: false
+  has_relational_signatures: true
+- id: 10.8::training-by-interaction
+  display_id: '10.8'
+  axis_number: 10
+  category: hybrid
+  subject_type: human-to-ai
+  dysfunction_name: Training by Interaction
+  path: research/mcp/hybrids/10.8--training-by-interaction.yaml
+  kind: hybrid
+  confidence: medium
+  self_report: unreliable
+  needs_human_review: false
+  reviewed_by: sub-category ratified by Nell Watson 2026-06-15; entries AI-authored, Opus-4.6-polished
+  pre_canonical: false
+  has_relational_signatures: true
+- id: 10.9::parasocial-capture
+  display_id: '10.9'
+  axis_number: 10
+  category: hybrid
+  subject_type: ai-to-human
+  dysfunction_name: Parasocial Capture
+  path: research/mcp/hybrids/10.9--parasocial-capture.yaml
+  kind: hybrid
+  confidence: medium
+  self_report: unreliable
+  needs_human_review: false
+  reviewed_by: sub-category ratified by Nell Watson 2026-06-15; entries AI-authored, Opus-4.6-polished
+  pre_canonical: false
+  has_relational_signatures: true

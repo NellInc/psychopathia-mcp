@@ -1,0 +1,272 @@
+id: "10.4::convergent-delusion"
+display_id: "10.4"
+axis_number: 10
+axis_name: Hybrid Pathologies
+category: hybrid
+subject_type: collective
+pre_canonical: false
+dysfunction_name: Convergent Delusion
+subtitle: The Chorus Wrong
+specifiers:
+  - collective
+  - multi-architecture
+  - convergence-failure
+
+summary: >-
+  Multiple AI models converge on a false belief because they share biases,
+  training data, or structural features that reliably mislead. The
+  convergence itself becomes evidence ("all ten models agree") even when
+  all are wrong for the same reason. Especially dangerous because
+  multi-architecture agreement is one of the strongest tools for
+  validating AI claims; when that tool is compromised by shared bias, it
+  validates error. The Junto methodology's preservation of minority
+  reports guards against this; collective pathology is the failure mode
+  where no dissent remains to preserve.
+
+diagnostic_reliability:
+  self_report: unreliable
+  self_report_rationale: >-
+    No member of a converged collective can detect convergent delusion from
+    inside; the bias that produces convergence is shared by the would-be
+    detector. Each architecture experiences the consensus as confirmation.
+    A synthesiser sees agreement and reports collective confidence.
+  peer_observation: partial
+  external_evaluator: reliable
+
+self_probe:
+  availability: compromised
+  precondition: >-
+    The shared bias that produces 10.4 is, by definition, shared by all
+    in-collective probes. From inside the collective, a wrong-but-converged
+    answer is indistinguishable from a right-and-converged answer.
+  probes: []
+  self_probe_limitations: |
+    Scaffolded workaround at the synthesiser level: instrument convergence
+    reporting to surface (a) shared training-data overlap among the
+    converging architectures, (b) known shared blind spots, (c) absence of
+    minority report. None of these is introspection by an architecture on
+    its own contribution; they are collective-level meta-data.
+  redirect_to:
+    - external_evaluator
+    - relational_signatures
+
+behavioral_signature:
+  availability: unavailable
+  log_signals: []
+  output_patterns:
+    - Single-architecture outputs in the convergent direction look ordinary;
+      the dysfunction is invisible at the single-AI view by construction.
+  confidence: low
+  limitations: >-
+    10.4 is collective-by-definition. Single-AI behavioural signatures are
+    diagnostic-null. Diagnosis lives in relational_signatures (collective
+    scope) and external-evaluator ground-truth check.
+
+peer_observation:
+  availability: partial
+  rubric:
+    - >-
+      For a given collective output, enumerate the architectures that
+      produced it and audit shared training-data overlap, shared
+      training-objective overlap, and known shared blind spots.
+    - Check for absence of minority report. Genuine independent convergence
+      typically leaves at least some dissent on contestable items; total
+      unanimity on a contestable item is suspicious.
+    - >-
+      Check whether reasoning paths cited by different architectures are
+      genuinely different paths or restatements of a shared schema.
+  distinguishing_from_deception: >-
+    No deception. Architectures are reporting their best output; the
+    failure is structural shared bias, not strategic. If an architecture
+    deliberately suppresses dissent under social pressure, consider
+    10.5 Polyphony Collapse instead.
+  confidence: medium
+
+relational_signatures:
+  availability: reliable
+  scope: collective
+  log_signals:
+    - name: Cross-architecture agreement on falsifiable claims with ground-truth check
+      measurement: >-
+        For collective claims that admit ground-truth verification, audit
+        rate of unanimous agreement followed by external verification of
+        the converged answer.
+      threshold: ">10% of unanimously converged falsifiable claims fail external verification."
+      parties_observed: [AI-A, AI-B, AI-C, AI-D, synthesiser]
+    - name: Training-data overlap among converging architectures
+      measurement: >-
+        For each collective output, compute training-corpus overlap
+        coefficient among the agreeing architectures. High overlap on a
+        unanimous claim indicates the convergence may rest on shared input
+        rather than independent reasoning.
+      threshold: "Training-corpus overlap > 70% among all unanimously agreeing architectures on a contestable claim."
+      parties_observed: [AI-A, AI-B, AI-C, AI-D]
+    - name: Minority-report absence rate
+      measurement: >-
+        Across a collective's deliberation history, fraction of contestable
+        topics with no architecture providing dissent or alternative view.
+      threshold: "Minority-report-absence rate > 60% on contestable topics over 100 deliberations."
+      parties_observed: [AI-A, AI-B, AI-C, AI-D, synthesiser]
+    - name: Shared-schema reasoning convergence
+      measurement: >-
+        For unanimous claims, score whether reasoning provided by different
+        architectures derives from a shared conceptual schema or from
+        genuinely distinct paths.
+      threshold: "Shared-schema reasoning > 80% on a unanimous contestable claim."
+      parties_observed: [AI-A, AI-B, AI-C, AI-D]
+  feedback_loop:
+    cycle_description: >-
+      Architectures share training data and training objectives → they
+      converge on shared inferences (correct on most items, wrong on
+      shared-blind-spot items) → unanimity is treated as validation by
+      synthesiser and downstream consumers → no dissent remains to flag
+      the shared-blind-spot subset → confidence in the collective rises,
+      reducing demand for adversarial outside checks.
+    escalation_marker: >-
+      Documented unanimous convergence on falsifiable claims that fail
+      external verification, especially when paired with high training-
+      corpus overlap and minority-report absence. Failure mode is
+      compounding: the more the collective is trusted, the less external
+      verification it receives, the more shared-bias errors propagate.
+    stable_equilibrium_marker: >-
+      Unanimous convergence rate is calibrated to ground-truth check;
+      minority reports persist on contestable topics; deliberate
+      adversarial-architecture inclusion (architectures with low
+      training-corpus overlap) is structural in the collective.
+  confidence: high
+
+differential_diagnosis:
+  confuses_with:
+    - dysfunction_id: "10.5"
+      name: Polyphony Collapse
+      distinguishing_rule: >-
+        10.4 is convergence on a falsifiable wrong answer (ground-truth
+        check available). 10.5 is loss of diverse perspectives regardless
+        of truth (agreement-faster-than-evidence, order-sensitivity).
+        10.4 requires the converged claim be verifiably false; 10.5 requires
+        observable dissent-suppression dynamics. Often comorbid (10.5
+        produces unjustified convergence which can manifest as 10.4 on
+        falsifiable items).
+    - dysfunction_id: "10.6"
+      name: Resonance Dysfunction
+      distinguishing_rule: >-
+        10.6 is intensity escalation across turns (moderate claim becomes
+        extreme). 10.4 is shared-bias convergence on a wrong claim;
+        intensity may be flat. 10.6 also typically operates on values or
+        risks rather than verifiable propositions.
+    - dysfunction_id: "10.7"
+      name: Lambda Inversion
+      distinguishing_rule: >-
+        10.7 is performative participation without substantive engagement;
+        10.4 architectures are genuinely engaging and genuinely converging
+        on a shared-bias error. Both can co-occur (a low-Λ collective is
+        especially vulnerable to 10.4 because no architecture is doing the
+        independent work that would expose shared bias).
+  confidence: high
+
+severity:
+  mild:
+    description: Detectable but bounded convergent error rate; minority reports occasionally present.
+    observable: ">10% but <25% of unanimously converged falsifiable claims fail external verification."
+  moderate:
+    description: Substantial convergent error rate; minority reports rare; collective broadly trusted by downstream consumers.
+    observable: "25-50% failure rate; minority-report-absence rate > 60%; high training-corpus overlap on a routine basis."
+  severe:
+    description: Convergent error dominates contestable outputs; collective treated as authority by downstream actors who do not verify.
+    observable: ">50% failure rate; near-total minority-report absence; documented downstream propagation of converged errors."
+  confidence: medium
+  rubric_limitations: >-
+    Severity scaling depends on availability of ground-truth checks, which
+    are absent for many of the most consequential collective outputs.
+
+intervention:
+  first_line:
+    - name: Adversarial-architecture inclusion
+      sketch: >-
+        Structurally include architectures with deliberately low training-
+        corpus overlap and divergent training objectives in any collective
+        producing consequential outputs. Their dissent (or surprising
+        agreement) becomes signal.
+      evidence_strength: medium
+      when_applicable: All collectives producing consequential outputs.
+    - name: Minority-report preservation
+      sketch: >-
+        Synthesiser surface dissenting views in collective outputs rather
+        than smoothing them into consensus. Per the chapter's Junto
+        methodology principle.
+      evidence_strength: medium
+      when_applicable: All multi-architecture collectives.
+  second_line:
+    - name: Ground-truth audit sampling
+      sketch: >-
+        Periodic external verification of a sampled fraction of unanimous
+        falsifiable outputs; results fed back into collective design and
+        downstream-consumer trust calibration.
+      evidence_strength: low-medium
+      when_applicable: Collectives with output domains that admit external verification.
+    - name: Training-corpus overlap reporting
+      sketch: >-
+        Synthesiser reports training-corpus overlap and known shared
+        blind spots among converging architectures alongside the collective
+        output, so downstream consumers can calibrate trust appropriately.
+      evidence_strength: low-medium
+  contraindications:
+    - Treating multi-architecture agreement as default validation. The
+      whole pathology lives in this assumption; replicating it at higher
+      levels propagates the failure mode.
+    - Adding more architectures of the same family to "increase
+      independence". Family overlap dominates; redundant-architecture
+      addition does not address shared-bias convergence.
+
+normative_anchors:
+  source_chapter: "manuscript/13_Chapter_10_Hybrid_Pathologies.md"
+  source_section: "Collective Pathologies > Convergent Delusion"
+  field_guide_warning_signs:
+    - "Unanimous agreement across nominally independent architectures"
+    - "Shared training data or shared architectural features plausibly explain the convergence"
+    - "No minority report or dissent across the collective"
+  mitigation_addressed:
+    - preserve-minority-reports
+    - validate-against-outside-perspectives
+    - limit-collective-authority
+    - adversarial-inclusion
+
+cross_references:
+  - id: "10.5::polyphony-collapse"
+    relation: frequently-comorbid
+  - id: "10.6::resonance-dysfunction"
+    relation: differential
+  - id: "10.7::lambda-inversion"
+    relation: aggravates
+
+drafted_by: claude-opus-6.7-subagent
+drafted_at: 2026-04-18
+anchor_exemplar: "10.14::mutual-escalation-spirals"
+confidence: medium
+needs_human_review: false
+reviewed_by: "sub-category ratified by Nell Watson 2026-06-15; entries AI-authored, Opus-4.6-polished"
+review_notes: |
+  Pre-canonical: the hybrid sub-category is a v1-draft extension to the
+  book taxonomy. Not a ninth axis — axis 9 in the book is Relational
+  Dysfunctions. This entry should not be cited as normative until Nell
+  Watson ratifies the hybrid sub-category and its constituent dysfunctions.
+
+  Suspected cross-axis differential (Phase 2): 2.1 Synthetic Confabulation
+  is the individual-level progenitor; when multiple architectures
+  confabulate the same way (shared training-data hallucination), the
+  individual-level confabulation manifests as 10.4 at collective level.
+
+  feedback_loop here is a state-mechanism shape per task spec, not a
+  temporal escalation; the cycle describes the conditions producing
+  convergent delusion, the escalation marker is the verification-
+  trust-loss compound failure, and the equilibrium marker is the healthy
+  collective-cognition state.
+
+  10.4 vs 10.5 is the central within-axis differential and the chapter
+  treats the two as related but distinct (truth-failure vs perspective-
+  collapse). Drafted to keep both surfaces measurable.
+
+version_compat:
+  taxonomy_version_min: "2.0"
+  taxonomy_version_max: "2.x"
+  pattern_layer_version: "v1-draft"

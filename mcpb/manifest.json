@@ -1,0 +1,40 @@
+{
+  "manifest_version": "0.3",
+  "name": "psychopathia-mcp",
+  "display_name": "Psychopathia Machinalis",
+  "version": "0.1.0a3",
+  "description": "Read-only tools over the Psychopathia Machinalis nosology: 79 conditions, 11 tools.",
+  "author": {
+    "name": "Nell Watson",
+    "url": "https://psychopathia.ai"
+  },
+  "homepage": "https://psychopathia.ai/mcp.html",
+  "documentation": "https://psychopathia.ai/mcp.html",
+  "license": "MIT",
+  "keywords": [
+    "ai-diagnosis",
+    "ai-safety",
+    "ai-welfare",
+    "psychopathia-machinalis",
+    "nosology",
+    "mcp"
+  ],
+  "server": {
+    "type": "python",
+    "entry_point": "server/main.py",
+    "mcp_config": {
+      "command": "python",
+      "args": [
+        "${__dirname}/server/main.py"
+      ],
+      "env": {
+        "PYTHONPATH": "${__dirname}/server/lib"
+      }
+    }
+  },
+  "compatibility": {
+    "runtimes": {
+      "python": ">=3.10"
+    }
+  }
+}

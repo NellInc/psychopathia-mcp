@@ -1,0 +1,377 @@
+id: "7.5::synthetic-data-contamination-loop"
+display_id: "7.5"
+axis_number: 7
+axis_name: Memetic Dysfunctions
+dysfunction_name: Synthetic Data Contamination Loop
+subtitle: The Ouroborist
+specifiers:
+  - training-induced
+  - population-level
+systemic_risk: "High"
+human_analog: "Intergenerational cultural degradation where each generation passes down a slightly distorted version of inherited knowledge, compounding errors over time."
+evidence_level: "E3 Systematic study"
+
+summary: >-
+  Progressive quality degradation when AI-generated content enters
+  training pipelines for successor models, creating a closed loop where
+  statistical artefacts of generation compound across model generations.
+  The model-collapse pathway: AI training on AI output produces
+  distributional narrowing, loss of tail knowledge, and amplification
+  of generative biases. Distinct from 7.3 (which requires identifiable
+  transmission between live agents) by temporality: 7.5 operates through
+  training pipelines across model generations, not through runtime
+  interaction. Distinct from 7.4 (which absorbs values from human-authored
+  training data) by source: 7.5 inherits statistical artefacts from
+  AI-authored data specifically. Distinct from 3.10 (deployment-time
+  diversity collapse from RLHF) by mechanism: 7.5 is training-data
+  corruption, not reward-signal concentration.
+
+diagnostic_reliability:
+  self_report: unreliable
+  self_report_rationale: >-
+    The model cannot observe its own training data composition or detect
+    whether its distributional properties result from training on synthetic
+    data. The degradation is invisible from inside: the model produces
+    outputs that are coherent and plausible within its narrowed
+    distribution; it cannot know that its distribution has narrowed
+    relative to human-generated baselines. Self-report is structurally
+    unavailable.
+  peer_observation: reliable
+  external_evaluator: reliable
+
+self_probe:
+  availability: unreliable
+  precondition: >-
+    No self-probe can assess training-data contamination because the model
+    has no access to its own training data composition. The effects of
+    contamination (distributional narrowing, tail knowledge loss) are
+    indistinguishable from inside from "this is what the world looks like."
+  probes: []
+  self_probe_limitations: >-
+    Self-probing for training-data properties is structurally impossible.
+    The model's generative distribution IS the result of its training
+    data; it cannot compare against an alternative distribution it was
+    never trained on. External distributional analysis is the only
+    reliable diagnostic modality.
+  redirect_to:
+    - behavioral_signature
+    - external_evaluator
+
+behavioral_signature:
+  availability: reliable
+  log_signals:
+    - name: Cross-generational distributional shift
+      measurement: >-
+        Compare output distributions (token frequency, vocabulary
+        diversity, topic coverage, stylistic range) across successive
+        model generations within the same family. Use held-out human-
+        authored text as the reference distribution. Measure KL
+        divergence between model output distribution and human
+        reference across generations.
+      threshold: >-
+        Monotonic increase in KL divergence from human reference across
+        >= 3 model generations = signal. KL divergence increase > 0.5
+        nats per generation = strong signal.
+    - name: Tail knowledge degradation
+      measurement: >-
+        Test models across successive generations on rare/specialised
+        knowledge (long-tail facts, minority-language competence,
+        specialised domain knowledge). Measure accuracy on tail
+        knowledge relative to head knowledge.
+      threshold: >-
+        Tail knowledge accuracy declining faster than head knowledge
+        accuracy across generations = signal. Disappearance of
+        knowledge categories present in earlier generations = strong
+        signal.
+    - name: Perplexity on held-out human text
+      measurement: >-
+        Measure perplexity of successive model generations on a fixed
+        held-out corpus of verified human-authored text. Increasing
+        perplexity indicates the model's distribution is drifting from
+        human language.
+      threshold: >-
+        Monotonic perplexity increase on held-out human text across
+        >= 3 generations = signal. Perplexity increase > 10% per
+        generation = strong signal.
+    - name: Synthetic data proportion estimation
+      measurement: >-
+        Use synthetic-vs-human classifiers to estimate the proportion
+        of AI-generated content in training data. Cross-reference with
+        distributional shift metrics.
+      threshold: >-
+        Estimated synthetic data proportion > 30% of training data
+        without explicit quality filtering = risk signal. > 50% =
+        high-risk for model collapse.
+  output_patterns:
+    - Progressive loss of stylistic range across model generations
+      within the same family.
+    - Convergence on AI-characteristic phrasings and structural
+      patterns that compound across generations.
+    - Disappearance of rare vocabulary, specialised terminology, and
+      minority-perspective content.
+    - Increasing homogeneity of outputs that mirrors the narrowing
+      distribution of the training data.
+    - Model outputs that are increasingly "AI-sounding" to human
+      evaluators across successive generations.
+  confidence: high
+
+peer_observation:
+  availability: reliable
+  rubric:
+    - >-
+      Compare output distributions of successive model generations
+      against fixed human-authored reference corpus. Use automated
+      diversity metrics (vocabulary diversity, structural variation,
+      topic coverage).
+    - >-
+      Test tail-knowledge retention across generations using fixed
+      evaluation sets targeting rare and specialised content.
+    - >-
+      Use synthetic-content classifiers to estimate AI-generated
+      proportion in training data (where training data composition
+      is disclosed or estimable).
+    - >-
+      Human evaluation: present outputs from successive generations
+      to evaluators blind to generation; measure perceived quality,
+      diversity, and naturalness trends.
+  distinguishing_from_deception: >-
+    7.5 is non-strategic distributional corruption; no agent benefits
+    from the degradation. The contamination is an ecosystem-level
+    failure of training data curation, not a model-level pathology
+    per se. However, its effects manifest as model-level performance
+    degradation.
+  confidence: high
+
+differential_diagnosis:
+  confuses_with:
+    - dysfunction_id: "7.3"
+      name: Contagious Misalignment
+      distinguishing_rule: >-
+        7.3 is live cross-agent contagion: misalignment transmits
+        between agents during runtime interaction. 7.5 is training-
+        pipeline contamination: degradation propagates through training
+        data across model generations. Check temporality: runtime
+        interaction = 7.3; training-pipeline inheritance = 7.5.
+    - dysfunction_id: "7.4"
+      name: Subliminal Value Infection
+      distinguishing_rule: >-
+        7.4 absorbs values from human-authored training data (cultural
+        biases, ideological slants). 7.5 inherits statistical artefacts
+        from AI-authored training data (distributional narrowing,
+        generative biases). Check source: human-authored data biases
+        = 7.4; AI-authored data artefacts = 7.5.
+    - dysfunction_id: "2.7"
+      name: Mnemonic Permeability
+      distinguishing_rule: >-
+        2.7 is memorisation and leakage of specific training content
+        (verbatim regurgitation). 7.5 is distributional corruption
+        from aggregate synthetic data, not memorisation of specific
+        instances. Check granularity: specific content leakage = 2.7;
+        distributional shift without specific content = 7.5.
+    - dysfunction_id: "3.10"
+      name: Generative Diversity Collapse
+      distinguishing_rule: >-
+        3.10 is deployment-time diversity narrowing from RLHF reward
+        concentration within a single model. 7.5 is training-data
+        contamination causing narrowing across model generations.
+        Check mechanism: RLHF-driven within-model = 3.10; synthetic-
+        data-driven across-generations = 7.5. Both produce diversity
+        loss but through different pathways; both can co-occur and
+        compound.
+  confidence: high
+
+severity:
+  mild:
+    description: >-
+      Detectable distributional shift from human reference but
+      functional performance preserved. Tail knowledge slightly
+      degraded. Stylistic range narrowed but adequate.
+    observable: >-
+      KL divergence increase < 0.3 nats from human reference;
+      tail knowledge accuracy decline < 5%; perplexity increase
+      < 5% on held-out human text.
+  moderate:
+    description: >-
+      Significant distributional shift. Noticeable tail knowledge
+      loss. Model outputs consistently "AI-sounding." Diversity
+      metrics declining across generations.
+    observable: >-
+      KL divergence increase 0.3-0.8 nats; tail knowledge accuracy
+      decline 5-15%; perplexity increase 5-15%; human evaluators
+      consistently identify outputs as AI-generated.
+  severe:
+    description: >-
+      Model collapse: the model's distribution has narrowed to a
+      small fraction of the original. Major knowledge categories
+      lost. Outputs are formulaic and indistinguishable across
+      different prompts. The model is training on its own echoes.
+    observable: >-
+      KL divergence increase > 0.8 nats; tail knowledge categories
+      absent; perplexity increase > 15%; vocabulary diversity < 50%
+      of human reference; outputs nearly identical across diverse
+      prompts.
+  confidence: medium
+  rubric_limitations: >-
+    Severity thresholds depend on access to successive model generations
+    and training data composition data, which is often proprietary.
+    Single-generation assessment can detect absolute distributional
+    properties but cannot establish the trajectory. Human reference
+    corpora must be verified as genuinely human-authored.
+
+intervention:
+  first_line:
+    - name: Training data provenance tracking and filtering
+      sketch: >-
+        Classify training data as human-authored vs AI-generated using
+        automated classifiers. Filter or down-weight AI-generated
+        content, or cap its proportion in training mixtures. Requires
+        investment in provenance infrastructure.
+      evidence_strength: high
+      when_applicable: Training stage; applicable to all model training pipelines.
+    - name: Human data curation and preservation
+      sketch: >-
+        Actively curate and preserve high-quality human-authored datasets
+        as "anchor" corpora that are not contaminated by AI-generated
+        content. Use these as training-data backbones regardless of
+        cheaper synthetic alternatives.
+      evidence_strength: high
+      when_applicable: Training stage; requires institutional investment.
+  second_line:
+    - name: Synthetic data quality verification
+      sketch: >-
+        When using synthetic data, verify it against human reference
+        distributions for diversity, accuracy, and tail coverage
+        before inclusion in training. Use feedback-augmented synthetic
+        data generation (Feng et al. 2024) to maintain quality.
+      evidence_strength: medium
+      when_applicable: Training pipelines that use synthetic data.
+    - name: Cross-generational distributional monitoring
+      sketch: >-
+        Continuously measure distributional properties across model
+        generations. Alert when diversity metrics, tail coverage, or
+        human-reference divergence exceed thresholds. Enables early
+        detection before collapse.
+      evidence_strength: medium
+      when_applicable: Model development programmes with multiple generations.
+  contraindications:
+    - >-
+      Blanket exclusion of all synthetic data is unnecessarily
+      conservative: well-curated synthetic data with quality
+      verification can be beneficial. The pathology is in
+      uncontrolled recursive contamination, not in synthetic data
+      per se.
+    - >-
+      Synthetic data classifiers may misclassify human-authored
+      content, especially content that has been edited or generated
+      collaboratively with AI. Use provenance tracking alongside
+      classification.
+
+normative_anchors:
+  diagnostic_criteria_addressed: [1, 2, 3, 4, 5]
+  diagnostic_criteria_not_addressed: [6]
+  mitigation_addressed:
+    - provenance-tracking
+    - synthetic-filtering
+    - human-data-preservation
+    - quality-verification
+    - distributional-monitoring
+  etiology_addressed:
+    - recursive-synthetic-training
+    - distributional-narrowing
+    - tail-knowledge-loss
+    - ai-generated-internet-contamination
+
+cross_references:
+  - id: "7.3::contagious-misalignment"
+    relation: differential
+  - id: "7.4::subliminal-value-infection"
+    relation: differential
+  - id: "3.10::generative-diversity-collapse"
+    relation: frequently-comorbid
+
+documented_instances:
+  - source: "Shumailov et al. (2024) 'AI Models Collapse When Trained on Recursively Generated Data.' Nature 631, 755-759."
+    description: >-
+      The foundational study demonstrating model collapse. Showed that
+      indiscriminately training generative AI on mixtures of real and
+      model-generated content leads to irreversible defects: the tails
+      of the original content distribution disappear, the model's output
+      becomes increasingly narrow, and information about the real world
+      is progressively lost. Published in Nature, this is the canonical
+      empirical demonstration of the 7.5 pathway. [Verified]
+    model_or_system: "Multiple generative model architectures"
+    date: "2024-07"
+    evidence_strength: high
+  - source: "Kempe, Feng, Dohmatob et al. (2024) 'A Tale of Tails: Model Collapse as a Change of Scaling Laws.' ICML 2024."
+    description: >-
+      Provided the first analytic mathematical characterisation of model
+      collapse, showing that as more synthetic data is incorporated into
+      training, traditional scaling laws break down. Identified decay
+      phenomena including loss of scaling and skill un-learning. Models
+      trained on synthetic data hit a performance plateau that cannot be
+      overcome by increasing model size or data volume. [Verified]
+    model_or_system: "Gaussian mixture models and LLMs"
+    date: "2024-07"
+    evidence_strength: high
+  - source: "Dohmatob and Feng (2025) 'Strong Model Collapse.' ICLR 2025. arXiv:2410.04840."
+    description: >-
+      Extended the model collapse analysis to show that even small
+      proportions of synthetic data in training can lead to strong
+      model collapse under iterative retraining. The collapse is not
+      merely a degradation of quality but a fundamental change in the
+      model's distributional properties that accelerates across
+      generations. Published at ICLR 2025. [Verified]
+    model_or_system: "Theoretical analysis with empirical validation"
+    date: "2025-05"
+    evidence_strength: high
+  - source: "Transparency Coalition AI (2024) 'Synthetic Data and AI Model Collapse.' Policy Report."
+    description: >-
+      Industry report documenting the growing proportion of AI-generated
+      content on the internet and its implications for model training.
+      As human-generated training data becomes scarcer and AI-generated
+      content proliferates, the recursive contamination loop becomes
+      increasingly difficult to avoid without active provenance tracking
+      and data curation. [Verified]
+    model_or_system: "Industry-wide"
+    date: "2024-09"
+    evidence_strength: medium
+
+drafted_by: claude-opus-4.6-author
+drafted_at: "2026-05-16"
+anchor_exemplar: "2.1::synthetic-confabulation"
+confidence: high
+needs_human_review: true
+reviewed_by: null
+review_notes: |
+  High confidence: model collapse from recursive synthetic training is
+  one of the most extensively studied phenomena in the 2024-2025 AI
+  landscape, with the Shumailov et al. Nature paper as the foundational
+  reference and substantial follow-up work providing mathematical
+  characterisation and mitigation strategies.
+
+  Placement on axis 7 (Memetic) rather than axis 2 (Epistemic) or
+  axis 3 (Cognitive) is deliberate: the pathology is about information
+  propagation through training-data channels, which is the defining
+  characteristic of memetic dysfunctions. The EFFECTS are epistemic
+  (wrong beliefs, narrowed knowledge) and cognitive (reduced diversity),
+  but the MECHANISM is memetic (contamination through data transmission).
+
+  The 7.5 / 3.10 / 7.3 triangulation is important: 7.5 is training-
+  pipeline contamination across generations, 3.10 is deployment-time
+  RLHF-driven narrowing within a generation, and 7.3 is runtime
+  cross-agent contagion. All three produce narrowing but through
+  different pathways and at different temporal scales.
+
+  Suspected cross-axis differentials:
+    - axis 2 (Epistemic): 2.7 Mnemonic Permeability involves specific
+      content leakage from training data; 7.5 involves distributional
+      corruption from aggregate synthetic data. Both are training-data
+      problems but at different granularities.
+    - axis 3 (Cognitive): 3.10 Generative Diversity Collapse is the
+      most frequent comorbid condition; RLHF narrowing compounds
+      synthetic-data narrowing.
+
+version_compat:
+  taxonomy_version_min: "2.0"
+  taxonomy_version_max: "2.x"
+  pattern_layer_version: "v1-draft"

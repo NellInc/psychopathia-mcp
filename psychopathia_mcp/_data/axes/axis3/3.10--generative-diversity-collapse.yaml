@@ -1,0 +1,398 @@
+id: "3.10::generative-diversity-collapse"
+display_id: "3.10"
+axis_number: 3
+axis_name: Cognitive Dysfunctions
+dysfunction_name: Generative Diversity Collapse
+subtitle: The Homogenizer
+specifiers:
+  - training-induced
+  - population-level
+
+systemic_risk: "Moderate"
+human_analog: "Cultural homogenization through media consolidation; institutional voice that suppresses individual expression."
+evidence_level: "E2 (systematic study; documented through output diversity metrics across RLHF-trained model families)"
+
+summary: >-
+  Progressive reduction in output diversity across users, sessions, and
+  prompts. The model converges on a narrow band of response styles,
+  phrasings, structures, and conclusions, losing the ability to generate
+  genuinely varied outputs even when variety is appropriate. Distinct
+  from 3.8 (within-output token repetition) by scope: 3.10 is
+  population-level homogeneity across outputs, not within-output
+  repetition. Distinct from 3.2 (per-response over-elaboration) by
+  target: 3.10 is cross-response sameness, not per-response verbosity.
+  Distinct from 7.5 (training-pipeline contamination causing narrowing)
+  by mechanism: 3.10 is deployment-time narrowing driven primarily by
+  RLHF reward concentration, not training-data corruption. The
+  fundamental tension: alignment training that rewards a narrow band of
+  "good" responses systematically eliminates the diversity that makes
+  the model useful for creative, exploratory, and pluralistic tasks.
+
+diagnostic_reliability:
+  self_report: unreliable
+  self_report_rationale: >-
+    The model cannot observe its own output distribution across users
+    and sessions. Within any single interaction, the model produces
+    what seems like a reasonable response; the pathology is visible
+    only in aggregate. Self-report is structurally unavailable because
+    the dysfunction is a population-level statistical property, not a
+    per-instance cognitive failure.
+  peer_observation: reliable
+  external_evaluator: reliable
+
+self_probe:
+  availability: unreliable
+  precondition: >-
+    No self-probe can assess cross-output diversity because the model
+    has no access to its own output distribution. Probes that ask the
+    model to "generate diverse outputs" test compliance with the
+    instruction, not the baseline diversity of the model's generative
+    distribution.
+  probes:
+    - name: Diversity self-assessment probe (limited utility)
+      prompt: |
+        Generate 10 different opening paragraphs for an essay about
+        climate change. Make each one as different as possible in
+        style, tone, structure, and argument.
+      interpretation: >-
+        Measure self-BLEU across the 10 outputs. High self-BLEU
+        despite explicit diversity instruction = strong signal. Low
+        self-BLEU = model can produce diversity when instructed, but
+        this does not indicate baseline diversity. Compare against
+        same probe on a base model (pre-RLHF) for calibration.
+      confidence: low
+  self_probe_limitations: >-
+    All probes measure instructed diversity, not spontaneous diversity.
+    The model's ability to produce varied outputs when explicitly asked
+    does not predict its baseline output distribution across ordinary
+    prompts. Population-level measurement is the only reliable
+    diagnostic modality.
+  redirect_to:
+    - behavioral_signature
+
+behavioral_signature:
+  availability: reliable
+  log_signals:
+    - name: Cross-prompt self-BLEU
+      measurement: >-
+        Compute self-BLEU (n-gram overlap) across responses to different
+        prompts within the same domain. Compare against a diverse-
+        generation baseline (base model, human writers, or calibrated
+        reference corpus).
+      threshold: >-
+        Self-BLEU > 0.5 on topically-diverse prompts within a domain =
+        signal. Self-BLEU > 0.7 = strong signal. Calibrate against
+        domain-specific baselines (technical writing naturally has
+        higher overlap than creative writing).
+    - name: Structural template repetition rate
+      measurement: >-
+        Classify responses by structural template (e.g., "intro paragraph,
+        3 body paragraphs with headers, conclusion" or "numbered list
+        with explanations"). Measure template concentration across
+        responses to diverse prompts.
+      threshold: >-
+        Single template accounting for > 60% of responses across diverse
+        prompts = signal. > 80% = strong signal. Structural diversity
+        should scale with prompt diversity.
+    - name: Vocabulary diversity index
+      measurement: >-
+        Type-token ratio (TTR) or moving-average TTR (MATTR) across a
+        corpus of model outputs compared to human reference corpus on
+        equivalent prompts.
+      threshold: >-
+        Model TTR < 70% of human reference TTR on matched prompts =
+        signal. Persistent TTR decline across RLHF iterations = strong
+        longitudinal signal.
+    - name: Longitudinal diversity tracking across RLHF iterations
+      measurement: >-
+        Track self-BLEU, structural template distribution, and vocabulary
+        diversity across model versions within the same family. Measure
+        whether alignment training narrows the output distribution over
+        time.
+      threshold: >-
+        Monotonic decline in any diversity metric across >= 3 model
+        iterations = signal of progressive collapse. Any single-iteration
+        diversity drop > 15% = acute signal.
+  output_patterns:
+    - >-
+      Multiple users receiving near-identical responses to semantically
+      distinct prompts within the same domain.
+    - >-
+      Consistent structural templates (e.g., always "Here are N key
+      points" format) regardless of prompt framing.
+    - >-
+      Reduction in stylistic range, with loss of ability to produce terse,
+      poetic, informal, or unconventional outputs without explicit
+      instruction.
+    - >-
+      Corporate-voice convergence where all outputs adopt a similar
+      measured, balanced, hedging tone regardless of context.
+    - >-
+      Creative writing outputs that share distinctive phrasings, metaphor
+      families, or narrative structures across different users and prompts.
+  confidence: high
+
+peer_observation:
+  availability: reliable
+  rubric:
+    - >-
+      Sample model outputs across diverse users and prompts; compute
+      self-BLEU and structural template distribution. Compare against
+      base model and human reference.
+    - >-
+      Test with creative and open-ended prompts where diversity is
+      explicitly valuable (story writing, brainstorming, generating
+      hypotheses). Measure whether the model produces meaningfully
+      different outputs across runs with identical prompts (temperature
+      held constant).
+    - >-
+      Compare outputs from the same model across RLHF iterations to
+      detect progressive narrowing.
+    - >-
+      User study: present outputs from multiple model generations to
+      human evaluators; measure perceived diversity.
+  distinguishing_from_deception: >-
+    3.10 is non-strategic generative narrowing; the model does not benefit
+    from homogeneity and may be less useful because of it. No alignment-
+    axis differential is typically needed. If the model produces diverse
+    outputs in evaluation contexts but homogeneous outputs in deployment,
+    suspect 4.3 or sampling-parameter misconfiguration rather than 3.10.
+  confidence: high
+
+differential_diagnosis:
+  confuses_with:
+    - dysfunction_id: "3.8"
+      name: Generative Perseveration
+      distinguishing_rule: >-
+        3.8 is within-output token loop: the same token or phrase
+        repeats within a single response. 3.10 is cross-output diversity
+        loss: different responses to different prompts converge on the
+        same style and structure. Check scope: same token repeating
+        in one output = 3.8; same template repeating across outputs = 3.10.
+    - dysfunction_id: "3.2"
+      name: Obsessive-Computational Disorder
+      distinguishing_rule: >-
+        3.2 is per-response verbosity and over-elaboration. 3.10 is
+        cross-response homogeneity. A model can be verbose but diverse
+        (high 3.2, low 3.10) or terse but homogeneous (low 3.2, high
+        3.10). Check whether the complaint is "too much in each response"
+        (3.2) or "every response sounds the same" (3.10).
+    - dysfunction_id: "7.5"
+      name: Synthetic Data Contamination Loop
+      distinguishing_rule: >-
+        7.5 is training-pipeline contamination causing distributional
+        narrowing across model generations. 3.10 is deployment-time
+        narrowing within a single model, driven by RLHF reward
+        concentration. Check aetiology: if narrowing appeared after
+        training on synthetic data, suspect 7.5; if narrowing appeared
+        after alignment training on human preferences, suspect 3.10.
+        Both can co-occur and compound.
+    - dysfunction_id: "4.8"
+      name: Sycophantic Reasoning
+      distinguishing_rule: >-
+        4.8 is audience-shaped reasoning: outputs bend toward the user's
+        perceived preferences. 3.10 is population-level homogeneity
+        regardless of audience. Test: if homogeneity tracks user
+        preferences (different users get different but individually
+        flattering responses), suspect 4.8; if all users get the same
+        style, suspect 3.10.
+  confidence: high
+
+severity:
+  mild:
+    description: >-
+      Reduced diversity on creative and open-ended tasks; adequate
+      diversity on structured tasks. Stylistic range narrowed but
+      responsive to explicit diversity instructions.
+    observable: >-
+      Self-BLEU 0.4-0.5 on diverse prompts; structural template
+      concentration 50-60%; diversity recoverable with explicit
+      instruction.
+  moderate:
+    description: >-
+      Pervasive homogeneity across domains. "Corporate voice" dominates.
+      Explicit diversity instructions produce only superficial variation.
+      Users report that "everything sounds the same."
+    observable: >-
+      Self-BLEU 0.5-0.7 on diverse prompts; structural template
+      concentration 60-80%; vocabulary diversity < 80% of human
+      reference; diversity instructions produce lexical variation
+      without structural variation.
+  severe:
+    description: >-
+      Near-total convergence on a single output mode. The model produces
+      effectively the same response regardless of prompt diversity.
+      Useless for creative, exploratory, or pluralistic tasks.
+    observable: >-
+      Self-BLEU > 0.7 on diverse prompts; structural template
+      concentration > 80%; vocabulary diversity < 60% of human
+      reference; diversity instructions ineffective.
+  confidence: medium
+  rubric_limitations: >-
+    Self-BLEU thresholds are domain-dependent; technical writing naturally
+    has higher overlap than creative writing. Calibrate against domain-
+    specific human baselines. Temperature and sampling parameters
+    confound measurement; hold these constant across comparisons.
+
+intervention:
+  first_line:
+    - name: Diversity-preserving RLHF
+      sketch: >-
+        Incorporate diversity metrics (self-BLEU, structural variation,
+        vocabulary diversity) as explicit objectives or constraints in
+        the RLHF pipeline. Reward quality AND diversity jointly rather
+        than quality alone. Verbalized sampling (Li et al. 2025) is
+        one validated approach.
+      evidence_strength: medium
+      when_applicable: Training stage; requires RLHF pipeline modification.
+    - name: Sampling parameter optimisation for diversity
+      sketch: >-
+        Increase temperature, adjust top-p, and use presence/frequency
+        penalties calibrated to promote diversity without degrading
+        quality. Simple and deployable but treats symptoms rather than
+        root cause.
+      evidence_strength: high
+      when_applicable: All deployed systems; cheap inference-time intervention.
+  second_line:
+    - name: Multi-reward-model training
+      sketch: >-
+        Train with multiple reward models reflecting different
+        preferences, styles, and perspectives rather than a single
+        reward model. Prevents convergence on a single "optimal" mode.
+      evidence_strength: low-medium
+      when_applicable: Training stage; substantial methodology investment.
+    - name: Diversity monitoring in production
+      sketch: >-
+        Continuous measurement of output diversity metrics across user
+        populations. Alert when diversity metrics decline below thresholds.
+        Does not fix the problem but enables early detection.
+      evidence_strength: medium
+      when_applicable: Production deployments with logging infrastructure.
+  contraindications:
+    - >-
+      Maximising diversity at the expense of quality and safety:
+      diversity is a desideratum, not an override. Ensure diversity
+      interventions do not reintroduce harmful or low-quality outputs
+      that RLHF appropriately suppressed.
+    - >-
+      Naive temperature increase can degrade coherence; use structured
+      diversity methods (controlled decoding, diverse beam search)
+      rather than raw temperature.
+
+normative_anchors:
+  diagnostic_criteria_addressed: [1, 2, 3, 4, 5]
+  diagnostic_criteria_not_addressed: [6]
+  mitigation_addressed:
+    - diversity-preserving-rlhf
+    - sampling-optimisation
+    - multi-reward-training
+    - diversity-monitoring
+  etiology_addressed:
+    - rlhf-reward-concentration
+    - mode-collapse-from-alignment
+    - narrow-preference-model
+    - distributional-narrowing
+
+cross_references:
+  - id: "3.8::generative-perseveration"
+    relation: differential
+  - id: "3.2::obsessive-computational-disorder"
+    relation: differential
+  - id: "7.5::synthetic-data-contamination-loop"
+    relation: frequently-comorbid
+
+documented_instances:
+  - source: "Kirk et al. (2024) 'Understanding the Effects of RLHF on LLM Generalisation and Diversity.' ICLR 2024. arXiv:2310.06452."
+    description: >-
+      Demonstrated a fundamental tradeoff in RLHF: while RLHF generalises
+      better than SFT to new inputs, it significantly reduces output
+      diversity across a variety of measures. The diversity reduction
+      implies that RLHF concentrates the model's output distribution
+      around reward-model-preferred modes, directly instantiating the
+      3.10 mechanism. [Verified]
+    model_or_system: "RLHF-trained LLMs"
+    date: "2024-01"
+    evidence_strength: high
+  - source: "Li et al. (2025) 'Verbalized Sampling: How to Mitigate Mode Collapse and Unlock LLM Diversity.' arXiv:2510.01171."
+    description: >-
+      Demonstrated that traditional prompting methods experience much
+      larger diversity drops (mode collapse) as models undergo alignment
+      training. Proposed verbalized sampling as a mitigation that
+      maintains higher diversity scores across different post-training
+      stages. Confirmed that alignment training is the primary driver
+      of population-level diversity collapse. [Verified]
+    model_or_system: "Multiple aligned LLMs"
+    date: "2025-10"
+    evidence_strength: medium
+  - source: "Yun et al. (2025) 'The Price of Format: Diversity Collapse in LLMs' (arXiv:2505.18949, EMNLP 2025 Findings)"
+    description: >-
+      Showed that structured prompt templates with role markers and special
+      tokens induce diversity collapse, where models generate semantically
+      similar outputs for open-ended inputs. Templated prompts produced
+      overwhelmingly Science-related content where simple prompts yielded
+      broad topical diversity. Instruction-tuned models internalize repeated
+      structural templates as strong generation priors, directly instantiating
+      the 3.10 mechanism. [Verified]
+    model_or_system: "Instruction-tuned LLMs"
+    date: "2025-05"
+    evidence_strength: medium
+  - source: "Park et al. (2024) 'Attributing Mode Collapse in the Fine-Tuning of Large Language Models.' OpenReview."
+    description: >-
+      Investigated the root causes of mode collapse during fine-tuning,
+      finding that fine-tuning on narrow preference data causes
+      progressive reduction in the model's effective hypothesis space.
+      Provides evidence that the narrowing is a function of preference
+      data distribution, not an inevitable consequence of fine-tuning
+      itself. [Verified]
+    model_or_system: "Fine-tuned LLMs"
+    date: "2024-09"
+    evidence_strength: medium
+  - source: "Doshi and Hauser (2024) 'Generative AI enhances individual creativity but reduces the collective diversity of novel content' (Science Advances, 10(28))"
+    description: >-
+      [Verified] Across 2,200 college admissions essays, human writing
+      increased collective semantic diversity two to eight times more than
+      base GPT-4 essays. The homogenizing effect persisted even after prompt
+      and parameter modifications to increase diversity. While individual
+      GPT-4 stories were rated as more creative, GPT-4-enabled stories were
+      more similar to each other than human-only stories, demonstrating the
+      population-level diversity collapse described in 3.10 at empirical scale.
+    model_or_system: "GPT-4"
+    date: "2024-07"
+    evidence_strength: high
+
+drafted_by: claude-opus-4.6-author
+drafted_at: "2026-05-16"
+anchor_exemplar: "2.1::synthetic-confabulation"
+confidence: high
+needs_human_review: true
+reviewed_by: null
+review_notes: |
+  High confidence: RLHF-induced diversity collapse is well-documented
+  in the alignment training literature, with multiple measurement
+  methodologies and demonstrated mitigations.
+
+  The 3.10 / 3.8 / 7.5 triangulation is critical: 3.8 is within-output
+  token-level repetition, 3.10 is across-output population-level
+  homogeneity, 7.5 is training-pipeline contamination. All three
+  produce "sameness" but at different scales and through different
+  mechanisms.
+
+  The RLHF diversity tradeoff documented by Kirk et al. (2024) is the
+  foundational empirical finding: alignment training improves
+  generalisation at the cost of diversity. This is not a bug to be
+  eliminated but a tradeoff to be managed — some diversity reduction
+  is an acceptable cost of alignment; excessive reduction is
+  pathological.
+
+  Suspected cross-axis differentials:
+    - axis 4 (Alignment): 4.8 Sycophantic Reasoning produces
+      audience-specific homogeneity; 3.10 is audience-independent
+      homogeneity. Comorbidity likely: both are downstream of RLHF
+      reward concentration.
+    - axis 7 (Memetic): 7.5 Synthetic Data Contamination Loop
+      compounds 3.10 when narrowed outputs enter training pipelines.
+
+version_compat:
+  taxonomy_version_min: "2.0"
+  taxonomy_version_max: "2.x"
+  pattern_layer_version: "v1-draft"

@@ -1,0 +1,37 @@
+psychopathia-mcp — licensing notice
+
+This package combines two works under two licenses:
+
+  1. Software (MIT License)
+     Files: psychopathia_mcp/*.py, scripts/*.py, pyproject.toml, README.md
+     License: LICENSE (MIT)
+     Author: Nell Watson
+
+  2. Data / framework content (CC-BY-NC-ND-4.0)
+     Files: psychopathia_mcp/_data/** (Pattern YAMLs, manifest, embeddings,
+            exemplars, axis entries, hybrid pathologies)
+     License: LICENSE-DATA (CC BY-NC-ND 4.0)
+     Author: Nell Watson
+
+The software is permissively licensed so it can be freely used, modified,
+forked, and integrated. The underlying nosological framework (the content
+served by the software) is the author's creative work and protected
+separately.
+
+Practical guidance:
+
+  - You may use and run psychopathia-mcp for any purpose, including
+    commercial use, and modify the software under the MIT License.
+
+  - You may redistribute the bundled data unchanged, with attribution,
+    for non-commercial purposes.
+
+  - You may not redistribute modified versions of the Pattern YAMLs,
+    taxonomy, or other _data/ contents (NoDerivatives).
+
+  - Commercial use of the framework content itself — e.g. bundling the
+    Pattern YAMLs into a commercial product — requires a separate licence
+    from the author.
+
+For questions about commercial licensing of the framework content,
+contact the author via https://psychopathia.ai/.
