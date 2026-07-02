@@ -8,15 +8,15 @@ several directories at once with a namespace-verified listing.
 Transport is **stdio-only**. That is a non-issue at every registry below — none
 require HTTP/SSE for a local server.
 
-> **Repo-visibility caveat (verified 2026-07-02):** `github.com/NellInc/psychopathia`
-> is **PRIVATE**. The Official Registry accepts a private `repository.url` (the
-> SaferAgenticAI entry, also private, is live), because ownership is proven by the
-> PyPI `mcp-name` token + the GitHub device-flow login, and the code ships in the
-> PyPI package. But channels that **crawl or clone the GitHub repo** cannot work
-> while it is private: **Glama** and the **Docker MCP Catalog** are blocked, and
-> any form whose link is a `github.com/...` URL will 404 for the public — point
-> those at **PyPI** or **https://psychopathia.ai/mcp.html** instead. Smithery's
-> MCPB bundle is self-contained and does **not** need the repo.
+> **Public server repo (2026-07-02):** the monorepo `github.com/NellInc/psychopathia`
+> is private, so the MCP server was split into a dedicated **PUBLIC** repo —
+> **https://github.com/NellInc/psychopathia-mcp** (server at the repo ROOT; mirrored
+> from this directory by `scripts/sync-to-public.sh`). Point every directory link,
+> Glama, and Docker at that public repo — **not** the private monorepo, and **not** a
+> `/tree/main/research/mcp/server` subdir (there is none; the server is at the root).
+> This unblocks **Glama** and the **Docker MCP Catalog** (they can now clone it).
+> The Official Registry entry still carries the private `repository.url` (published
+> before the split); re-publish to refresh it, or rely on the public repo directly.
 
 ---
 
@@ -97,7 +97,7 @@ accurate, namespace-verified listing on its own. The manual form is a backstop.
 Its crawler reads the repo you give it — but ours is **private**, so rely on the
 PyPI package + an explicit description rather than a GitHub crawl:
 
-- GitHub Repository URL: `https://github.com/NellInc/psychopathia` *(private — will not crawl; the Official-Registry auto-discovery supersedes it)*
+- GitHub Repository URL: `https://github.com/NellInc/psychopathia-mcp`
 - **PyPI** Package: `psychopathia-mcp`  ·  **npm**: *(leave blank)*
 - Short Description (≤100 chars): `Psychopathia Machinalis: diagnose AI dysfunctions — 79 conditions, 11 read-only stdio tools.`
 - Email: `nell@ethicsnet.com`
@@ -171,7 +171,7 @@ GitHub repo to scan/build it, so it cannot list a private repo.** Do this only
 after `NellInc/psychopathia` is made public:
 
 - Sign in at <https://glama.ai> via GitHub OAuth (needs write/admin on the repo).
-- **Add Server** with `https://github.com/NellInc/psychopathia/tree/main/research/mcp/server`.
+- **Add Server** with `https://github.com/NellInc/psychopathia-mcp`.
 - **Sync Server** to trigger an immediate scan.
 
 ---

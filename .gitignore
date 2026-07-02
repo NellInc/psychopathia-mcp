@@ -7,6 +7,6 @@ __pycache__/
 .pytest_cache/
 .benchmarks/
 .venv/
-# MCPB bundle build artefacts
+# MCPB bundle build artefacts (vendored deps + packed bundle)
 mcpb/server/lib/
 *.mcpb
