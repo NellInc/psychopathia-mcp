@@ -5,7 +5,7 @@
 FROM python:3.12-slim
 
 # Pin to the release matching this repo state. Bump alongside pyproject version.
-RUN pip install --no-cache-dir "psychopathia-mcp==0.1.0a3"
+RUN pip install --no-cache-dir "psychopathia-mcp==0.1.0a4"
 
 # The server speaks MCP over stdio; the console script is the entry point.
 ENTRYPOINT ["psychopathia-mcp"]

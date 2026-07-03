@@ -10,7 +10,7 @@
 # Usage: research/mcp/server/scripts/build-mcpb.sh
 set -euo pipefail
 
-VERSION="0.1.0a3"                                       # keep in sync with pyproject/manifest
+VERSION="0.1.0a4"                                       # keep in sync with pyproject/manifest
 SERVER_DIR="$(cd "$(dirname "$0")/.." && pwd)"          # research/mcp/server
 BUNDLE_DIR="$SERVER_DIR/mcpb"
 OUT="$SERVER_DIR/dist/psychopathia-mcp-${VERSION}.mcpb"

@@ -1,6 +1,6 @@
 [project]
 name = "psychopathia-mcp"
-version = "0.1.0a3"
+version = "0.1.0a4"
 description = "MCP server exposing the Psychopathia Machinalis diagnostic framework so AI systems can diagnose dysfunctions in themselves, in systems they interact with, or in systems under external evaluation."
 readme = "README.md"
 license = { text = "MIT" }

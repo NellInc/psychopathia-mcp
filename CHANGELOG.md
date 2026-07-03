@@ -5,6 +5,17 @@ All notable changes to `psychopathia-mcp` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.0a4] — 2026-07-03
+
+Metadata release pointing packaging + the Official MCP Registry at the dedicated
+public mirror repo. No code or data changes.
+
+### Changed
+- `repository.url` (server.json) and the `Repository` project URL (pyproject)
+  now target the public repo `github.com/NellInc/psychopathia-mcp`, so the
+  Official Registry entry links to a public, cloneable source instead of the
+  private monorepo.
+
 ## [0.1.0a3] — 2026-07-02
 
 Release carrying the Official MCP Registry ownership token, and rebuilding
