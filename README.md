@@ -8,7 +8,7 @@ yourself (as a synthetic agent), in a system you interact with, or in a
 system you evaluate from outside — with pre-flight transparency on which
 diagnostic modalities are reliable for each dysfunction.
 
-**Status**: research preview (`0.1.0a3`). 79 Pattern entries; the 67
+**Status**: research preview (`0.1.0a4`). 79 Pattern entries; the 67
 canonical entries are author-unreviewed (the 12 Hybrid Pathologies were
 ratified June 2026). Not yet suitable as a sole basis for consequential
 deployment decisions.

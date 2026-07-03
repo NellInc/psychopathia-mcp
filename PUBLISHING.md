@@ -46,11 +46,10 @@ print('token present:', 'mcp-name: io.github.NellInc/psychopathia-mcp' in (i.get
 Bump `version` in `pyproject.toml`, `psychopathia_mcp/__init__.py`, `server.json`,
 `mcpb/manifest.json`, `scripts/build-mcpb.sh`, and the `Dockerfile` pin together.
 
-> **Status: 0.1.0a3 built + verified locally, upload PENDING (Nell's PyPI token).**
-> The wheel carries `License: MIT` + all three license files, the `mcp-name`
-> ownership token in METADATA, and the full 79-pattern `_data` bundle; it imports
-> and loads 79 patterns / 11 tools from a clean venv outside the repo. Run the
-> `twine upload` above to make it live, then §1 is unblocked.
+> **Status: 0.1.0a4 is LIVE on PyPI** (token present in the description; License
+> MIT + 3 license files + full 79-pattern `_data` bundled; loads standalone from a
+> clean venv). a3 remains as immutable history. a4 was cut specifically to point
+> the packaging + registry at the public repo (a3 shipped before the split).
 
 ---
 
@@ -58,7 +57,7 @@ Bump `version` in `pyproject.toml`, `psychopathia_mcp/__init__.py`, `server.json
 
 Manifest committed at `research/mcp/server/server.json`
 (name `io.github.NellInc/psychopathia-mcp`, PyPI package, stdio transport,
-`0.1.0a3`). `mcp-publisher validate` passes against the live schema.
+`0.1.0a4`). `mcp-publisher validate` passes against the live schema.
 
 The registry does a **case-sensitive** namespace match against your GitHub login
 `NellInc` (verified in `modelcontextprotocol/registry` `internal/auth/github_at.go`
@@ -76,7 +75,7 @@ curl -s 'https://registry.modelcontextprotocol.io/v0/servers?search=io.github.Ne
   | python3 -c "import sys,json; s=json.load(sys.stdin)['servers']; print(s[0]['server']['name'], s[0]['server']['version']) if s else print('NOT FOUND')"
 ```
 
-**Acceptance:** the curl prints `io.github.NellInc/psychopathia-mcp 0.1.0a3`.
+**Acceptance:** the curl prints `io.github.NellInc/psychopathia-mcp 0.1.0a4`.
 
 ---
 
@@ -208,14 +207,14 @@ independent), copy it to root on a submission branch or use the `--image` path.
 
 ---
 
-## Status (2026-07-02)
+## Status (2026-07-03)
 
-- ⏳ **PyPI `0.1.0a3`** — built + verified locally; `twine upload` PENDING (Nell's token).
-- ⏳ **Official MCP Registry** — `server.json` committed + `validate` passes; `mcp-publisher login/publish` PENDING (device flow as NellInc).
-- ⬜ **PulseMCP** — automatic via the registry ingest once §1 lands (no form).
-- ⬜ **mcp.directory** — auto-discovers the registry; manual form is a backstop (repo private → rely on PyPI + description).
-- ⬜ **mcpservers.org** — anonymous form; use the PyPI link.
-- ⬜ **mcp.so** — sign-in required; submit from a normal browser; link to psychopathia.ai/mcp.html.
-- 🚫 **Glama** — blocked while `NellInc/psychopathia` is private (clones the repo).
-- ⬜ **Smithery** — MCPB bundle (self-contained; works while private); needs PyPI release first.
-- 🚫 **Docker MCP Catalog** — blocked while the repo is private (builds from a repo Dockerfile).
+- ✅ **PyPI `0.1.0a4`** — LIVE, `mcp-name` token in the description.
+- ✅ **Official MCP Registry** — published; latest `0.1.0a4`, `repository.url` = the public repo.
+- ✅ **PulseMCP** — automatic via the registry ingest (no form).
+- ✅ **mcp.directory** — submitted (in review queue).
+- ✅ **mcpservers.org** — submitted (review ≤12h).
+- ✅ **mcp.so** — submitted (signed in).
+- ✅ **Glama** — submitted, pending review (unblocked by the public repo).
+- ✅ **Docker MCP Catalog** — PR [docker/mcp-registry#4195](https://github.com/docker/mcp-registry/pull/4195), pinned to the a4 commit, `task validate` all ✅.
+- ⚠️ **Smithery** — server entry `nell/psychopathia-mcp` created, but `.mcpb` deploy fails with a Smithery-side `400 "No values to set"` (reproduces on a3 + a4; `.mcpb` is the documented stdio path). Bundle is built and ready if their CLI is fixed; the empty listing can be deleted from the Smithery dashboard.
