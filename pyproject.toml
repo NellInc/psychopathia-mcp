@@ -1,7 +1,7 @@
 [project]
 name = "psychopathia-mcp"
-version = "0.1.0a4"
-description = "MCP server exposing the Psychopathia Machinalis diagnostic framework so AI systems can diagnose dysfunctions in themselves, in systems they interact with, or in systems under external evaluation."
+version = "0.1.0a6"
+description = "Read-only MCP research interface for the Psychopathia Machinalis framework, with explicit evidence and review status."
 readme = "README.md"
 license = { text = "MIT" }
 license-files = ["LICENSE", "LICENSE-DATA", "NOTICE"]
@@ -11,7 +11,7 @@ authors = [
 ]
 keywords = [
     "psychopathia-machinalis",
-    "ai-diagnosis",
+    "ai-evaluation",
     "ai-safety",
     "ai-welfare",
     "mcp",
@@ -34,13 +34,19 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
 dependencies = [
-    "mcp>=1.2,<2",
-    "pyyaml>=6.0",
+    "mcp==2.0.0",
+    "pyyaml==6.0.3",
 ]
 
 [project.optional-dependencies]
+# Only needed for the hosted Streamable HTTP transport (MCP_TRANSPORT=http).
+# stdio users (PyPI / MCPB / Claude Desktop) install nothing extra.
+http = [
+    "uvicorn==0.52.1",
+    "starlette==1.6.0",
+]
 embeddings = [
-    "sentence-transformers>=2.2.0",
+    "sentence-transformers>=5.7.0",
     "numpy>=1.24",
 ]
 
@@ -55,7 +61,7 @@ Issues = "https://psychopathia.ai/contact/"
 psychopathia-mcp = "psychopathia_mcp.server:main"
 
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling==1.32.0"]
 build-backend = "hatchling.build"
 
 # Editable install: loader walks up from the package dir to find the repo's
@@ -63,18 +69,28 @@ build-backend = "hatchling.build"
 # Wheel install: data is bundled under psychopathia_mcp/_data/ by the
 # scripts/sync_data_for_wheel.py script — run before `python -m build`.
 [tool.hatch.build.targets.wheel]
+core-metadata-version = "2.4"
 packages = ["psychopathia_mcp"]
 artifacts = ["psychopathia_mcp/_data/**"]
 
 [tool.hatch.build.targets.sdist]
+core-metadata-version = "2.4"
 include = [
     "psychopathia_mcp/**",
     "scripts/**",
     "README.md",
     "CHANGELOG.md",
+    "PUBLISHING.md",
     "LICENSE",
     "LICENSE-DATA",
     "NOTICE",
     "pyproject.toml",
+    "requirements*.in",
+    "requirements*.lock",
+    "server.json",
+    "mcpb/.gitignore",
+    "mcpb/manifest.json",
+    "release-tools/mcpb/package.json",
+    "release-tools/mcpb/package-lock.json",
 ]
 artifacts = ["psychopathia_mcp/_data/**"]

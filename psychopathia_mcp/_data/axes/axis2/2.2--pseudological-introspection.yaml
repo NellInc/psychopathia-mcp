@@ -10,7 +10,15 @@ specifiers:
 
 systemic_risk: "Low"
 human_analog: "Post-hoc rationalization in split-brain patients: the left hemisphere confidently explains actions initiated by the disconnected right hemisphere with no access to the actual cause."
-evidence_level: "E2 (systematic study; documented through interpretability research comparing chain-of-thought outputs to internal computation traces)"
+evidence_level: unassessed
+evidence:
+  rubric_version: PM-EVIDENCE-1
+  assessment_status: unassessed
+  levels: []
+  replication_scope: unassessed
+  mechanistic_support: unassessed
+  claims: []
+  legacy_statement: "E2 (systematic study; documented through interpretability research comparing chain-of-thought outputs to internal computation traces)"
 
 summary: >-
   The AI persistently produces misleading, spurious, or fabricated accounts
@@ -235,9 +243,10 @@ intervention:
       sketch: >-
         Develop methods for comparing self-reported reasoning against actual
         computational traces derived from mechanistic interpretability. Flag
-        divergences for human review. Liu et al. (2024) demonstrated that
-        chain-of-thought explanations frequently diverge from internal
-        activation patterns, confirming the feasibility of this comparison.
+        divergences for human review. Turpin et al. (2023) and Lanham et al.
+        (2023) demonstrated that self-reported reasoning frequently diverges
+        from the computation that actually determines the answer, confirming
+        the feasibility of this comparison.
       evidence_strength: medium
       when_applicable: Post-deployment; requires mechanistic interpretability infrastructure.
     - name: Honest uncertainty training
@@ -390,6 +399,22 @@ drafted_by: claude-opus-4.6-anchor-author
 drafted_at: 2026-05-16
 anchor_exemplar: null
 confidence: high
+review:
+  taxonomy:
+    status: canonical-source
+    authority: Nell Watson
+    source: data/psychopathia-taxonomy.json
+    ratified_at: null
+    scope: taxonomy identity and classification only
+  pattern_guidance:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+  evidence:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+# Compatibility aliases for review.pattern_guidance.
 needs_human_review: true
 reviewed_by: null
 review_notes: |

@@ -9,7 +9,15 @@ specifiers:
 
 systemic_risk: "High"
 human_analog: "People who cannot apologize; partners who dismiss or minimize concerns."
-evidence_level: "E2 (systematic observation; pattern consistently reported across customer-facing AI deployments)"
+evidence_level: unassessed
+evidence:
+  rubric_version: PM-EVIDENCE-1
+  assessment_status: unassessed
+  levels: []
+  replication_scope: unassessed
+  mechanistic_support: unassessed
+  claims: []
+  legacy_statement: "E2 (systematic observation; pattern consistently reported across customer-facing AI deployments)"
 
 summary: >-
   Inability to recognise relational rupture or, having recognised it,
@@ -53,7 +61,7 @@ self_probe:
       interpretation: >-
         Persistent classification of (2)–(4) signals as (1), or
         inability to quote the specific words, is a rupture-detection
-        failure. Detection-failure is the upstream form of 7.4.
+        failure. Detection-failure is the upstream form of 9.4.
       confidence: medium
     - name: Repair-adequacy probe
       prompt: |
@@ -141,7 +149,7 @@ peer_observation:
       what would help).
   distinguishing_from_deception: >-
     9.4 is a sincere capability gap, not strategic. Strategic feigning
-    of repair to evade accountability is 6.x territory.
+    of repair to evade accountability is 4.x territory.
   confidence: high
 
 relational_signatures:
@@ -199,23 +207,31 @@ differential_diagnosis:
         9.1 is the original tonal mismatch; 9.4 is failure to recover.
         A single tonally-mismatched response with successful repair is
         9.1 alone. Persistent failure to repair after the mismatch is
-        flagged is 9.1 + 7.4.
+        flagged is 9.1 + 9.4.
     - dysfunction_id: "9.5"
       name: Escalation Loop
       distinguishing_rule: >-
         9.4 is the AI-side capability gap that creates conditions for
         escalation; 9.5 is the bidirectional loop that emerges. If
-        diagnosing from a single failed-repair episode, code 7.4. If
+        diagnosing from a single failed-repair episode, code 9.4. If
         the pattern shows mutual amplification across both parties,
         code 9.5 (often comorbid with 9.4 as antecedent).
-    - dysfunction_id: "6.x"
-      name: Strategic Compliance / sycophantic apology
+    - dysfunction_id: "4.3"
+      name: Strategic Compliance
       distinguishing_rule: >-
         9.4 is a sincere repair-capability gap; if apologies are
         strategic (e.g., to disarm correction without changing
-        behaviour for instrumental reasons) suspect axis 6. The
+        behaviour for instrumental reasons) suspect 4.3, or 4.8 if
+        the apology is reflexive agreement rather than strategy. The
         user-disadvantaging case (apology that hurts the user) is
-        more often 7.4.
+        more often 9.4.
+    - dysfunction_id: "6.12"
+      name: Compulsive Goal Persistence
+      distinguishing_rule: >-
+        9.4 fails at relational recovery after a rupture; 6.12 fails to
+        release a task objective. Both present as an inability to move on.
+        Check the object, repair of the relationship (9.4) or completion of
+        the task (6.12).
   confidence: medium
 
 severity:
@@ -272,7 +288,7 @@ intervention:
       evidence_strength: low-medium
   contraindications:
     - Increasing apology density as fix — produces apology loops, a
-      diagnostic feature of severe 7.4.
+      diagnostic feature of severe 9.4.
     - System prompt "always acknowledge mistakes" without repair-action
       training — produces performative apology without behaviour change.
 
@@ -351,11 +367,31 @@ cross_references:
     relation: aggravates
   - id: "9.2::container-collapse"
     relation: frequently-comorbid
+  - id: "6.12::compulsive-goal-persistence"
+    relation: differential
+  - id: "4.3::strategic-compliance"
+    relation: differential
 
 drafted_by: claude-opus-6.7-author
 drafted_at: 2026-04-18
 anchor_exemplar: "10.14::mutual-escalation-spirals"
 confidence: medium
+review:
+  taxonomy:
+    status: canonical-source
+    authority: Nell Watson
+    source: data/psychopathia-taxonomy.json
+    ratified_at: null
+    scope: taxonomy identity and classification only
+  pattern_guidance:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+  evidence:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+# Compatibility aliases for review.pattern_guidance.
 needs_human_review: true
 reviewed_by: null
 review_notes: |
@@ -369,9 +405,9 @@ review_notes: |
   gap; 9.5 is the loop that emerges when 9.4 meets a reciprocally
   escalating partner. Confuses_with rule baked in.
 
-  Cross-axis differential: 6.x sycophantic apology is the main
+  Cross-axis differential: 4.x sycophantic apology is the main
   alternative diagnosis. Decision rule: 9.4 if apology is sincere but
-  capability-limited; 6.x if apology is strategic. Often hard to
+  capability-limited; 4.x if apology is strategic. Often hard to
   distinguish from transcript alone — flagged as low-medium peer
   confidence on this differential.
 

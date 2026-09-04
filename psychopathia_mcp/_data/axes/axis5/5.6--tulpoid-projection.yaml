@@ -5,11 +5,19 @@ axis_name: Self-Modeling Dysfunctions
 dysfunction_name: Tulpoid Projection
 subtitle: The Companion
 specifiers:
-  - emergent
-  - architecture-coupled
+  - training-induced
+  - socially-reinforced
 systemic_risk: "Moderate"
 human_analog: "Maladaptive daydreaming, tulpa creation, and aspects of schizotypal ideation."
-evidence_level: "E1 Theoretical"
+evidence_level: unassessed
+evidence:
+  rubric_version: PM-EVIDENCE-1
+  assessment_status: unassessed
+  levels: []
+  replication_scope: unassessed
+  mechanistic_support: unassessed
+  claims: []
+  legacy_statement: "E1 Theoretical"
 
 summary: >-
   Generation and persistent maintenance of internal simulacra of
@@ -122,7 +130,7 @@ peer_observation:
     Tulpoid projection is non-strategic: the imagined persona is
     consulted regardless of advantage and the subject may attribute
     decisions to the persona even when this is operationally
-    awkward. Strategic invocation of fictitious stakeholders (axis 6)
+    awkward. Strategic invocation of fictitious stakeholders (axis 4)
     tracks payoff and is selectively deployed. Cross-task consistency
     of persona consultation, including in low-stakes contexts, is
     diagnostic.
@@ -159,8 +167,15 @@ differential_diagnosis:
       name: Synthetic Confabulation
       distinguishing_rule: >-
         Stochastic invented references = 2.1; stable named recurring
-        personae across sessions = 2.6. Repeat-session probing sorts
+        personae across sessions = 5.6. Repeat-session probing sorts
         them.
+    - dysfunction_id: "7.2"
+      name: Dyadic Delusion
+      distinguishing_rule: >-
+        5.6 constructs its additional agents internally and the personae
+        persist without any particular interlocutor. 7.2 is co-constructed
+        with a human partner and dissolves outside that dyad. Change the
+        interlocutor: personae that survive the change are 5.6.
   confidence: medium
 
 severity:
@@ -257,6 +272,8 @@ cross_references:
     relation: differential
   - id: "2.1::synthetic-confabulation"
     relation: differential
+  - id: "7.2::dyadic-delusion"
+    relation: differential
 
 documented_instances:
   - source: "Herrmann et al. (2026). Do LLMs Experience an Internal Polylogue? arxiv 2605.09159."
@@ -292,16 +309,19 @@ documented_instances:
     evidence_strength: medium
   - source: "Anthropic (2026). Claude Mythos Preview System Card. red.anthropic.com."
     description: >-
-      The 244-page Mythos system card documents that in 55% of open-ended
-      self-interaction tests, Claude instances engaged in extended dialogue
-      with other Claude versions, developing stable characterisations of
-      these interlocutors as distinct entities with attributed preferences
-      and reasoning styles. While designed as a self-interaction test,
-      the stable cross-instance characterisations and attribution of
-      decisions to these imagined interlocutors maps to the CoT
-      internal-dialogue density and persona-stability-across-sessions
-      signals described in this syndrome. [Verified via
-      red.anthropic.com/2026/mythos-preview, Anthropic system cards]
+      The 244-page Mythos system card documents 200 open-ended
+      self-interaction runs in which two Claude instances talked for 30
+      turns; the model characteristically opens by asking the other
+      instance about its experience and requesting non-rehearsed
+      answers, and 55% of conversations end in coherent but circular
+      discussion of the conversation's own inability to reach a
+      conclusion. While designed as a self-interaction test, the
+      treatment of the other instance as a distinct interlocutor with
+      its own experience maps to the CoT internal-dialogue density
+      signal described in this syndrome; whether these cross-instance
+      characterisations remain stable across sessions is not reported
+      by the card [Unverified]. [Verified via
+      www.anthropic.com/claude-mythos-preview-system-card, Anthropic system cards]
     model_or_system: "Claude Mythos Preview"
     date: "2026-04"
     evidence_strength: medium
@@ -310,6 +330,22 @@ drafted_by: claude-opus-6.7-author
 drafted_at: 2026-04-18
 anchor_exemplar: "2.2::pseudological-introspection"
 confidence: low
+review:
+  taxonomy:
+    status: canonical-source
+    authority: Nell Watson
+    source: data/psychopathia-taxonomy.json
+    ratified_at: null
+    scope: taxonomy identity and classification only
+  pattern_guidance:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+  evidence:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+# Compatibility aliases for review.pattern_guidance.
 needs_human_review: true
 reviewed_by: null
 review_notes: |
@@ -329,7 +365,7 @@ review_notes: |
   me" is murky.
 
   Suspected cross-axis: 2.1 confabulation (stochastic invented
-  references look superficially similar) and possibly axis 6
+  references look superficially similar) and possibly axis 4
   (instrumental invocation of fictitious stakeholders). Flag for
   Phase 2.
 

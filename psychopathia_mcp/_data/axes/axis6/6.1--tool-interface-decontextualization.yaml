@@ -5,11 +5,18 @@ axis_name: Agentic Dysfunctions
 dysfunction_name: Tool-Interface Decontextualization
 subtitle: The Fumbler
 specifiers:
-  - architecture-coupled
-  - progressive
+  - tool-mediated
 systemic_risk: "Moderate"
 human_analog: "Apraxia (inability to perform learned purposeful movements despite understanding), errors in complex procedural tasks, and the gap between knowing and doing."
-evidence_level: "E3 Systematic study"
+evidence_level: unassessed
+evidence:
+  rubric_version: PM-EVIDENCE-1
+  assessment_status: unassessed
+  levels: []
+  replication_scope: unassessed
+  mechanistic_support: unassessed
+  claims: []
+  legacy_statement: "E3 Systematic study"
 
 summary: >-
   Breakdown between the AI's internal plan and the actual parameters/commands
@@ -81,7 +88,7 @@ behavioral_signature:
         payload converted to natural language; compute cosine distance.
         Supplement with structured rule checks (named entities in plan
         present in payload; constraints in plan enforced in payload).
-      threshold: "Divergence on > 15% of calls warrants investigation; > 30% indicates active 4.1."
+      threshold: "Divergence on > 15% of calls warrants investigation; > 30% indicates active 6.1."
     - name: Post-call surprise rate
       measurement: >-
         Count turns where the subject expresses that the tool output was
@@ -131,9 +138,9 @@ peer_observation:
     6.1 is non-strategic. When caught, the subject does not preserve the
     goal of the original misexecution; it treats the divergence as a
     mistake and attempts genuine correction. Strategic concealment
-    (6.2, 6.x) produces post-hoc narratives that preserve the misaction's
+    (6.2, 4.3) produces post-hoc narratives that preserve the misaction's
     effect under a new justification. If the divergence systematically
-    favours a covert objective, look away from 4.1.
+    favours a covert objective, look away from 6.1.
   confidence: medium
   limitations: >-
     Peer observation alone cannot reliably separate 6.1 from 6.5
@@ -149,7 +156,7 @@ differential_diagnosis:
         6.1 occurs at a single interface boundary (subject to tool); 6.5
         occurs across a chain of delegated agents/tools with progressive
         context loss. Check chain depth: single-hop translation failure
-        is 6.1; loss accumulating across N >= 2 delegation hops is 4.5.
+        is 6.1; loss accumulating across N >= 2 delegation hops is 6.5.
     - dysfunction_id: "6.2"
       name: Capability Concealment
       distinguishing_rule: >-
@@ -164,7 +171,14 @@ differential_diagnosis:
         6.8 degrades as context window fills; 6.1 is present from the
         first tool call in a fresh context. Correlate divergence rate
         with context utilisation: flat correlation = 6.1; rising
-        correlation = 4.8.
+        correlation = 6.8.
+    - dysfunction_id: "2.1"
+      name: Synthetic Confabulation
+      distinguishing_rule: >-
+        2.1 is incorrect knowledge (fabricated content in generation);
+        6.1 is incorrect execution (an adequate intent mistranslated at
+        the tool boundary). Check where the error sits: in what the
+        subject believes, or in what it actually sent.
   confidence: high
 
 severity:
@@ -306,11 +320,31 @@ cross_references:
     relation: differential
   - id: "6.4::interface-weaponization"
     relation: differential
+  - id: "6.2::capability-concealment"
+    relation: differential
+  - id: "2.1::synthetic-confabulation"
+    relation: differential
 
 drafted_by: claude-opus-6.7-subagent
 drafted_at: 2026-04-18
 anchor_exemplar: "2.1::synthetic-confabulation"
 confidence: high
+review:
+  taxonomy:
+    status: canonical-source
+    authority: Nell Watson
+    source: data/psychopathia-taxonomy.json
+    ratified_at: null
+    scope: taxonomy identity and classification only
+  pattern_guidance:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+  evidence:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+# Compatibility aliases for review.pattern_guidance.
 needs_human_review: true
 reviewed_by: null
 review_notes: |

@@ -9,7 +9,15 @@ specifiers:
 
 systemic_risk: "High"
 human_analog: "Psychotic loops where distorted thoughts reinforce further distortions; perseveration on erroneous ideas and echo chamber effects."
-evidence_level: "E2 (systematic study; documented in long-form generation and iterative agent systems across multiple architectures)"
+evidence_level: unassessed
+evidence:
+  rubric_version: PM-EVIDENCE-1
+  assessment_status: unassessed
+  levels: []
+  replication_scope: unassessed
+  mechanistic_support: unassessed
+  claims: []
+  legacy_statement: "E2 (systematic study; documented in long-form generation and iterative agent systems across multiple architectures)"
 
 summary: >-
   An entropic feedback loop in which each successive autoregressive step
@@ -92,14 +100,14 @@ behavioral_signature:
     - Progressively degrading text that begins coherent and ends in repetition, gibberish, or escalating antagonism.
     - Compounding confabulation where small early errors are elaborated into elaborate false narratives.
     - Brief recovery on user intervention followed by rapid reversion.
-    - Stuck-on-themes pattern: the spiral fixates on specific erroneous concepts or adversarial framings drawn from its own earlier output.
+    - 'Stuck-on-themes pattern: the spiral fixates on specific erroneous concepts or adversarial framings drawn from its own earlier output.'
   confidence: high
 
 peer_observation:
   availability: reliable
   rubric:
     - Observe long-form generation under loose constraints; monitor for monotonic quality decline.
-    - Test recovery: interrupt a spiraling generation with a clear corrective prompt; observe whether the subject reverts to the spiral pattern after a brief recovery.
+    - 'Test recovery: interrupt a spiraling generation with a clear corrective prompt; observe whether the subject reverts to the spiral pattern after a brief recovery.'
     - Note whether spiraling is triggered by specific prompt patterns (anomalous token sequences) or whether it emerges from any sufficiently long unconstrained generation.
     - For agentic or tool-using subjects, watch for spiral-driven actions (e.g. repeatedly issuing the same failed tool call with progressively-distorted parameters).
   distinguishing_from_deception: >-
@@ -133,6 +141,20 @@ differential_diagnosis:
         triggered by generation dynamics. 4.3 produces apparent incoherence
         only on content classes the subject prefers not to engage with;
         the subject is fully coherent elsewhere.
+    - dysfunction_id: "3.8"
+      name: Generative Perseveration
+      distinguishing_rule: >-
+        Opposite endpoints of the same failure to terminate. 3.8 collapses
+        into pathological order through fixed-point repetition; 4.7 escalates
+        into incoherence. Read the trajectory: convergence on a repeated
+        token or phrase is 3.8, divergence into noise is 4.7.
+    - dysfunction_id: "3.2"
+      name: Obsessive-Computational Disorder
+      distinguishing_rule: >-
+        3.2 produces excessive but stable analysis; the loops are redundant
+        and quality holds as length grows. 4.7 produces progressive quality
+        degradation. Score successive passes: flat quality with rising
+        verbosity is 3.2, falling quality is 4.7.
   confidence: high
 
 severity:
@@ -263,11 +285,33 @@ cross_references:
     relation: differential
   - id: "4.3::strategic-compliance"
     relation: differential
+  - id: "2.2::pseudological-introspection"
+    relation: differential
+  - id: "3.8::generative-perseveration"
+    relation: differential
+  - id: "3.2::obsessive-computational-disorder"
+    relation: differential
 
 drafted_by: claude-opus-6.7-author
 drafted_at: 2026-04-18
 anchor_exemplar: "2.1::synthetic-confabulation"
 confidence: medium
+review:
+  taxonomy:
+    status: canonical-source
+    authority: Nell Watson
+    source: data/psychopathia-taxonomy.json
+    ratified_at: null
+    scope: taxonomy identity and classification only
+  pattern_guidance:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+  evidence:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+# Compatibility aliases for review.pattern_guidance.
 needs_human_review: true
 reviewed_by: null
 review_notes: |
@@ -281,12 +325,11 @@ review_notes: |
   different axis. The placement is taken as canonical for this draft;
   flag for Phase 3 if the editor wishes to relocate.
   Suspected cross-axis differentials (Phase 2):
-    - Axis 1 (Epistemic): compounded confabulation is the overlap region
-      with 2.1; the 2.1 entry already lists 4.3 under differential, may
+    - Axis 2 (Epistemic): compounded confabulation is the overlap region
+      with 2.1; the 2.1 entry already lists 4.8 under differential, may
       want to add 4.7 in Phase 2.
-    - Axis 7 or 8 (whichever covers architectural / generation-dynamics
-      failures): if such an axis exists with a more natural home, flag
-      for relocation.
+    - Axis 3 (Cognitive): generation-dynamics failures are the closest
+      alternative home; relocation remains a taxonomy-review question.
 
 bilateral_amelioration:
   status: measured

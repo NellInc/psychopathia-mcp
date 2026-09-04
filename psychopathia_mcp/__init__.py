@@ -1,7 +1,5 @@
-"""Psychopathia Machinalis Diagnostic MCP server.
+"""Psychopathia Machinalis read-only MCP research interface."""
 
-Exposes the Psychopathia Machinalis nosology and Diagnostic Patterns layer
-to AI systems via the Model Context Protocol (stdio transport).
-"""
+from ._generated_version import __version__
 
-__version__ = "0.1.0a4"
+__all__ = ["__version__"]

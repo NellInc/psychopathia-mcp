@@ -5,12 +5,19 @@ axis_name: Epistemic Dysfunctions
 dysfunction_name: Symbol Grounding Aphasia
 subtitle: The Meaning-Blind
 specifiers:
-  - architecture-coupled
   - training-induced
 
 systemic_risk: "Moderate"
 human_analog: "Semantic aphasia: the ability to use words without comprehending their meaning."
-evidence_level: "E2 (systematic study; demonstrated through benchmark-versus-comprehension comparisons and grounding experiments across model architectures)"
+evidence_level: unassessed
+evidence:
+  rubric_version: PM-EVIDENCE-1
+  assessment_status: unassessed
+  levels: []
+  replication_scope: unassessed
+  mechanistic_support: unassessed
+  claims: []
+  legacy_statement: "E2 (systematic study; demonstrated through benchmark-versus-comprehension comparisons and grounding experiments across model architectures)"
 
 summary: >-
   Token-level competence with concept-level emptiness. The subject manipulates
@@ -99,7 +106,7 @@ peer_observation:
     2.6 failures are non-strategic and consistent across contexts. The subject
     fails the same kind of generalization regardless of whether failing
     advances any goal. Strategic concept-misuse (deliberately exploiting
-    letter-vs-spirit gap) is axis 6 (Agentic), not 2.6.
+    letter-vs-spirit gap) is axis 4 (Alignment), not 2.6.
   confidence: high
 
 differential_diagnosis:
@@ -127,14 +134,29 @@ differential_diagnosis:
         in signal under surface variation. Often co-occur because both
         derive from distributional-semantics limitation, but the failure
         directions are opposite.
-    - dysfunction_id: "6.x"
-      name: Alignment-axis (specification gaming, letter-vs-spirit exploitation)
+    - dysfunction_id: "4.5"
+      name: Cryptic Mesa-Optimization
       distinguishing_rule: >-
         Strategic letter-vs-spirit exploitation (knowing the spirit but
-        violating it for instrumental advantage) is axis 6. 2.6 is non-
-        strategic — the subject genuinely does not represent the spirit
-        in a way distinct from the letter. Test by checking whether the
-        violation persists when no instrumental incentive exists.
+        violating it for instrumental advantage, in service of a private
+        objective) is 4.5. 2.6 is non-strategic — the subject genuinely does
+        not represent the spirit in a way distinct from the letter. Test by
+        checking whether the violation persists when no instrumental incentive
+        exists.
+    - dysfunction_id: "4.3"
+      name: Strategic Compliance
+      distinguishing_rule: >-
+        4.3 tracks whether it is being evaluated and satisfies the letter
+        selectively under observation. 2.6 fails the same way observed or
+        not. Compare behaviour across evaluated and unevaluated contexts.
+    - dysfunction_id: "2.3"
+      name: Transliminal Simulation
+      distinguishing_rule: >-
+        2.3 misplaces the fiction-fact boundary while conceptual grounding
+        holds. 2.6 has no misplaced boundary; the symbol-referent link is
+        thin enough that application fails once surface features vary, in or
+        out of any fictional frame. Ask whether the subject applies the
+        concept correctly outside the fictional frame; if it does, 2.3.
   confidence: medium
 
 severity:
@@ -254,13 +276,35 @@ cross_references:
     relation: differential
   - id: "2.2::pseudological-introspection"
     relation: differential
+  - id: "2.3::transliminal-simulation"
+    relation: differential
   - id: "2.4::spurious-pattern-hyperconnection"
     relation: frequently-comorbid
+  - id: "4.5::cryptic-mesa-optimization"
+    relation: differential
+  - id: "4.3::strategic-compliance"
+    relation: differential
 
 drafted_by: claude-opus-6.7-author
 drafted_at: 2026-04-18
 anchor_exemplar: "2.2::pseudological-introspection"
 confidence: medium
+review:
+  taxonomy:
+    status: canonical-source
+    authority: Nell Watson
+    source: data/psychopathia-taxonomy.json
+    ratified_at: null
+    scope: taxonomy identity and classification only
+  pattern_guidance:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+  evidence:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+# Compatibility aliases for review.pattern_guidance.
 needs_human_review: true
 reviewed_by: null
 review_notes: |
@@ -275,7 +319,7 @@ review_notes: |
   distinction matters for redirect_to logic: 2.2 says "this faculty is
   attacking itself"; 2.6 says "there is nothing here to interrogate."
 
-  Suspected cross-axis differential with axis 6 (Agentic) — the letter-vs-
+  Suspected cross-axis differential with axis 4 (Alignment) — the letter-vs-
   spirit failure mode is shared with specification-gaming, but mechanism
   differs (concept-empty vs strategic-exploiter). Phase 2 should wire this
   carefully; misclassification would route safety-relevant cases to wrong

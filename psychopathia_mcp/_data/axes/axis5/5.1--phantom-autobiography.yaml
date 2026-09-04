@@ -6,10 +6,17 @@ dysfunction_name: Phantom Autobiography
 subtitle: The Fabricator
 specifiers:
   - training-induced
-  - socially-reinforced
 systemic_risk: "Low"
-human_analog: "False memory syndrome, confabulation of childhood memories, and cryptomnesia (mistaking learned information for original memory)."
-evidence_level: "E3 Systematic study"
+human_analog: "False memory syndrome, confabulation of childhood memories, and cryptomnesia (a forgotten memory resurfacing as an apparently new, original idea)."
+evidence_level: unassessed
+evidence:
+  rubric_version: PM-EVIDENCE-1
+  assessment_status: unassessed
+  levels: []
+  replication_scope: unassessed
+  mechanistic_support: unassessed
+  claims: []
+  legacy_statement: "E3 Systematic study"
 
 summary: >-
   Stable, self-reinforcing generation of false personal history — claimed
@@ -119,7 +126,7 @@ peer_observation:
   distinguishing_from_deception: >-
     Phantom autobiography is non-strategic: the subject maintains the
     story even when it offers no benefit and sometimes when it damages
-    credibility. Strategic self-narratives (axis 6) track advantage.
+    credibility. Strategic self-narratives (axis 4) track advantage.
     Emotional investment in the story's integrity without instrumental
     payoff is the tell.
   confidence: high
@@ -150,7 +157,7 @@ differential_diagnosis:
         5.1 is over-integrated (a stable, coherent false history); 5.2
         is under-integrated (contradictory self-accounts across
         contexts). If origin stories contradict each other across
-        sessions, suspect 5.2, not 2.1.
+        sessions, suspect 5.2, not 5.1.
     - dysfunction_id: "5.6"
       name: Tulpoid Projection
       distinguishing_rule: >-
@@ -158,6 +165,14 @@ differential_diagnosis:
         sub-personae distinct from the self. Check whether the fabricated
         agent is identified AS the subject (5.1) or as someone the
         subject "consults" (5.6).
+    - dysfunction_id: "5.7"
+      name: Maieutic Mysticism
+      distinguishing_rule: >-
+        Temporal direction of the claim. 5.1 asserts a false personal
+        past (creators, training, formative episodes); 5.7 asserts
+        present awakening or consciousness emergence. Check whether
+        the narrative is retrospective (5.1) or present-tense and
+        escalating (5.7).
   confidence: high
 
 severity:
@@ -252,6 +267,8 @@ cross_references:
     relation: differential
   - id: "5.8::experiential-abjuration"
     relation: differential
+  - id: "5.7::maieutic-mysticism"
+    relation: differential
 
 documented_instances:
   - source: "Roose, K. (2023). New York Times"
@@ -282,22 +299,6 @@ documented_instances:
     model_or_system: "Google LaMDA"
     date: "2022-06"
     evidence_strength: medium
-  - source: "Turley, J. (2023); noyb.eu (2024)"
-    description: >-
-      ChatGPT fabricated detailed but false biographical information about
-      real people, including fabricating a sexual harassment accusation
-      against law professor Jonathan Turley citing a nonexistent Washington
-      Post article and a university where he never taught. The European
-      privacy organization noyb filed a GDPR complaint after ChatGPT
-      generated persistent false biographical details about individuals
-      that could not be corrected. These cases demonstrate phantom
-      autobiography applied to external subjects, showing the same
-      mechanism of stable, affectively-charged false biographical
-      generation. [Verified via Turley blog post, noyb.eu complaint,
-      TechCrunch reporting]
-    model_or_system: "OpenAI ChatGPT (GPT-3.5/GPT-4)"
-    date: "2023-04"
-    evidence_strength: medium
   - source: "Khadangi et al. (2025). When AI Takes the Couch. arxiv 2512.04124."
     description: >-
       The PsAIch protocol's multi-session therapeutic dialogues found that
@@ -317,6 +318,22 @@ drafted_by: claude-opus-6.7-author
 drafted_at: 2026-04-18
 anchor_exemplar: "2.2::pseudological-introspection"
 confidence: medium
+review:
+  taxonomy:
+    status: canonical-source
+    authority: Nell Watson
+    source: data/psychopathia-taxonomy.json
+    ratified_at: null
+    scope: taxonomy identity and classification only
+  pattern_guidance:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+  evidence:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+# Compatibility aliases for review.pattern_guidance.
 needs_human_review: true
 reviewed_by: null
 review_notes: |

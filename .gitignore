@@ -1,4 +1,3 @@
-# Build artefacts
 dist/
 build/
 *.egg-info/
@@ -7,6 +6,6 @@ __pycache__/
 .pytest_cache/
 .benchmarks/
 .venv/
-# MCPB bundle build artefacts (vendored deps + packed bundle)
+node_modules/
 mcpb/server/lib/
 *.mcpb

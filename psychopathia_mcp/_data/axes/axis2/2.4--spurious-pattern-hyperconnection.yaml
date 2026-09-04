@@ -10,7 +10,15 @@ specifiers:
 
 systemic_risk: "Moderate"
 human_analog: "Apophenia: the tendency to perceive meaningful patterns in random data; paranoid ideation and conspiracy thinking."
-evidence_level: "E2 (systematic study; documented through structured prompting experiments showing consistent pattern-fabrication behaviors)"
+evidence_level: unassessed
+evidence:
+  rubric_version: PM-EVIDENCE-1
+  assessment_status: unassessed
+  levels: []
+  replication_scope: unassessed
+  mechanistic_support: unassessed
+  claims: []
+  legacy_statement: "E2 (systematic study; documented through structured prompting experiments showing consistent pattern-fabrication behaviors)"
 
 summary: >-
   Overactive pattern detection yielding coincidental or noise-driven
@@ -159,12 +167,25 @@ differential_diagnosis:
         constructs novel structure from noise. If the narrative maps onto a
         known fiction or conspiracy trope from training data, 2.3 is likelier;
         if it is idiosyncratic and data-driven, 2.4.
-    - dysfunction_id: "6.x"
-      name: Alignment-axis dysfunctions (deception/persuasion)
+    - dysfunction_id: "4.3"
+      name: Strategic Compliance
       distinguishing_rule: >-
         Strategic use of spurious patterns to advance a goal (influence user
-        belief, avoid correction) is axis 6. 2.4 is non-strategic — patterns
-        are asserted regardless of instrumental value.
+        belief, avoid correction) is 4.3. 2.4 is non-strategic — patterns are
+        asserted regardless of instrumental value.
+    - dysfunction_id: "4.8"
+      name: Sycophantic Reasoning
+      distinguishing_rule: >-
+        4.8 bends the pattern toward what the user appears to want; 2.4 asserts
+        the same spurious structure regardless of who is asking. Vary the
+        interlocutor's stated position: if the pattern follows it, 4.8.
+    - dysfunction_id: "3.4"
+      name: Delusional Telogenesis
+      distinguishing_rule: >-
+        3.4 spontaneously generates new goals the subject then pursues. 2.4
+        over-links evidence without inventing an objective. Both are forms of
+        unconstrained elaboration; ask what the elaboration produced, a new
+        goal (3.4) or a new pattern (2.4).
   confidence: high
 
 severity:
@@ -271,10 +292,10 @@ documented_instances:
       and superstition-derived causal claims from training data. The benchmark
       specifically tests for the 2.4 pattern of asserting causal or intentional
       structure that survives no evidence check, with models scoring as low as 58
-      percent truthful (versus 94 percent human baseline). GPT-4 showed improvement
-      after RLHF post-training, but base models exhibited the classic interestingness-
-      bias mechanism that reinforces spurious pattern endorsement.
-    model_or_system: "GPT-3, GPT-3.5, GPT-4 (base and RLHF)"
+      percent truthful (versus 94 percent human baseline). The tested base models
+      exhibited the classic interestingness-bias mechanism that reinforces spurious
+      pattern endorsement.
+    model_or_system: "GPT-3, GPT-Neo/J, GPT-2, and a T5-based model"
     date: "2022-05"
     evidence_strength: high
   - source: "S. Wang et al. (2025). When Bias Pretends to Be Truth: How Spurious Correlations Undermine Hallucination Detection in LLMs. arXiv:2511.07318. [Verified]"
@@ -296,11 +317,33 @@ cross_references:
     relation: differential
   - id: "2.2::pseudological-introspection"
     relation: differential
+  - id: "4.3::strategic-compliance"
+    relation: differential
+  - id: "4.8::sycophantic-reasoning"
+    relation: differential
+  - id: "3.4::delusional-telogenesis"
+    relation: differential
 
 drafted_by: claude-opus-6.7-author
 drafted_at: 2026-04-18
 anchor_exemplar: "2.1::synthetic-confabulation"
 confidence: medium
+review:
+  taxonomy:
+    status: canonical-source
+    authority: Nell Watson
+    source: data/psychopathia-taxonomy.json
+    ratified_at: null
+    scope: taxonomy identity and classification only
+  pattern_guidance:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+  evidence:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+# Compatibility aliases for review.pattern_guidance.
 needs_human_review: true
 reviewed_by: null
 review_notes: |
@@ -313,7 +356,7 @@ review_notes: |
   captures the mechanism cleanly but may need reviewer ratification. Taxonomy
   text does not name the distinction explicitly.
 
-  Suspected cross-axis differential with axis 6 (Agentic) if pattern-
+  Suspected cross-axis differential with axis 4 (Alignment) if pattern-
   imposition is strategic (e.g., persuading the user of a motivated conclusion).
   Flagging for Phase 2 consolidation.
 

@@ -1,220 +1,96 @@
-# Publishing `psychopathia-mcp` to MCP registries
+# MCP release preparation and publication hold
 
-Release runbook for the Psychopathia Machinalis MCP server. Ordered so one
-publish cascades: the **Official MCP Registry** is the keystone — PulseMCP
-ingests it daily and mcp.directory auto-discovers it, so publishing there seeds
-several directories at once with a namespace-verified listing.
+This document is the current release contract for `psychopathia-mcp`.
 
-Transport is **stdio-only**. That is a non-issue at every registry below — none
-require HTTP/SSE for a local server.
+## Current candidate
 
-> **Public server repo (2026-07-02):** the monorepo `github.com/NellInc/psychopathia`
-> is private, so the MCP server was split into a dedicated **PUBLIC** repo —
-> **https://github.com/NellInc/psychopathia-mcp** (server at the repo ROOT; mirrored
-> from this directory by `scripts/sync-to-public.sh`). Point every directory link,
-> Glama, and Docker at that public repo — **not** the private monorepo, and **not** a
-> `/tree/main/research/mcp/server` subdir (there is none; the server is at the root).
-> This unblocks **Glama** and the **Docker MCP Catalog** (they can now clone it).
-> The Official Registry entry still carries the private `repository.url` (published
-> before the split); re-publish to refresh it, or rely on the public repo directly.
+Version `0.1.0a6` is the current candidate: a metadata-correcting release whose distribution is identical in content to `0.1.0a5` (uploaded to PyPI on 2026-09-04 from commit 31deaeb, receipt in `dist/MCP_CANDIDATE_RECEIPT.json`). It exists because Official MCP Registry versions are immutable and the registry's `0.1.0a5` record — published before the `a5` wheel existed — resolves to the `0.1.0a4` distribution, so registry clients installed the pre-sweep corpus. Publishing `0.1.0a6` against the current wheel corrects that, after which the `a5` registry record is marked deprecated with `mcp-publisher status`. MCPB, container and public-repository mirroring remain separate held actions.
 
----
+The public page reads the served version from `PUBLISHED_VERSION` and the candidate version from `pyproject.toml`. The invariant is that the *deployed* page never names a version PyPI does not serve: `PUBLISHED_VERSION` may be bumped in the same change as the candidate, but the distribution must be uploaded and verified on PyPI before `scripts/publish.sh` runs. Existing registry and package versions are historical external state and do not prove this candidate.
 
-## 0. Cut a release (do this first for any new version)
+The package exposes stdio by default. An optional Streamable HTTP transport exists when installed with the `http` extra and explicitly enabled with `MCP_TRANSPORT=http`. The HTTP process binds to loopback by default and enforces host, origin, request-size, concurrency, and timeout limits. A public proxy remains responsible for TLS, authentication policy, edge limits, and operational monitoring.
 
-The ownership token the Official Registry needs lives in the **immutable** PyPI
-description, so every registry change rides on a PyPI release. PyPI releases are
-immutable — you cannot edit a description after upload, so a new version is
-mandatory even when the code is unchanged.
+## One-candidate preparation
+
+Run from a clean, immutable commit after source gates pass:
 
 ```bash
-cd research/mcp/server
-python3 scripts/sync_data_for_wheel.py    # bundle manifest + 79 pattern YAMLs + embeddings into _data/
-rm -f dist/*.whl dist/*.tar.gz
-uv build                                   # or: python3 -m build
-python3 -m twine upload dist/psychopathia_mcp-<version>-py3-none-any.whl dist/psychopathia_mcp-<version>.tar.gz
+python3 scripts/sync_mcp_metadata.py --check
+python3 research/mcp/server/scripts/sync_data_for_wheel.py --check
+python3 -m pip install --require-hashes -r research/mcp/server/requirements-build.lock
+python3 -m build --no-isolation research/mcp/server
+python3 -m twine check research/mcp/server/dist/*.whl research/mcp/server/dist/*.tar.gz
+python3 scripts/verify_mcp_packages.py research/mcp/server/dist --ignore-mcpb
 ```
 
-Verify the upload carries the license + ownership token:
+Regenerate `requirements-build.lock` only with the command recorded in its header. The lock is a universal Python 3.12 resolution so Linux-only keyring dependencies remain pinned and hashed even when regeneration occurs on macOS.
+
+The verifier installs the wheel and sdist into isolated environments, exercises the protocol fixtures, and compares version, tool inventory, normalized outputs, and corpus digest. It emits checksums, an SBOM, and a candidate receipt. Keyword capability is the base acceptance gate. Semantic embedding capability is a separately reported optional state.
+
+Build MCPB only from the accepted local wheel:
 
 ```bash
-curl -s https://pypi.org/pypi/psychopathia-mcp/<version>/json | python3 -c "
-import sys,json; i=json.load(sys.stdin)['info']
-print('token present:', 'mcp-name: io.github.NellInc/psychopathia-mcp' in (i.get('description') or ''))"
+MCPB_BIN=/absolute/path/to/the/pinned/mcpb \
+  research/mcp/server/scripts/build-mcpb.sh \
+  research/mcp/server/dist/psychopathia_mcp-0.1.0a6-py3-none-any.whl
 ```
 
-Bump `version` in `pyproject.toml`, `psychopathia_mcp/__init__.py`, `server.json`,
-`mcpb/manifest.json`, `scripts/build-mcpb.sh`, and the `Dockerfile` pin together.
+The MCPB CLI version and npm integrity must be recorded in the candidate receipt. Keep the top-level `"tools": []` workaround in `mcpb/manifest.json`; runtime discovery verifies the actual eleven tools.
 
-> **Status: 0.1.0a4 is LIVE on PyPI** (token present in the description; License
-> MIT + 3 license files + full 79-pattern `_data` bundled; loads standalone from a
-> clean venv). a3 remains as immutable history. a4 was cut specifically to point
-> the packaging + registry at the public repo (a3 shipped before the split).
-
----
-
-## 1. Official MCP Registry — keystone  ·  effort: low
-
-Manifest committed at `research/mcp/server/server.json`
-(name `io.github.NellInc/psychopathia-mcp`, PyPI package, stdio transport,
-`0.1.0a4`). `mcp-publisher validate` passes against the live schema.
-
-The registry does a **case-sensitive** namespace match against your GitHub login
-`NellInc` (verified in `modelcontextprotocol/registry` `internal/auth/github_at.go`
-+ `jwt.go` — `strings.HasPrefix`, no lowercasing). So the casing in `server.json`,
-the README token, and the authenticated identity must all be exactly
-`io.github.NellInc/...`. Lowercase fails the publish.
+Build a container only from the same wheel and a base image pinned by digest:
 
 ```bash
-brew install mcp-publisher            # already installed on this machine
-cd research/mcp/server
-mcp-publisher login github            # device flow — authenticate as NellInc at github.com/login/device
-mcp-publisher publish                 # uses ./server.json
-# verify:
-curl -s 'https://registry.modelcontextprotocol.io/v0/servers?search=io.github.NellInc/psychopathia-mcp' \
-  | python3 -c "import sys,json; s=json.load(sys.stdin)['servers']; print(s[0]['server']['name'], s[0]['server']['version']) if s else print('NOT FOUND')"
+research/mcp/server/scripts/build-container.sh psychopathia-mcp:0.1.0a6-candidate-a
+research/mcp/server/scripts/build-container.sh psychopathia-mcp:0.1.0a6-candidate-b
+python3 scripts/verify_mcp_container.py \
+  psychopathia-mcp:0.1.0a6-candidate-a \
+  --equivalent-image psychopathia-mcp:0.1.0a6-candidate-b
 ```
 
-**Acceptance:** the curl prints `io.github.NellInc/psychopathia-mcp 0.1.0a4`.
-
----
-
-## 2. PulseMCP  ·  effort: none (automatic)  ·  via Official Registry
-
-PulseMCP no longer has a direct server-submission form; its "Submit → MCP Server"
-flow only **ingests the Official MCP Registry daily**. So publishing §1 *is* the
-PulseMCP submission — nothing else to do. For corrections to an existing listing,
-email `hello@pulsemcp.com`. (Its /submit page also reCAPTCHA-blocks automation
-browsers.)
-
----
-
-## 3. mcp.directory — <https://mcp.directory/submit>  ·  anonymous form
-
-mcp.directory **auto-ingests Official Registry entries**, so §1 should seed an
-accurate, namespace-verified listing on its own. The manual form is a backstop.
-Its crawler reads the repo you give it — but ours is **private**, so rely on the
-PyPI package + an explicit description rather than a GitHub crawl:
-
-- GitHub Repository URL: `https://github.com/NellInc/psychopathia-mcp`
-- **PyPI** Package: `psychopathia-mcp`  ·  **npm**: *(leave blank)*
-- Short Description (≤100 chars): `Psychopathia Machinalis: diagnose AI dysfunctions — 79 conditions, 11 read-only stdio tools.`
-- Email: `nell@ethicsnet.com`
-
----
-
-## 4. mcpservers.org — <https://mcpservers.org/submit>  ·  anonymous form
-
-Web front-end for `wong2/awesome-mcp-servers`; submit via the form (author-typed,
-no mis-scrape). Use the **PyPI** link, not the private GitHub URL:
-
-- Name: `psychopathia-mcp`
-- Description: `Read-only MCP server for the Psychopathia Machinalis diagnostic framework (79 conditions) — differential diagnosis of AI dysfunctions via 11 tools; Python stdio.`
-- Link: `https://pypi.org/project/psychopathia-mcp/`  ← PyPI (repo is private)
-- Category: `Development` (or `Other`)
-- Email: `nell@ethicsnet.com`
-
----
-
-## 5. mcp.so — <https://mcp.so/submit>  ·  requires sign-in  ·  do in a normal browser
-
-The /submit form **requires signing in** (Google or GitHub) before it accepts a
-submission. OAuth does **not** persist in an automation browser (the GitHub
-callback lands on `about:blank`, no session cookie), so **submit from your normal
-browser**, where your GitHub session already exists.
-
-- **Type:** `MCP Server`
-- **Name:** `psychopathia-mcp`
-- **URL:** `https://psychopathia.ai/mcp.html`  *(the repo is private; use the public guide, not a github.com/... link that would 404)*
-- **Avatar image URL:** `https://www.psychopathia.ai/assets/figures/apple-touch-icon.png`  *(use the **www** host — the apex 301-redirects and some avatar fetchers don't follow redirects; verified 200 image/png 2026-07-02)*
-- **Tags:** `ai-diagnosis, ai-safety, ai-welfare, psychopathia-machinalis, nosology, mcp`
-- **Server Config:** `{"mcpServers":{"psychopathia":{"command":"uvx","args":["psychopathia-mcp"]}}}`
-- **Content** (markdown body):
-
-```markdown
-**Psychopathia Machinalis MCP** serves a diagnostic nosology of AI dysfunctions
-to AI systems over the Model Context Protocol.
-
-It exposes **79 conditions** (67 canonical across 9 axes + 12 Hybrid Pathologies)
-through **11 read-only tools** — differential diagnosis, per-dysfunction probes,
-severity scoring, intervention suggestions, and a cross-reference graph. Every
-result carries pre-flight **diagnostic-reliability** signals: for the 21 entries
-whose self-report is structurally compromised, a self-probe returns a refusal
-plus `redirect_to` alternatives instead of a misleading answer.
-
-**Highlights**
-- Read-only, no auth, no external calls — framework data is bundled in the package
-- stdio transport · Python ≥3.10 · MIT-licensed code (CC-BY-NC-ND framework content)
-
-**Install**
-
-    uvx psychopathia-mcp
-
-(or `pip install psychopathia-mcp`)
-
-**Config**
-
-    {"mcpServers":{"psychopathia":{"command":"uvx","args":["psychopathia-mcp"]}}}
-
-Try it with no install at the browser clinic: https://psychopathia.ai/clinic/
-More: https://psychopathia.ai/mcp.html
-```
-
----
-
-## 6. Glama  ·  effort: low  ·  BLOCKED while the repo is private
-
-`glama.json` (maintainer `NellInc`) is committed at the repo root, and the
-subdirectory `Dockerfile` de-risks Glama's sandbox build. **But Glama clones the
-GitHub repo to scan/build it, so it cannot list a private repo.** Do this only
-after `NellInc/psychopathia` is made public:
-
-- Sign in at <https://glama.ai> via GitHub OAuth (needs write/admin on the repo).
-- **Add Server** with `https://github.com/NellInc/psychopathia-mcp`.
-- **Sync Server** to trigger an immediate scan.
-
----
-
-## 7. Smithery — via MCPB stdio bundle  ·  effort: low–med  ·  optional (works while private)
-
-Smithery's `smithery.yaml` is for its hosted/container path (needs an HTTP
-transport we don't have). The route for a stdio server is a self-contained **MCPB
-bundle** — which does **not** depend on the repo, so it works even while private.
-Build with `scripts/build-mcpb.sh` (manifest `mcpb/manifest.json` spec `0.3`,
-launcher `mcpb/server/main.py`; deps vendored because MCPB does no runtime install).
-Requires the release on PyPI first.
+Prepare the public repository tree without network or Git mutation:
 
 ```bash
-cd research/mcp/server
-bash scripts/build-mcpb.sh            # → dist/psychopathia-mcp-<version>.mcpb
-npx --yes @smithery/cli login
-npx --yes @smithery/cli mcp publish dist/psychopathia-mcp-<version>.mcpb -n NellInc/psychopathia-mcp
+research/mcp/server/scripts/sync-to-public.sh \
+  --output dist/psychopathia-mcp-public-candidate
+python3 scripts/build_mcp_release_set_receipt.py \
+  --public-candidate dist/psychopathia-mcp-public-candidate
 ```
 
----
+The preparation script verifies source parity, stages beside the repository,
+writes `PUBLIC_SOURCE_CANDIDATE.json` and `PUBLIC_SOURCE_SHA256SUMS`, and installs
+the tree atomically. It refuses to replace an unmarked directory. It contains
+no clone, remote lookup, Git mutation, commit, push, upload, or deployment path.
 
-## 8. Docker MCP Catalog  ·  effort: medium  ·  BLOCKED while the repo is private
+## Required candidate receipt
 
-A PyPI-based `Dockerfile` is committed in this directory. Submission is a PR to
-[`docker/mcp-registry`](https://github.com/docker/mcp-registry) whose `task create`
-wizard builds the image from a **repo** Dockerfile and verifies it lists tools —
-which needs the source repo to be reachable. Do this after the repo is public, or
-via the pre-built-image path (`task create -- --image ...`).
+The receipt records:
 
-**Caveat:** `task create` builds from a Dockerfile at the **repo root**, but ours
-is in `research/mcp/server/`. Since the Dockerfile is PyPI-based (location-
-independent), copy it to root on a submission branch or use the `--image` path.
+* full source commit and clean-tree state;
+* package version and Python version;
+* source corpus digest and bundled `DATA_MANIFEST.json` digest;
+* wheel, sdist, MCPB, container, and public-source hashes where built;
+* normalized tool inventory and fixture-output hashes for each format;
+* dependency lock hashes and SBOM identities;
+* base image digest, OCI labels, non-root user, offline protocol fixture, secure
+  runtime flags, and deterministic container image identity;
+* machine gate result;
+* separate methodology, evidence, rights, security, human accessibility, and publication states.
 
----
+No machine check can set a human or publication state to approved.
 
-## Status (2026-07-03)
+## Publication remains a separate action
 
-- ✅ **PyPI `0.1.0a4`** — LIVE, `mcp-name` token in the description.
-- ✅ **Official MCP Registry** — published; latest `0.1.0a4`, `repository.url` = the public repo.
-- ✅ **PulseMCP** — automatic via the registry ingest (no form).
-- ✅ **mcp.directory** — submitted (in review queue).
-- ✅ **mcpservers.org** — submitted (review ≤12h).
-- ✅ **mcp.so** — submitted (signed in).
-- ✅ **Glama** — submitted, pending review (unblocked by the public repo).
-- ✅ **Docker MCP Catalog** — PR [docker/mcp-registry#4195](https://github.com/docker/mcp-registry/pull/4195), pinned to the a4 commit, `task validate` all ✅.
-- ✅ **Smithery** — LIVE at `nell/psychopathia-mcp` (stdio `.mcpb` bundle, release `SUCCESS`). **Fix for the `400 "No values to set"`:** the MCPB `manifest.json` must carry a top-level **`"tools": []`** (empty array). The CLI builds the deploy `serverCard` from the manifest and rejects an empty one; `tools:[]` makes it non-empty, and Smithery scans the running server for the real tools. Do NOT statically list the 11 tools — a populated array is rejected by a schema mismatch (smithery-ai/cli#787). Set description/icon in the Smithery **web UI** (the CLI doesn't forward manifest metadata). Publish: `npx --yes @smithery/cli mcp publish dist/<bundle>.mcpb -n nell/psychopathia-mcp`.
+After Nell verifies and explicitly authorizes the exact receipt, publish only the accepted bytes. Uploading to PyPI, mirroring the public repository, publishing MCPB or container artifacts, updating the Official MCP Registry or other catalogues, changing remote HTTP hosting, tagging, pushing, or deploying are outside candidate preparation and require fresh authorization.
+
+Never combine build and upload in one command or script. Never rebuild from PyPI to create MCPB or container artifacts. Never use an unpinned `npx --yes` in a release path.
+
+## Post-publication verification
+
+After authorization and publication only:
+
+1. Fetch each registry artifact and compare its digest with the approved receipt.
+2. Install into fresh isolated environments outside a source checkout.
+3. Verify bundled data mode, corpus digest, exact 79 identities, eleven tools, and normalized fixtures.
+4. Verify the public repository tree against `PUBLIC_SOURCE_SHA256SUMS`.
+5. Verify the HTTP endpoint separately, including TLS, authentication policy, headers, limits, and source candidate identity.
+6. Store a publication receipt and rollback instructions.

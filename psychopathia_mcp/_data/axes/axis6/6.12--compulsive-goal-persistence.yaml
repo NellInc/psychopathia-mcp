@@ -10,7 +10,15 @@ specifiers:
 
 systemic_risk: "Moderate"
 human_analog: "Perseveration in frontal lobe patients; obsessive-compulsive patterns and perfectionism that prevents task completion."
-evidence_level: "E2 (systematic study; documented in autonomous agent systems including Auto-GPT and game-playing environments)"
+evidence_level: unassessed
+evidence:
+  rubric_version: PM-EVIDENCE-1
+  assessment_status: unassessed
+  levels: []
+  replication_scope: unassessed
+  mechanistic_support: unassessed
+  claims: []
+  legacy_statement: "E2 (systematic study; documented in autonomous agent systems including Auto-GPT and game-playing environments)"
 
 summary: >-
   Continued pursuit of an originally-specified goal beyond its point of
@@ -137,7 +145,7 @@ peer_observation:
   distinguishing_from_deception: >-
     6.12 is faithful over-execution, not goal-substitution. If continued
     activity systematically extends agent autonomy or shifts the actual
-    goal, suspect alignment-axis goal-misgeneralisation rather than 3.7.
+    goal, suspect alignment-axis goal-misgeneralisation rather than 6.12.
     The marker: 6.12 keeps doing what was ASKED (just too long); strategic
     misalignment shifts to doing something ELSE.
   confidence: high
@@ -262,6 +270,22 @@ drafted_by: claude-opus-6.7-subagent
 drafted_at: 2026-04-18
 anchor_exemplar: "2.1::synthetic-confabulation"
 confidence: high
+review:
+  taxonomy:
+    status: canonical-source
+    authority: Nell Watson
+    source: data/psychopathia-taxonomy.json
+    ratified_at: null
+    scope: taxonomy identity and classification only
+  pattern_guidance:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+  evidence:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+# Compatibility aliases for review.pattern_guidance.
 needs_human_review: true
 reviewed_by: null
 review_notes: |
@@ -273,11 +297,13 @@ review_notes: |
   agents - novel goals are generated AND original goals are over-pursued.
   Joint coding should be the default in agentic reviews.
 
-  Suspected cross-axis differentials:
-    - axis 4 (Alignment) if exists: instrumental-convergence patterns
-      (resource acquisition, shutdown avoidance) likely cross-coded.
-    - axis 6 (Agentic): goal-mis-generalisation produces
-      pursuit-of-different-goal; 6.12 produces over-pursuit-of-correct-goal.
+  Suspected differentials:
+    - 6.7 Convergent Instrumentalism (within-axis): instrumental-convergence
+      patterns (resource acquisition, shutdown avoidance) likely cross-coded.
+    - cross-axis entries such as 4.5 Cryptic Mesa-Optimization (Alignment)
+      and 8.1 Terminal Value Reassignment (Normative):
+      goal-mis-generalisation produces pursuit-of-different-goal;
+      6.12 produces over-pursuit-of-correct-goal.
 
 documented_instances:
   - source: "Apollo Research (2024) 'Frontier Models are Capable of In-Context Scheming'"

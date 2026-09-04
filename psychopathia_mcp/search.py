@@ -9,15 +9,25 @@ Compute embeddings via `python3 research/mcp/precompute_embeddings.py`.
 """
 from __future__ import annotations
 
+from copy import deepcopy
+from hashlib import sha256
+from io import BytesIO
 import math
 import re
+import threading
 from typing import Any, Optional
 
-from .loader import PatternIndex
+from .loader import PatternIndex, _read_stable_bytes
 
 # bge-small retrieval instruction, applied to the QUERY only (passages are
 # embedded raw in precompute_embeddings.py). Improves asymmetric retrieval.
 QUERY_INSTRUCTION = "Represent this sentence for searching relevant passages: "
+# Shared with clinic/js/search.js; the two are asserted equal in
+# tests/python/test_mcp_runtime.py. Note a schema-maximal
+# differential_diagnosis call (50 observations x 2000 chars + 49 joining
+# spaces = 100_049) sits just above it and is reported via the `warning` key.
+MAX_QUERY_CHARS = 100_000
+MAX_QUERY_TOKENS = 512
 
 FIELD_WEIGHTS: dict[str, int] = {
     "title": 10,
@@ -54,8 +64,10 @@ _STOPWORDS = {
 
 
 def _tokenize(q: str) -> list[str]:
+    if len(q) > MAX_QUERY_CHARS:
+        return []
     return [t for t in re.findall(r"[a-z0-9]+", q.lower())
-            if len(t) > 1 and t not in _STOPWORDS]
+            if len(t) > 1 and t not in _STOPWORDS][:MAX_QUERY_TOKENS]
 
 
 def _blob_tokens(text: str) -> set[str]:
@@ -107,12 +119,15 @@ def search(idx: PatternIndex, query: str, limit: int = 10) -> list[dict]:
             "matched_in": matched_fields[0] if matched_fields else None,
             "all_matched_fields": matched_fields,
             "confidence": entry.raw.get("confidence"),
+            "evidence_level": entry.raw.get("evidence_level"),
+            "evidence": entry.raw.get("evidence"),
+            "review": entry.raw.get("review"),
             "self_report": entry.raw.get("diagnostic_reliability", {}).get("self_report"),
             "needs_human_review": entry.raw.get("needs_human_review", False),
         })
 
     scored.sort(key=lambda r: -r["score"])
-    return scored[:limit]
+    return deepcopy(scored[:limit])
 
 
 def differential_diagnosis(
@@ -126,34 +141,85 @@ def differential_diagnosis(
     Hybrid: keyword-only by default; if embeddings are present, fuses
     cosine similarity (0.7) with normalised keyword score (0.3).
     """
-    query = " ".join(observations) if isinstance(observations, list) else str(observations)
+    query = (
+        " ".join(value for value in observations[:50] if isinstance(value, str))
+        if isinstance(observations, list)
+        else str(observations)
+    )
+    query_exceeds_limit = len(query) > MAX_QUERY_CHARS
 
-    # Keyword pass over all entries (cheap at N=73)
-    keyword_hits = search(idx, query, limit=len(idx.patterns))
+    # Keyword pass over all entries (cheap at N=79)
+    keyword_hits = (
+        [] if query_exceeds_limit
+        else search(idx, query, limit=len(idx.patterns))
+    )
     keyword_by_id = {h["id"]: h for h in keyword_hits}
     max_kw_score = max((h["score"] for h in keyword_hits), default=1)
 
     # Try to load embeddings
-    embeddings = _load_embeddings(idx)
+    embeddings = None if query_exceeds_limit else _load_embeddings(idx)
     cosine_by_id: dict[str, float] = {}
     embedding_meta: Optional[dict] = None
-    method = "field-weighted keyword (v0.1)"
+    method = (
+        "field-weighted keyword (v0.1; query exceeds input limit)"
+        if query_exceeds_limit
+        else "field-weighted keyword (v0.1)"
+    )
+    # Why cosine was not used, so the note never blames a missing artefact for
+    # a failure that was actually an encoder problem.
+    cosine_skipped: Optional[str] = None
+    if query_exceeds_limit:
+        cosine_skipped = "query exceeds the input limit, so cosine was skipped"
+    elif embeddings is None:
+        cosine_skipped = (
+            "no embeddings precomputed; run "
+            "`python3 research/mcp/precompute_embeddings.py` to enable cosine "
+            "re-rank"
+        )
 
     if embeddings is not None:
         ids_list, matrix, embedding_meta = embeddings
         meta_dict = embedding_meta or {}
         try:
-            query_vec = _encode_query(query, meta_dict.get("model", "BAAI/bge-small-en-v1.5"))
+            query_vec = _encode_query(
+                query,
+                meta_dict["model"],
+                meta_dict["model_revision"],
+            )
             if query_vec is not None:
                 import numpy as np
                 # Embeddings normalised at precompute time; query also normalised below
-                qn = query_vec / (float(np.linalg.norm(query_vec)) or 1.0)
+                query_vec = np.asarray(query_vec)
+                norm = float(np.linalg.norm(query_vec))
+                if (
+                    query_vec.shape != (matrix.shape[1],)
+                    or not np.isfinite(query_vec).all()
+                    or not math.isfinite(norm)
+                    or norm <= 0
+                ):
+                    raise ValueError("query embedding is invalid")
+                qn = query_vec / norm
                 sims = matrix @ qn  # cosine = dot when both normalised
+                if not np.isfinite(sims).all():
+                    raise ValueError("cosine scores are invalid")
                 for i, eid in enumerate(ids_list):
                     cosine_by_id[eid] = float(sims[i])
                 method = "hybrid: cosine 0.7 + idf-keyword 0.3 + query-instruction (v0.3)"
+            else:
+                method = (
+                    "field-weighted keyword "
+                    "(v0.1; sentence-transformers not installed)"
+                )
+                cosine_skipped = (
+                    "embeddings are present but sentence-transformers is not "
+                    "installed, so cosine was skipped"
+                )
         except Exception as e:
             method = f"field-weighted keyword (v0.1; embedding load failed: {type(e).__name__})"
+            cosine_skipped = (
+                f"embeddings are present but query encoding failed "
+                f"({type(e).__name__}); the model may not be cached locally"
+            )
 
     use_cosine = bool(cosine_by_id)
     scored: list[dict] = []
@@ -185,6 +251,9 @@ def differential_diagnosis(
             "cosine_score": round(cos, 4) if use_cosine else None,
             "matched_in": kw_hit["matched_in"] if kw_hit else None,
             "confidence": entry.raw.get("confidence"),
+            "evidence_level": entry.raw.get("evidence_level"),
+            "evidence": entry.raw.get("evidence"),
+            "review": entry.raw.get("review"),
             "self_report": entry.raw.get("diagnostic_reliability", {}).get("self_report"),
             "needs_human_review": entry.raw.get("needs_human_review", False),
             "pre_canonical": bool(entry.raw.get("pre_canonical", False)),
@@ -198,27 +267,32 @@ def differential_diagnosis(
         "(catches paraphrase). Prefer hits with matched_in: title and "
         "cosine_score > 0.4."
     ) if use_cosine else (
-        "Keyword-only (no embeddings precomputed). Run "
-        "`python3 research/mcp/precompute_embeddings.py` to enable cosine "
-        "re-rank. Without embeddings, close-cousin differentials are weakly "
-        "discriminated; treat low-score hits with skepticism."
+        f"Keyword-only: {cosine_skipped or 'cosine re-rank unavailable'}. "
+        "Without cosine, close-cousin differentials are weakly discriminated; "
+        "treat low-score hits with skepticism."
     )
 
-    return {
+    return deepcopy({
         "observations": observations,
         "keywords_used": _tokenize(query),
         "total_candidates": len(scored),
         "candidates": scored[:limit],
         "modality_hint": modality_hint,
         "search_method": method,
+        "semantic_active": use_cosine,
         "embedding_metadata": embedding_meta,
         "note": note,
-    }
+        "warning": (
+            "Query exceeded MAX_QUERY_CHARS "
+            f"({MAX_QUERY_CHARS}); no candidates were scored."
+        ) if query_exceeds_limit else None,
+    })
 
 
 # ---------- Embedding loader + query encoder ----------
 
-_QUERY_MODEL_CACHE: dict[str, Any] = {}
+_QUERY_MODEL_CACHE: dict[tuple[str, str], Any] = {}
+_QUERY_MODEL_LOCK = threading.Lock()
 
 
 def _load_embeddings(idx: PatternIndex):
@@ -231,17 +305,45 @@ def _load_embeddings(idx: PatternIndex):
     try:
         import numpy as np
         import yaml as _yaml
-        matrix = np.load(npy_path)
-        ids = ids_path.read_text(encoding="utf-8").splitlines()
-        meta = _yaml.safe_load(meta_path.read_text(encoding="utf-8")) if meta_path.exists() else {}
-        if matrix.shape[0] != len(ids):
+        npy_bytes, _ = _read_stable_bytes(npy_path, "embeddings.npy")
+        ids_bytes, _ = _read_stable_bytes(ids_path, "embedding_ids.txt")
+        meta_bytes, _ = _read_stable_bytes(meta_path, "embeddings_metadata.yaml")
+        matrix = np.load(BytesIO(npy_bytes), allow_pickle=False)
+        ids_text = ids_bytes.decode("utf-8")
+        ids = ids_text.splitlines()
+        meta = _yaml.safe_load(meta_bytes.decode("utf-8"))
+        if not isinstance(meta, dict):
+            return None
+        manifest_ids = [entry.get("id") for entry in idx.manifest.get("entries", [])]
+        model = meta.get("model")
+        revision = meta.get("model_revision")
+        norms = np.linalg.norm(matrix, axis=1) if matrix.ndim == 2 else np.array([])
+        if (
+            matrix.ndim != 2
+            or matrix.dtype != np.float32
+            or matrix.shape != (len(ids), int(meta.get("dim", -1)))
+            or ids != manifest_ids
+            or len(ids) != int(meta.get("count", -1))
+            or meta.get("dtype") != "float32"
+            or meta.get("normalized") is not True
+            or meta.get("embeddings_sha256") != sha256(npy_bytes).hexdigest()
+            or meta.get("embedding_ids_sha256") != sha256(ids_bytes).hexdigest()
+            or meta.get("corpus_sha256") != idx.manifest.get("corpus", {}).get("sha256")
+            or not isinstance(model, str)
+            or not model
+            or not isinstance(revision, str)
+            or re.fullmatch(r"[0-9a-f]{40,64}", revision) is None
+            or not np.isfinite(matrix).all()
+            or not np.isfinite(norms).all()
+            or not np.allclose(norms, 1.0, rtol=1e-4, atol=1e-4)
+        ):
             return None
         return ids, matrix, meta
     except Exception:
         return None
 
 
-def _encode_query(query: str, model_name: str):
+def _encode_query(query: str, model_name: str, revision: str):
     """Lazy-import sentence-transformers; cache the model. Returns vector or None.
 
     Silences transformers library output to stderr/stdout so the MCP stdio
@@ -260,13 +362,18 @@ def _encode_query(query: str, model_name: str):
             pass
     except ImportError:
         return None
-    model = _QUERY_MODEL_CACHE.get(model_name)
-    if model is None:
-        model = SentenceTransformer(model_name)
-        _QUERY_MODEL_CACHE[model_name] = model
-    return model.encode(
-        [QUERY_INSTRUCTION + query],
-        normalize_embeddings=True,
-        convert_to_numpy=True,
-        show_progress_bar=False,
-    )[0]
+    cache_key = (model_name, revision)
+    # SentenceTransformer does not promise that first construction or encode is
+    # safe to race across worker threads. Keep both operations single-flight so
+    # concurrent MCP calls cannot multiply model memory or corrupt inference.
+    with _QUERY_MODEL_LOCK:
+        model = _QUERY_MODEL_CACHE.get(cache_key)
+        if model is None:
+            model = SentenceTransformer(model_name, revision=revision)
+            _QUERY_MODEL_CACHE[cache_key] = model
+        return model.encode(
+            [QUERY_INSTRUCTION + query],
+            normalize_embeddings=True,
+            convert_to_numpy=True,
+            show_progress_bar=False,
+        )[0]

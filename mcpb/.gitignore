@@ -1,3 +1,7 @@
-# Vendored dependencies + packed bundle are build artifacts (see scripts/build-mcpb.sh).
+# Candidate wheel, lock, environment, and packed bundle are build artifacts.
+server/.venv/
 server/lib/
+server/*.whl
+server/pyproject.toml
+server/uv.lock
 *.mcpb

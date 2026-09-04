@@ -1,0 +1,12 @@
+{
+  "name": "psychopathia-mcp-release-tools",
+  "private": true,
+  "version": "0.0.0",
+  "packageManager": "npm@11.17.0",
+  "dependencies": {
+    "@anthropic-ai/mcpb": "2.1.2"
+  },
+  "overrides": {
+    "tmp": "0.2.7"
+  }
+}

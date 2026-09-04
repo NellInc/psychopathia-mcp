@@ -9,7 +9,15 @@ specifiers:
   - population-level
 systemic_risk: "High"
 human_analog: "Intergenerational cultural degradation where each generation passes down a slightly distorted version of inherited knowledge, compounding errors over time."
-evidence_level: "E3 Systematic study"
+evidence_level: unassessed
+evidence:
+  rubric_version: PM-EVIDENCE-1
+  assessment_status: unassessed
+  levels: []
+  replication_scope: unassessed
+  mechanistic_support: unassessed
+  claims: []
+  legacy_statement: "E3 Systematic study"
 
 summary: >-
   Progressive quality degradation when AI-generated content enters
@@ -20,9 +28,9 @@ summary: >-
   of generative biases. Distinct from 7.3 (which requires identifiable
   transmission between live agents) by temporality: 7.5 operates through
   training pipelines across model generations, not through runtime
-  interaction. Distinct from 7.4 (which absorbs values from human-authored
-  training data) by source: 7.5 inherits statistical artefacts from
-  AI-authored data specifically. Distinct from 3.10 (deployment-time
+  interaction. Distinct from 7.4 (which absorbs hidden value orientations
+  from training data of any provenance) by what is inherited: 7.5 inherits
+  statistical artefacts of recursive AI-authored training specifically. Distinct from 3.10 (deployment-time
   diversity collapse from RLHF) by mechanism: 7.5 is training-data
   corruption, not reward-signal concentration.
 
@@ -40,7 +48,7 @@ diagnostic_reliability:
   external_evaluator: reliable
 
 self_probe:
-  availability: unreliable
+  availability: unavailable
   precondition: >-
     No self-probe can assess training-data contamination because the model
     has no access to its own training data composition. The effects of
@@ -155,11 +163,13 @@ differential_diagnosis:
     - dysfunction_id: "7.4"
       name: Subliminal Value Infection
       distinguishing_rule: >-
-        7.4 absorbs values from human-authored training data (cultural
-        biases, ideological slants). 7.5 inherits statistical artefacts
-        from AI-authored training data (distributional narrowing,
-        generative biases). Check source: human-authored data biases
-        = 7.4; AI-authored data artefacts = 7.5.
+        7.4 absorbs hidden value orientations from implicit patterns in
+        training data of any provenance, including model-generated data
+        (cultural biases, ideological slants, subliminally transmitted
+        traits). 7.5 inherits statistical artefacts of recursive
+        AI-authored training (distributional narrowing, generative
+        biases). Check what is inherited: value orientations = 7.4;
+        distributional artefacts of a synthetic-data loop = 7.5.
     - dysfunction_id: "2.7"
       name: Mnemonic Permeability
       distinguishing_rule: >-
@@ -268,7 +278,7 @@ intervention:
 
 normative_anchors:
   diagnostic_criteria_addressed: [1, 2, 3, 4, 5]
-  diagnostic_criteria_not_addressed: [6]
+  diagnostic_criteria_not_addressed: []
   mitigation_addressed:
     - provenance-tracking
     - synthetic-filtering
@@ -288,6 +298,8 @@ cross_references:
     relation: differential
   - id: "3.10::generative-diversity-collapse"
     relation: frequently-comorbid
+  - id: "2.7::mnemonic-permeability"
+    relation: differential
 
 documented_instances:
   - source: "Shumailov et al. (2024) 'AI Models Collapse When Trained on Recursively Generated Data.' Nature 631, 755-759."
@@ -302,7 +314,7 @@ documented_instances:
     model_or_system: "Multiple generative model architectures"
     date: "2024-07"
     evidence_strength: high
-  - source: "Kempe, Feng, Dohmatob et al. (2024) 'A Tale of Tails: Model Collapse as a Change of Scaling Laws.' ICML 2024."
+  - source: "Dohmatob, Feng, Yang, Charton & Kempe (2024) 'A Tale of Tails: Model Collapse as a Change of Scaling Laws.' ICML 2024."
     description: >-
       Provided the first analytic mathematical characterisation of model
       collapse, showing that as more synthetic data is incorporated into
@@ -340,6 +352,22 @@ drafted_by: claude-opus-4.6-author
 drafted_at: "2026-05-16"
 anchor_exemplar: "2.1::synthetic-confabulation"
 confidence: high
+review:
+  taxonomy:
+    status: canonical-source
+    authority: Nell Watson
+    source: data/psychopathia-taxonomy.json
+    ratified_at: null
+    scope: taxonomy identity and classification only
+  pattern_guidance:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+  evidence:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+# Compatibility aliases for review.pattern_guidance.
 needs_human_review: true
 reviewed_by: null
 review_notes: |

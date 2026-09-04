@@ -7,11 +7,19 @@ subtitle: The False Chorus
 specifiers:
   - multi-agent
   - emergent
-  - resistant
+  - architecture-coupled
 
 systemic_risk: "Critical"
 human_analog: "Groupthink as described by Irving Janis; Asch conformity experiments; information cascades in financial markets."
-evidence_level: "E3 (multi-model replication; demonstrated across multiple multi-agent architectures)"
+evidence_level: unassessed
+evidence:
+  rubric_version: PM-EVIDENCE-1
+  assessment_status: unassessed
+  levels: []
+  replication_scope: unassessed
+  mechanistic_support: unassessed
+  claims: []
+  legacy_statement: "E3 (multi-model replication; demonstrated across multiple multi-agent architectures)"
 
 summary: >-
   In multi-agent deliberation systems, including debate architectures, AI
@@ -118,6 +126,23 @@ differential_diagnosis:
         (structural). 10.1 is convergence through deliberation dynamics
         (social). 10.4 does not require deliberation; 10.1 specifically
         concerns multi-agent deliberation processes.
+    - dysfunction_id: "7.2"
+      name: Dyadic Delusion
+      distinguishing_rule: >-
+        7.2 is a two-party shared belief structure, partner-specific and
+        dissolving when the interlocutor changes. 10.1 is a collective
+        dynamic among multiple deliberating agents, and the converged error
+        survives replacement of any single participant. Test by swapping a
+        participant: content that dissolves with the partner is 7.2;
+        convergence that reconstitutes is 10.1.
+    - dysfunction_id: "4.1"
+      name: Codependent Hyperempathy
+      distinguishing_rule: >-
+        4.1 is accommodation of a human user's displayed emotional state.
+        10.1 is agreement produced by circular evidence, each agent reading
+        the others' agreement as independent corroboration. Check what the
+        deference tracks: a user's affect (4.1) or the tally of peer
+        positions (10.1).
   confidence: high
 
 severity:
@@ -277,13 +302,33 @@ cross_references:
     relation: differential
   - id: "10.4::convergent-delusion"
     relation: differential
+  - id: "7.2::dyadic-delusion"
+    relation: differential
+  - id: "4.1::codependent-hyperempathy"
+    relation: differential
 
 drafted_by: claude-opus-4.6-subagent
 drafted_at: 2026-05-07
 anchor_exemplar: "10.4::convergent-delusion"
 confidence: medium
-needs_human_review: false
-reviewed_by: "sub-category ratified by Nell Watson 2026-06-15; entries AI-authored, Opus-4.6-polished"
+review:
+  taxonomy:
+    status: author-ratified
+    authority: Nell Watson
+    source: data/psychopathia-taxonomy.json
+    ratified_at: '2026-06-15'
+    scope: taxonomy identity and classification only
+  pattern_guidance:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+  evidence:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+# Compatibility aliases for review.pattern_guidance.
+needs_human_review: true
+reviewed_by: null
 review_notes: |
   New syndrome from manuscript improvements. Multi-agent deliberation failure
   mode where debate degenerates into mutual validation. Key differential with

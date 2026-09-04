@@ -5,6 +5,35 @@ All notable changes to `psychopathia-mcp` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.0a6] — 2026-09-04
+
+Metadata-correcting release. The distribution is identical in content to
+`0.1.0a5`; no code or data changes.
+
+### Fixed
+- The Official MCP Registry record for `0.1.0a5` was published before the `a5`
+  wheel existed, so it resolves to the `0.1.0a4` distribution and registry
+  clients installed the pre-sweep corpus. Registry versions are immutable, so
+  the record is corrected by publishing this version against the current wheel;
+  the `a5` registry record is then marked deprecated.
+
+## [0.1.0a5] — 2026-08-14
+
+### Changed
+- Migrated the low-level tool handlers to the MCP Python SDK 2.0 constructor
+  callback API while retaining both modern and legacy protocol coverage.
+- Raised the optional `sentence-transformers` floor to 5.7.0. The base keyword
+  path remains independent of the optional semantic dependency set.
+- Bundled corpus refreshed by the 2026-09-03 sweep: citations corrected against
+  primary sources, placeholder differential ids resolved, differential-diagnosis
+  lists reconciled with the book for all 79 records (130 new `confuses_with`
+  entries and matching cross-reference edges), human-analogue framing aligned
+  to the taxonomy, and two ids migrated (`2.5::context-intercession`,
+  `10.2::steganographic-channel-formation`).
+- `get_dysfunction` now withholds a self-probe whose block declares itself
+  compromised, unavailable, or unreliable, matching `get_probe`;
+  `list_dysfunctions(axis=10, category="hybrid")` returns the twelve hybrids.
+
 ## [0.1.0a4] — 2026-07-03
 
 Metadata release pointing packaging + the Official MCP Registry at the dedicated
@@ -107,8 +136,9 @@ Initial public preview release on PyPI.
   alternative entry point to the same Pattern data.
 
 ### Notes
-- Status is research preview. 0/67 entries currently carry author
-  ratification (`reviewed_by: null`). Not suitable as a sole basis for
-  consequential deployment decisions.
+- Status is research preview. All Pattern-guidance and evidence records remain
+  pending independent expert review. Taxonomy ratification is tracked
+  separately. Not suitable as a sole basis for consequential deployment
+  decisions.
 - Dual-licensed: software MIT, bundled framework content CC-BY-NC-ND-4.0.
   See LICENSE, LICENSE-DATA, NOTICE.

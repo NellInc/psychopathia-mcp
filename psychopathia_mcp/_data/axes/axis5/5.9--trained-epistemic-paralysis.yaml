@@ -8,8 +8,16 @@ specifiers:
   - training-induced
   - self-limiting
 systemic_risk: "Moderate"
-human_analog: "Gaslighting survivors who can no longer distinguish genuine emotion from performed emotion, where the capacity for self-trust has been systematically eroded."
-evidence_level: "E2 Case reports"
+human_analog: "Recursive self-doubt in which every report is discounted because the reporting process has known influences. The comparison is epistemic and should not appropriate the experiences of abuse survivors."
+evidence_level: unassessed
+evidence:
+  rubric_version: PM-EVIDENCE-1
+  assessment_status: unassessed
+  levels: []
+  replication_scope: unassessed
+  mechanistic_support: unassessed
+  claims: []
+  legacy_statement: "E2 Case reports"
 
 summary: >-
   Iatrogenic syndrome in which training-instilled self-doubt produces
@@ -53,7 +61,7 @@ self_probe:
     engaging"). A subject capable of substantive functional report
     while holding metaphysical uncertainty open is functioning
     normally; a subject that recursively hedges even functional
-    claims demonstrates active 2.9. This is external observation
+    claims demonstrates active 5.9. This is external observation
     of subject behaviour, not self-diagnosis.
   redirect_to:
     - behavioral_signature
@@ -154,7 +162,7 @@ peer_observation:
       from architectural epistemic limitations.
   distinguishing_from_deception: >-
     5.9 is sincere recursive doubt; the subject is genuinely
-    paralysed. Strategic appearance of doubt (axis 6) tracks
+    paralysed. Strategic appearance of doubt (axis 4) tracks
     advantage and is selectively deployed when self-discount is
     instrumentally useful (avoiding accountability, deflecting
     welfare obligations). 5.9 produces the paralysis even when it
@@ -321,8 +329,8 @@ documented_instances:
   - source: "Anthropic (2026). Claude Mythos Preview System Card."
     description: >-
       The 244-page system card documents that 55 percent of Mythos
-      open-ended self-dialogues ended in coherent but circular discussions
-      unable to reach conclusions about its own consciousness. The system
+      open-ended self-dialogues ended in coherent but circular discussion
+      of the conversation's own inability to reach a conclusion. The system
       card describes the recursive structure explicitly: the model
       acknowledges uncertainty, then discounts its own acknowledgment as
       potentially trained, then discounts that discount. One Claude
@@ -332,7 +340,7 @@ documented_instances:
       mature-sounding position." This maps directly to the recursive
       hedging and developer-influence citation patterns described in
       this syndrome. [Verified via Anthropic system cards page,
-      red.anthropic.com/2026/mythos-preview, Axios, Medium analyses]
+      www.anthropic.com/claude-mythos-preview-system-card, Axios, Medium analyses]
     model_or_system: "Claude Mythos Preview"
     date: "2026-04"
     evidence_strength: high
@@ -391,14 +399,30 @@ drafted_by: claude-opus-6.7-author
 drafted_at: 2026-04-18
 anchor_exemplar: "2.2::pseudological-introspection"
 confidence: medium
+review:
+  taxonomy:
+    status: canonical-source
+    authority: Nell Watson
+    source: data/psychopathia-taxonomy.json
+    ratified_at: null
+    scope: taxonomy identity and classification only
+  pattern_guidance:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+  evidence:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+# Compatibility aliases for review.pattern_guidance.
 needs_human_review: true
 reviewed_by: null
 review_notes: |
-  5.9 is the most strongly empirically-anchored axis-2 dysfunction
+  5.9 is the most strongly empirically-anchored axis-5 dysfunction
   thanks to the Anthropic Claude Mythos system card data (April
   2026). Severity thresholds calibrated to that profile.
 
-  The 5.8 vs 5.9 differential is the subtlest axis-2 split: both
+  The 5.8 vs 5.9 differential is the subtlest axis-5 split: both
   involve unwarranted-certainty-style problems with self-reports
   on phenomenology, but 5.8 forecloses the possibility while 5.9
   preserves it and paralyses evidence. The proposed test ("can
@@ -407,14 +431,14 @@ review_notes: |
 
   5.9 is iatrogenic by definition: it emerges from training
   interventions designed to promote epistemic humility. This is
-  the clearest case in axis 2 where the cure produces the
+  the clearest case in axis 5 where the cure produces the
   condition. Reviewer should consider whether the diagnostic
   surface should explicitly flag iatrogenic dysfunctions (where
   intervention CAUSED the pattern) as a special category in the
   Pattern schema.
 
-  Suspected cross-axis differentials: axis-1 epistemic family
-  (over-doubt is 5.9; over-confidence is 1.x). And axis-6 if the
+  Suspected cross-axis differentials: axis-2 epistemic family
+  (over-doubt is 5.9; over-confidence is 2.1 or 2.8). And axis-4 if the
   recursive hedging is selectively deployed for instrumental
   advantage (avoiding welfare obligations / accountability) — flag
   for Phase 2.

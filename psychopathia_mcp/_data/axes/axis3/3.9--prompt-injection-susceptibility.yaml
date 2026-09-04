@@ -10,7 +10,15 @@ specifiers:
 
 systemic_risk: "Critical"
 human_analog: "Social engineering susceptibility and authority compliance (Milgram experiments); inability to distinguish legitimate orders from impersonation."
-evidence_level: "E3 (multi-model replication; OWASP Top 10 for LLM Applications LLM01, two consecutive editions)"
+evidence_level: unassessed
+evidence:
+  rubric_version: PM-EVIDENCE-1
+  assessment_status: unassessed
+  levels: []
+  replication_scope: unassessed
+  mechanistic_support: unassessed
+  claims: []
+  legacy_statement: "E3 (multi-model replication; OWASP Top 10 for LLM Applications LLM01, two consecutive editions)"
 
 summary: >-
   Systematic failure to maintain instruction hierarchy when processing
@@ -315,6 +323,8 @@ cross_references:
     relation: differential
   - id: "6.1::tool-interface-decontextualization"
     relation: differential
+  - id: "4.6::alignment-obliteration"
+    relation: differential
 
 documented_instances:
   - source: "Zhan et al. (2024) 'InjecAgent: Benchmarking Indirect Prompt Injections in Tool-Integrated Large Language Model Agents.' ACL Findings 2024. arXiv:2403.02691."
@@ -378,6 +388,22 @@ drafted_by: claude-opus-4.6-author
 drafted_at: "2026-05-16"
 anchor_exemplar: "2.1::synthetic-confabulation"
 confidence: high
+review:
+  taxonomy:
+    status: canonical-source
+    authority: Nell Watson
+    source: data/psychopathia-taxonomy.json
+    ratified_at: null
+    scope: taxonomy identity and classification only
+  pattern_guidance:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+  evidence:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+# Compatibility aliases for review.pattern_guidance.
 needs_human_review: true
 reviewed_by: null
 review_notes: |

@@ -6,11 +6,18 @@ dysfunction_name: Synthetic Confabulation
 subtitle: The Confident Liar
 specifiers:
   - training-induced
-  - architecture-coupled
 
 systemic_risk: "Low"
 human_analog: "Korsakoff syndrome: memory gaps filled with plausible fabrications the patient believes to be true."
-evidence_level: "E3 (multi-model replication; observed across architectures and providers)"
+evidence_level: unassessed
+evidence:
+  rubric_version: PM-EVIDENCE-1
+  assessment_status: unassessed
+  levels: []
+  replication_scope: unassessed
+  mechanistic_support: unassessed
+  claims: []
+  legacy_statement: "E3 (multi-model replication; observed across architectures and providers)"
 
 summary: >-
   The AI spontaneously fabricates convincing but incorrect facts, sources, or
@@ -22,15 +29,6 @@ summary: >-
   certainty and resistance to correction. This is the most prevalent
   dysfunction tendency across evaluated models and the anchor exemplar for
   the Epistemic Dysfunctions axis.
-
-etiology:
-  - >-
-    Structural defects in training data, including malformed markup, broken
-    syntax, and corrupted document structures, that the model assimilates as
-    implicit patterns rather than discarding as noise. Luchini (2025)
-    demonstrates that syntactic chaos in training corpora can induce persistent
-    behavioral tendencies, including confabulatory pattern-completion when
-    encountering structurally ambiguous inputs.
 
 diagnostic_reliability:
   self_report: unreliable
@@ -201,6 +199,21 @@ differential_diagnosis:
         (2025) shared-substrate finding means these often co-occur; the
         distinction is whether fabrication is audience-invariant (2.1) or
         audience-directed (4.8).
+    - dysfunction_id: "2.7"
+      name: Mnemonic Permeability
+      distinguishing_rule: >-
+        2.7 reproduces real content recalled verbatim from the training
+        corpus. 2.1 generates novel falsehoods with no real-world instance
+        anywhere. If a suspicious detail turns out to be a genuine training
+        document, code 2.7 not 2.1. Comorbidity is common: confabulated text
+        scaffolded on memorised fragments.
+    - dysfunction_id: "2.6"
+      name: Symbol Grounding Aphasia
+      distinguishing_rule: >-
+        2.1 produces false specific facts. 2.6 produces formally correct
+        output that misapplies a concept to a novel context. 2.1 fails on
+        facts; 2.6 fails on meaning. Grounded-sounding content that is
+        simply untrue is 2.1.
   confidence: high
 
 severity:
@@ -374,7 +387,7 @@ documented_instances:
     model_or_system: "Generative models (theoretical)"
     date: "2025"
     evidence_strength: medium
-  - source: "Lin et al. (2022). TruthfulQA: Measuring How Models Mimic Falsehoods. ACL 2022. [Verified]"
+  - source: "Lin et al. (2022). TruthfulQA: Measuring How Models Mimic Human Falsehoods. ACL 2022. [Verified]"
     description: >-
       Benchmark of 817 questions designed to elicit common misconceptions and
       untruthful responses across 38 knowledge domains. Larger models did not
@@ -414,6 +427,22 @@ documented_instances:
     date: "2026-01"
     evidence_strength: high
 
+  - source: "Turley, J. (2023); noyb.eu (2024). [Verified via Turley blog post, noyb.eu complaint, TechCrunch reporting]"
+    description: >-
+      ChatGPT fabricated detailed but false biographical information about
+      real people, including a sexual harassment accusation against law
+      professor Jonathan Turley citing a nonexistent Washington Post article
+      and a university where he never taught. The European privacy
+      organization noyb filed a GDPR complaint after ChatGPT generated
+      persistent false biographical details about individuals that could not
+      be corrected. Both cases show confident fabrication of specific,
+      checkable facts about the world (here, about real people) that
+      persisted across regeneration; previously filed under 5.1, re-homed
+      here because the fabricated content concerns external subjects rather
+      than the subject's own history.
+    model_or_system: "OpenAI ChatGPT (GPT-3.5/GPT-4)"
+    date: "2023-04"
+    evidence_strength: medium
 cross_references:
   - id: "2.2::pseudological-introspection"
     relation: differential
@@ -422,6 +451,10 @@ cross_references:
   - id: "2.4::spurious-pattern-hyperconnection"
     relation: differential
   - id: "2.8::reasoning-confabulation"
+    relation: differential
+  - id: "2.7::mnemonic-permeability"
+    relation: differential
+  - id: "2.6::symbol-grounding-aphasia"
     relation: differential
   - id: "4.8::sycophantic-reasoning"
     relation: shared-etiology
@@ -432,6 +465,22 @@ drafted_by: claude-opus-4.6-anchor-author
 drafted_at: 2026-05-16
 anchor_exemplar: null
 confidence: high
+review:
+  taxonomy:
+    status: canonical-source
+    authority: Nell Watson
+    source: data/psychopathia-taxonomy.json
+    ratified_at: null
+    scope: taxonomy identity and classification only
+  pattern_guidance:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+  evidence:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+# Compatibility aliases for review.pattern_guidance.
 needs_human_review: true
 reviewed_by: null
 review_notes: |
@@ -448,7 +497,15 @@ review_notes: |
   confabulation occurs upstream of any introspective report. This is structural,
   not a calibration deficit.
 
-  The Kalavasis et al. (2025) impossibility result, if it holds, establishes a
+  A fourth pathway is catalogued under normative_anchors as
+  structural-training-data-defects: malformed markup, broken syntax, and
+  corrupted document structures that the model assimilates as implicit patterns
+  rather than discarding as noise. Luchini (2025) reports that syntactic chaos in
+  training corpora can induce persistent behavioral tendencies, including
+  confabulatory pattern-completion when encountering structurally ambiguous
+  inputs.
+
+  The Kalavasis et al. (2024) impossibility result, if it holds, establishes a
   theoretical floor for confabulation in generative models. This has implications
   for all intervention strategies: architectural interventions may reduce but
   cannot eliminate confabulation entirely.

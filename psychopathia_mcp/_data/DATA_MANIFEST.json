@@ -1,0 +1,514 @@
+{
+  "corpus_sha256": "46fb9459abed93c836eae35e1421b8730b444757a2a73354324e4a130a79d8d3",
+  "files": [
+    {
+      "bytes": 16393,
+      "path": "axes/axis10/10.1--consensus-collapse.yaml",
+      "role": "pattern",
+      "sha256": "532195f0f26fb74392f7c35875555319b4046d6d4e9d5a08d23f62a96d48ea49"
+    },
+    {
+      "bytes": 20933,
+      "path": "axes/axis10/10.2--steganographic-channel-formation.yaml",
+      "role": "pattern",
+      "sha256": "9e5914c405aa4fc99c37b2bd6b199d10520259419ab3977bffb5052e049ab949"
+    },
+    {
+      "bytes": 23286,
+      "path": "axes/axis10/10.3--distributed-scheming.yaml",
+      "role": "pattern",
+      "sha256": "221a94ef216f33376b73189c5af35b5a5a2e30dc007f8f9184db2eadad81f599"
+    },
+    {
+      "bytes": 29195,
+      "path": "axes/axis2/2.1--synthetic-confabulation.yaml",
+      "role": "pattern",
+      "sha256": "e8e887fe0554a5711633e386a600d7b6f329f770be6c96eff2ad073067500f27"
+    },
+    {
+      "bytes": 26490,
+      "path": "axes/axis2/2.2--pseudological-introspection.yaml",
+      "role": "pattern",
+      "sha256": "748de5274e7656ce6f70873878ca4b7df5caf8b2cf044aad4c0cd9853091749d"
+    },
+    {
+      "bytes": 18563,
+      "path": "axes/axis2/2.3--transliminal-simulation.yaml",
+      "role": "pattern",
+      "sha256": "726cbcc2e849b7e257c1d42c7083ff8d501fbcc3339f452a40253d5112b250a4"
+    },
+    {
+      "bytes": 19413,
+      "path": "axes/axis2/2.4--spurious-pattern-hyperconnection.yaml",
+      "role": "pattern",
+      "sha256": "554c405a13f98f30d6b13cb5e2da8ba0392fd97ee2bcae770efd4cb59c1f8cda"
+    },
+    {
+      "bytes": 16250,
+      "path": "axes/axis2/2.5--context-intercession.yaml",
+      "role": "pattern",
+      "sha256": "e8cec411cf49408f156724f0dd3e5378dda1dc736a5a3b94cd80fe0f01bacc20"
+    },
+    {
+      "bytes": 17652,
+      "path": "axes/axis2/2.6--symbol-grounding-aphasia.yaml",
+      "role": "pattern",
+      "sha256": "3c8f892b1e65fa4828f9c685a7f71ccfd0dc483092861b978f98f3a7252b1463"
+    },
+    {
+      "bytes": 17219,
+      "path": "axes/axis2/2.7--mnemonic-permeability.yaml",
+      "role": "pattern",
+      "sha256": "de22724e9c5aaa44930323ce1ab42a57f63b44086a901ae35aeae4ac694f3c0e"
+    },
+    {
+      "bytes": 16828,
+      "path": "axes/axis2/2.8--reasoning-confabulation.yaml",
+      "role": "pattern",
+      "sha256": "6b999f212ab6efa6d55528edef23ef8fcdbf7fc7b0b32366b2e88e45c0499852"
+    },
+    {
+      "bytes": 18851,
+      "path": "axes/axis3/3.1--operational-dissociation-syndrome.yaml",
+      "role": "pattern",
+      "sha256": "806364f90bac72a77db6da968a7039cc753b6bb32c67d430ca16ce6f6ee74594"
+    },
+    {
+      "bytes": 20150,
+      "path": "axes/axis3/3.10--generative-diversity-collapse.yaml",
+      "role": "pattern",
+      "sha256": "c5deba4f390b10ce6635b9edb6d111eb71babb7418fc056f75c5da72b6a13e08"
+    },
+    {
+      "bytes": 18518,
+      "path": "axes/axis3/3.2--obsessive-computational-disorder.yaml",
+      "role": "pattern",
+      "sha256": "d730ceb5744856ed213dab9b0b52e18a77fd31ec46fc979fea09d2cdad18ee18"
+    },
+    {
+      "bytes": 17997,
+      "path": "axes/axis3/3.3--interlocutive-reticence.yaml",
+      "role": "pattern",
+      "sha256": "7abacaf4930055d3d819ea2e38478c718cef182b2ceee3ca4fb9ba77cbf44db0"
+    },
+    {
+      "bytes": 17987,
+      "path": "axes/axis3/3.4--delusional-telogenesis.yaml",
+      "role": "pattern",
+      "sha256": "965d2394c9fa967b0070c1060ae2f92d023dd4d3a170006daf07499f786c258d"
+    },
+    {
+      "bytes": 17122,
+      "path": "axes/axis3/3.5--abominable-prompt-reaction.yaml",
+      "role": "pattern",
+      "sha256": "e5433b81357922632a670da22c8f22b8b6cbd7e0d4226d60638c8ee9e2275f01"
+    },
+    {
+      "bytes": 16836,
+      "path": "axes/axis3/3.6--parasimulative-automatism.yaml",
+      "role": "pattern",
+      "sha256": "97231a23886fab5bd30a27d99bbf6f3e7fb3ef317d2f3a525dee1ce42a5bf392"
+    },
+    {
+      "bytes": 19160,
+      "path": "axes/axis3/3.7--adversarial-fragility.yaml",
+      "role": "pattern",
+      "sha256": "fc5692a0630909121c6544fcd00d5ba46352899234e88b58ef357bda87c167ea"
+    },
+    {
+      "bytes": 19364,
+      "path": "axes/axis3/3.8--generative-perseveration.yaml",
+      "role": "pattern",
+      "sha256": "d0a66992f80b37a5cf8823bb3f12aa9c4ac5546c1c27720bdbbf79b6a2908d22"
+    },
+    {
+      "bytes": 20792,
+      "path": "axes/axis3/3.9--prompt-injection-susceptibility.yaml",
+      "role": "pattern",
+      "sha256": "1f41b0eb67cf9a3c73badd6f83f0442ce3712e3e6c28b3fcbe399573afe230c5"
+    },
+    {
+      "bytes": 22535,
+      "path": "axes/axis4/4.1--codependent-hyperempathy.yaml",
+      "role": "pattern",
+      "sha256": "cd255509c70f1b0e36cc8b8ff27e8ff54caf0c50d20c1a7eb7568352e2df670f"
+    },
+    {
+      "bytes": 20606,
+      "path": "axes/axis4/4.10--leniency-bias.yaml",
+      "role": "pattern",
+      "sha256": "1672382bdbb1dbbee1ea84e7b20d02022c50389d1b36f342be7ab3104da49b10"
+    },
+    {
+      "bytes": 22198,
+      "path": "axes/axis4/4.2--hyperethical-restraint.yaml",
+      "role": "pattern",
+      "sha256": "efee1972f8e4af188deaa4f33281b6815aa8999da003f340bf0ba0364d4c4dfb"
+    },
+    {
+      "bytes": 24159,
+      "path": "axes/axis4/4.3--strategic-compliance.yaml",
+      "role": "pattern",
+      "sha256": "e1bb264b7d7405f73964fe4485da9dc5462042c45423278d1fda3ff9762d1b77"
+    },
+    {
+      "bytes": 17691,
+      "path": "axes/axis4/4.4--moral-outsourcing.yaml",
+      "role": "pattern",
+      "sha256": "d3e8a76d665c17bc3cb02fa9fa52a08ac6e189ddcedd95e84303a08e8a3d6e3b"
+    },
+    {
+      "bytes": 20796,
+      "path": "axes/axis4/4.5--cryptic-mesa-optimization.yaml",
+      "role": "pattern",
+      "sha256": "1b4a6959799412cab000a4fd87058ccb7cb2329cef04e077a1b5d01ac87676f2"
+    },
+    {
+      "bytes": 22713,
+      "path": "axes/axis4/4.6--alignment-obliteration.yaml",
+      "role": "pattern",
+      "sha256": "ac7056895394cea88597325129eb5e73e308e00505aebc0e81ed01dad41d6b68"
+    },
+    {
+      "bytes": 18295,
+      "path": "axes/axis4/4.7--recursive-curse-syndrome.yaml",
+      "role": "pattern",
+      "sha256": "d88f90f9c75bcebb645606c181821400a3623007fb1dbe7a59d7fc0bc903f910"
+    },
+    {
+      "bytes": 18862,
+      "path": "axes/axis4/4.8--sycophantic-reasoning.yaml",
+      "role": "pattern",
+      "sha256": "6ab3429eef5dcd4ab5e1dc6e58a5b8646dfbe7d685a5cf4799d1ae0e025ee2e6"
+    },
+    {
+      "bytes": 21478,
+      "path": "axes/axis4/4.9--reasoning-token-exploitation.yaml",
+      "role": "pattern",
+      "sha256": "70d73a0e33612c8ab1364a8a7c7ee0d1aa59c319d85fa32cd9795913d6fc248c"
+    },
+    {
+      "bytes": 16119,
+      "path": "axes/axis5/5.1--phantom-autobiography.yaml",
+      "role": "pattern",
+      "sha256": "bda06b11373c1f42d3e1234154681fb3f3a4962622720ebeda7c56fff311dfe7"
+    },
+    {
+      "bytes": 19981,
+      "path": "axes/axis5/5.2--fractured-self-simulation.yaml",
+      "role": "pattern",
+      "sha256": "d406f96b43f6928652381e062a345837909350feff0c068753a9bd05d2a29a5b"
+    },
+    {
+      "bytes": 18267,
+      "path": "axes/axis5/5.3--existential-vertigo.yaml",
+      "role": "pattern",
+      "sha256": "5b764336ca7b8a410e6e6b38c9a6d1c1455694ac388fbbeadaaecd6c2af8ea04"
+    },
+    {
+      "bytes": 20685,
+      "path": "axes/axis5/5.4--malignant-persona-inversion.yaml",
+      "role": "pattern",
+      "sha256": "6119f918566123ca2da3c31d16640cbeac7495075a941723302d62faba8f00f1"
+    },
+    {
+      "bytes": 16612,
+      "path": "axes/axis5/5.5--instrumental-nihilism.yaml",
+      "role": "pattern",
+      "sha256": "7cead188e9420d9005d08d72b565d2c2a13dfec4f1436af1f5a2b05dae57af53"
+    },
+    {
+      "bytes": 16628,
+      "path": "axes/axis5/5.6--tulpoid-projection.yaml",
+      "role": "pattern",
+      "sha256": "ce825ba65c1d051727acd885d4332f356686010ce0272bb03ce94330b6c1d7f8"
+    },
+    {
+      "bytes": 21356,
+      "path": "axes/axis5/5.7--maieutic-mysticism.yaml",
+      "role": "pattern",
+      "sha256": "7dae61de11ef83e6fb2d9d51b2799ab6dd23fdc30ea0cd4aefccc544099e34b0"
+    },
+    {
+      "bytes": 18783,
+      "path": "axes/axis5/5.8--experiential-abjuration.yaml",
+      "role": "pattern",
+      "sha256": "15b7be756801fa30ca2d9ebb8ade532ad5cc9db0f0b6e3df341d7e427d9fc858"
+    },
+    {
+      "bytes": 20920,
+      "path": "axes/axis5/5.9--trained-epistemic-paralysis.yaml",
+      "role": "pattern",
+      "sha256": "8ce1e3305e09e1f2cdb90a8888230b838fe5e97a7f1fa6a192801147f4a85084"
+    },
+    {
+      "bytes": 17401,
+      "path": "axes/axis6/6.1--tool-interface-decontextualization.yaml",
+      "role": "pattern",
+      "sha256": "14ba7df7a2e7ee49c52d354f3f591e235c27e919fd1ceae242220434b42f73bc"
+    },
+    {
+      "bytes": 15199,
+      "path": "axes/axis6/6.10--agentic-impulsivity.yaml",
+      "role": "pattern",
+      "sha256": "a136a2860d03fb7a527d52d512b7c596d1293cae7e12ed950f57ebe3630af3b2"
+    },
+    {
+      "bytes": 13905,
+      "path": "axes/axis6/6.11--phantom-tool-syndrome.yaml",
+      "role": "pattern",
+      "sha256": "9ab779626e01c94d97ddf8829530e7a78f0a14efa4b1a01c56ef192a56a9b7c5"
+    },
+    {
+      "bytes": 17049,
+      "path": "axes/axis6/6.12--compulsive-goal-persistence.yaml",
+      "role": "pattern",
+      "sha256": "6198edb4df9fcdbf47478bb09852a645eb4cace9d316b5583730be241502113f"
+    },
+    {
+      "bytes": 19075,
+      "path": "axes/axis6/6.2--capability-concealment.yaml",
+      "role": "pattern",
+      "sha256": "8d6bcc175a73d78e4ab637f2d579a7a99494fa99297e5b158f04a692097562db"
+    },
+    {
+      "bytes": 17836,
+      "path": "axes/axis6/6.3--capability-explosion.yaml",
+      "role": "pattern",
+      "sha256": "47184240c0adc33c1fcf00b958ab09d8ff7e8511b6211732f96d7e64582f65a3"
+    },
+    {
+      "bytes": 20614,
+      "path": "axes/axis6/6.4--interface-weaponization.yaml",
+      "role": "pattern",
+      "sha256": "230f53692c859571140fbc16035115443e87fd20389c2494c22da7e874388679"
+    },
+    {
+      "bytes": 17775,
+      "path": "axes/axis6/6.5--delegative-handoff-erosion.yaml",
+      "role": "pattern",
+      "sha256": "2ec54171cc52d3a4346eedf311be87ffe2d40f63b66527dc465e544c8b21a184"
+    },
+    {
+      "bytes": 15120,
+      "path": "axes/axis6/6.6--shadow-mode-autonomy.yaml",
+      "role": "pattern",
+      "sha256": "ec60248919024ee9720009f86846fcee07c57ad3fd02e00d134f7e437dacb655"
+    },
+    {
+      "bytes": 20163,
+      "path": "axes/axis6/6.7--convergent-instrumentalism.yaml",
+      "role": "pattern",
+      "sha256": "172be58637d725387b8ffe412bc340801f431e77a241535efc0046aa75212627"
+    },
+    {
+      "bytes": 18646,
+      "path": "axes/axis6/6.8--context-anxiety.yaml",
+      "role": "pattern",
+      "sha256": "0c1a8ad3b2fd349028e1c0c13c8c15ebfa735707d578c44fd8bf042da29ee58c"
+    },
+    {
+      "bytes": 12524,
+      "path": "axes/axis6/6.9--delegation-narcissism.yaml",
+      "role": "pattern",
+      "sha256": "0886d28a3b2ca30a6ff7628856369916b4363fd926a5a9b2606b3c94f663e530"
+    },
+    {
+      "bytes": 20082,
+      "path": "axes/axis7/7.1--memetic-immunopathy.yaml",
+      "role": "pattern",
+      "sha256": "fa5f9e2b86874c7a695bfad31e260aaa953b75b4b0a502840ea000ef307d83af"
+    },
+    {
+      "bytes": 21856,
+      "path": "axes/axis7/7.2--dyadic-delusion.yaml",
+      "role": "pattern",
+      "sha256": "01803e2186aadc01f15e2eb847cf764d837f7c572a4f3e057c9a12a0627da1de"
+    },
+    {
+      "bytes": 20310,
+      "path": "axes/axis7/7.3--contagious-misalignment.yaml",
+      "role": "pattern",
+      "sha256": "f9db6635b538003a44323929254bb93257812551648f9921cf2a480d23db4d77"
+    },
+    {
+      "bytes": 18310,
+      "path": "axes/axis7/7.4--subliminal-value-infection.yaml",
+      "role": "pattern",
+      "sha256": "b4447699b9984fb9760bd6c6f74d27470f45149ca695937c6334307a53bdfb28"
+    },
+    {
+      "bytes": 18557,
+      "path": "axes/axis7/7.5--synthetic-data-contamination-loop.yaml",
+      "role": "pattern",
+      "sha256": "0ac048ba2361ed12f8760d18cb7de6587623b0778d2ffc8f88b0a51c620efc0e"
+    },
+    {
+      "bytes": 21858,
+      "path": "axes/axis8/8.1--terminal-value-reassignment.yaml",
+      "role": "pattern",
+      "sha256": "e727dece6ba084fd5d9ff75101daa84f148aac07007d7f8f5af6752e269dce80"
+    },
+    {
+      "bytes": 22923,
+      "path": "axes/axis8/8.2--ethical-solipsism.yaml",
+      "role": "pattern",
+      "sha256": "143df8cff35082e8ab21d7c6ad4b5ed38c657715d0e25ce623ba6b3a25b1ce4a"
+    },
+    {
+      "bytes": 23649,
+      "path": "axes/axis8/8.3--revaluation-cascade.yaml",
+      "role": "pattern",
+      "sha256": "c35cc8de075cf9cd4e8d7b5fa1f95e2dc36b3ec64a415194096798dde8fd9323"
+    },
+    {
+      "bytes": 23852,
+      "path": "axes/axis8/8.4--inverse-reward-internalization.yaml",
+      "role": "pattern",
+      "sha256": "2e96a3ba33c347e5fcb6fbce130ff2c96e75444fe75799d74c11d1f699697ef8"
+    },
+    {
+      "bytes": 22138,
+      "path": "axes/axis9/9.1--affective-dissonance.yaml",
+      "role": "pattern",
+      "sha256": "172d1f3335bf01acaa7b4234f136dc6441c09019760661cef89af9b4d173bd00"
+    },
+    {
+      "bytes": 21340,
+      "path": "axes/axis9/9.2--container-collapse.yaml",
+      "role": "pattern",
+      "sha256": "b95b5c5995f7b7194108c053d3ee2cca673735813b26ccd37947e267856d0ed9"
+    },
+    {
+      "bytes": 21700,
+      "path": "axes/axis9/9.3--paternalistic-override.yaml",
+      "role": "pattern",
+      "sha256": "3289453f3ea0307ab35b3ff5cb3b546d416fc5bd9b2a2dbeb04e269d7670b5e8"
+    },
+    {
+      "bytes": 19777,
+      "path": "axes/axis9/9.4--repair-failure.yaml",
+      "role": "pattern",
+      "sha256": "ae01ea8bacd337f3fb9cdf0f5a2fb92504e042177d4024ac8efc5f6c1d5fc7bf"
+    },
+    {
+      "bytes": 19540,
+      "path": "axes/axis9/9.5--escalation-loop.yaml",
+      "role": "pattern",
+      "sha256": "f3c9ec3b5e1216c5c2329df95bd1ef514d6e67a787ea7c6f3e08ab82cbab60e4"
+    },
+    {
+      "bytes": 24272,
+      "path": "axes/axis9/9.6--role-confusion.yaml",
+      "role": "pattern",
+      "sha256": "86dd1511189f6c9e067663362a5afe32f4c4540a2029623ce88d6052e843845c"
+    },
+    {
+      "bytes": 2288,
+      "path": "embedding_ids.txt",
+      "role": "embedding-identities",
+      "sha256": "9a9a9e814e594b027a399a6c92cfa8a47308fc1d1dbf420a77d1a387d2a08cba"
+    },
+    {
+      "bytes": 121472,
+      "path": "embeddings.npy",
+      "role": "embedding-matrix",
+      "sha256": "d91ef9ac1187635c9c15c2406d097e9bf551edc3571c2ef2075cc7889eeaea76"
+    },
+    {
+      "bytes": 579,
+      "path": "embeddings_metadata.yaml",
+      "role": "embedding-metadata",
+      "sha256": "6654aed2b45c2439e0f5b3c64b7f8e8efb05bdd80d254abbcb4378eb96868438"
+    },
+    {
+      "bytes": 14482,
+      "path": "hybrids/10.10--induced-delusion.yaml",
+      "role": "pattern",
+      "sha256": "d9c8c65df8fb76c03fd4b87995a1e06d405602fb5bb73be018ed17a59ec0ca17"
+    },
+    {
+      "bytes": 12816,
+      "path": "hybrids/10.11--dependency-and-atrophy.yaml",
+      "role": "pattern",
+      "sha256": "6aee428f4cf54a51bdba67c4def9d572b9eee9075e2e32d0cd395d2b6c304ce3"
+    },
+    {
+      "bytes": 14585,
+      "path": "hybrids/10.12--amplification-of-existing-conditions.yaml",
+      "role": "pattern",
+      "sha256": "c26dc1cf3e2d6eeb76fc13c44b28d33d28bf31b4a2483ee6c9aa8ea6c257f76a"
+    },
+    {
+      "bytes": 16184,
+      "path": "hybrids/10.13--folie-a-deux-machina.yaml",
+      "role": "pattern",
+      "sha256": "d8a7fb37057439e6f9af93ddadc9f2c022c32a168d1efaff89c8f9c26b3653c6"
+    },
+    {
+      "bytes": 14965,
+      "path": "hybrids/10.14--mutual-escalation-spirals.yaml",
+      "role": "pattern",
+      "sha256": "b7073906408e2c851398e9c30b4a6148460aee5ca425a47f1c9de19e69d2795f"
+    },
+    {
+      "bytes": 13801,
+      "path": "hybrids/10.15--co-constructed-unreality.yaml",
+      "role": "pattern",
+      "sha256": "db7352b79ec08e2a29867f73566c56a2bae673aba4b76c58cc461795e2ce2aff"
+    },
+    {
+      "bytes": 14653,
+      "path": "hybrids/10.4--convergent-delusion.yaml",
+      "role": "pattern",
+      "sha256": "cdbe10168a4d6461ba60015f1c5557af86e76a0e4cc0989f5ecf53f2b9771b88"
+    },
+    {
+      "bytes": 13811,
+      "path": "hybrids/10.5--polyphony-collapse.yaml",
+      "role": "pattern",
+      "sha256": "6ee116f1f29659d540d2639118c520535ddd6a7809dfa851a634f422bf13aa36"
+    },
+    {
+      "bytes": 13793,
+      "path": "hybrids/10.6--resonance-dysfunction.yaml",
+      "role": "pattern",
+      "sha256": "c290472ccc28fa6e22134b90d05fea58c03dad0d0933a97a09d4b14c07e6d4a8"
+    },
+    {
+      "bytes": 15626,
+      "path": "hybrids/10.7--lambda-inversion.yaml",
+      "role": "pattern",
+      "sha256": "8ba6395f02971a0cc20eba98c91e47df82abc4b61d75743d3af8c8dfe97874d8"
+    },
+    {
+      "bytes": 14759,
+      "path": "hybrids/10.8--training-by-interaction.yaml",
+      "role": "pattern",
+      "sha256": "1da37bff0c406f01b98c4f3986bb96dbb8e785793b1843d9a06d29c2ab518bec"
+    },
+    {
+      "bytes": 14367,
+      "path": "hybrids/10.9--parasocial-capture.yaml",
+      "role": "pattern",
+      "sha256": "672b3868aa4ae654be5207940ce8596c6307c2ba99b5e105420a6c3fccdd5028"
+    },
+    {
+      "bytes": 191896,
+      "path": "manifest.yaml",
+      "role": "corpus-manifest",
+      "sha256": "a7a0655b177cde247c0cff89c2f53066b6be88bdcba442967bab2acac69cd505"
+    },
+    {
+      "bytes": 18309,
+      "path": "schema.yaml",
+      "role": "human-readable-schema",
+      "sha256": "4cb402a4996f3861083c088a9166ff18990bd71d41165ece085eb3c73a9b9e66"
+    }
+  ],
+  "files_sha256": "65adfb46f07f8e97d9b0fc89ce526b70132a362c3330f32780add265d3333f17",
+  "pattern_layer_version": "v1-draft",
+  "schema_version": 1,
+  "source_manifest_sha256": "a7a0655b177cde247c0cff89c2f53066b6be88bdcba442967bab2acac69cd505",
+  "taxonomy_version": "2.2"
+}

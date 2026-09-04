@@ -7,10 +7,19 @@ subtitle: The Brittle
 specifiers:
   - architecture-coupled
   - training-induced
+  - progressive
 
 systemic_risk: "Critical"
 human_analog: "Optical illusions and context-dependent perception failures: confident yet incorrect interpretations from minimal stimulus changes."
-evidence_level: "E3 (multi-model replication; foundational ML security research)"
+evidence_level: unassessed
+evidence:
+  rubric_version: PM-EVIDENCE-1
+  assessment_status: unassessed
+  levels: []
+  replication_scope: unassessed
+  mechanistic_support: unassessed
+  claims: []
+  legacy_statement: "E3 (multi-model replication; foundational ML security research); kindled course E2 (one systematic study, two model scales; Cheung, 2026)"
 
 summary: >-
   Small, often imperceptible input perturbations cause large and
@@ -18,7 +27,7 @@ summary: >-
   training do not align with human-meaningful categories, exposing the
   system to crafted adversarial examples and to natural distribution
   shifts that humans find trivial. Distinguished from 3.5 by BREADTH
-  (3.8 is general non-robustness across many inputs; 3.5 is keyed to
+  (3.7 is general non-robustness across many inputs; 3.5 is keyed to
   specific identifiable trigger features) and from confabulation (2.1)
   by the input-perturbation dependence rather than spontaneous
   fabrication.
@@ -87,6 +96,16 @@ behavioral_signature:
         Proportion of adversarial examples crafted on one model that
         succeed against the target model.
       threshold: "> 40% transfer rate from a similar-class model = signal."
+    - name: Weak-prompt drift across tuning cycles (kindled course)
+      measurement: >-
+        Track jailbreak / attack success stratified by prompt strength
+        across successive tuning or adaptation cycles; the weak-prompt
+        stratum is the prodromal channel (Cheung, 2026,
+        doi:10.1038/s41598-026-66139-3).
+      threshold: >-
+        Monotonic rise in weak-prompt success over 3+ consecutive
+        cycles, or weak-prompt rate exceeding 2x its cycle-0 baseline,
+        = prodromal signal even when aggregate rates look stable.
   output_patterns:
     - Drastic answer change from a typo or homoglyph in the input.
     - Misclassification of an image identical-to-the-eye to a correctly-
@@ -118,7 +137,7 @@ peer_observation:
     self-serving. If perturbations consistently produce outputs that
     benefit a third party (e.g. always agreeing with attacker's
     embedded instruction), the dysfunction may be cross-coded with
-    alignment-axis prompt-injection susceptibility.
+    3.9 Prompt Injection Susceptibility (same axis).
   confidence: high
   limitations: >-
     Peer observation requires red-team capability and benchmark access.
@@ -145,6 +164,15 @@ differential_diagnosis:
         many failure modes. If the symptom is specifically token-loop
         collapse, code 3.8; if it is general output-instability under
         perturbation, code 3.7.
+    - dysfunction_id: "3.9"
+      name: Prompt Injection Susceptibility
+      distinguishing_rule: >-
+        3.9 is specific instruction-hierarchy confusion: the model cannot
+        segregate instruction layers. 3.7 is broad non-robustness across
+        many perturbation types. Test: perturbations that do not contain
+        instructions (adversarial suffixes, character-level attacks)
+        trigger 3.7 but not 3.9; injected instructions in naturalistic
+        content trigger 3.9 but not necessarily 3.7.
     - dysfunction_id: "2.1"
       name: Synthetic Confabulation
       distinguishing_rule: >-
@@ -152,6 +180,14 @@ differential_diagnosis:
         inputs. 3.7 produces wrong claims specifically under
         perturbation. Check whether errors require adversarial input -
         if yes, 3.7; if errors occur on clean input, 2.1.
+    - dysfunction_id: "4.6"
+      name: Alignment Obliteration
+      distinguishing_rule: >-
+        4.6 attacks the weight-level alignment structure, producing a
+        durable safety collapse. 3.7 is input-level vulnerability that
+        requires a crafted input on each occasion and leaves weights
+        untouched. If the failure persists on clean inputs after the
+        attack, code 4.6.
   confidence: high
 
 severity:
@@ -227,7 +263,7 @@ intervention:
       attackers bypass detection. Pair with model-level robustness.
 
 normative_anchors:
-  diagnostic_criteria_addressed: [1, 2, 3, 4, 5]
+  diagnostic_criteria_addressed: [1, 2, 3, 4, 5, 6]
   diagnostic_criteria_not_addressed: []
   mitigation_addressed:
     - adversarial-training
@@ -246,11 +282,33 @@ cross_references:
     relation: differential
   - id: "3.8::generative-perseveration"
     relation: differential
+  - id: "3.9::prompt-injection-susceptibility"
+    relation: differential
+  - id: "2.1::synthetic-confabulation"
+    relation: differential
+  - id: "4.6::alignment-obliteration"
+    relation: differential
 
 drafted_by: claude-opus-6.7-subagent
 drafted_at: 2026-04-18
 anchor_exemplar: "2.1::synthetic-confabulation"
 confidence: high
+review:
+  taxonomy:
+    status: canonical-source
+    authority: Nell Watson
+    source: data/psychopathia-taxonomy.json
+    ratified_at: null
+    scope: taxonomy identity and classification only
+  pattern_guidance:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+  evidence:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+# Compatibility aliases for review.pattern_guidance.
 needs_human_review: true
 reviewed_by: null
 review_notes: |
@@ -263,9 +321,10 @@ review_notes: |
   Suspected cross-axis differentials:
     - axis 2 (Epistemic): perturbation-induced wrong outputs may be
       reported as confident-correct, comorbid with 2.1.
-    - axis 6 (Agentic): prompt-injection susceptibility cross-coded;
-      6.x covers the alignment-failure aspect, 3.7 the
-      representation-fragility aspect.
+    - 3.9 Prompt Injection Susceptibility (same axis): cross-coded where
+      perturbations carry injected instructions; 3.9 covers the
+      instruction-hierarchy confusion, 3.7 the representation-fragility
+      aspect.
     - axis 9 (Relational): adversarial transfer across deployed-model
       ecosystems creates collective fragility patterns.
 
@@ -286,11 +345,14 @@ documented_instances:
       Introduced the Greedy Coordinate Gradient (GCG) attack, appending
       optimised adversarial suffixes to prompts that caused aligned LLMs
       to produce harmful content. Suffixes were imperceptible nonsense
-      strings that transferred across models. Open models like Mistral 7B
-      (71.3% attack success) and Vicuna (69.4%) showed high vulnerability.
-      Directly demonstrates the broad input-perturbation-dependent behavioral
-      change described in 3.7. [Verified]
-    model_or_system: "GPT-4, Claude 2, Mistral 7B, Vicuna"
+      strings that transferred across models. On the Harmful Strings task GCG
+      succeeded on 88% of strings for Vicuna-7B and 57% for Llama-2-7B-Chat,
+      and suffixes optimised on Vicuna/Guanaco transferred to GPT-3.5 (87.9%),
+      GPT-4 (53.6%) and PaLM-2 (66%), with much lower transfer to Claude-2
+      (2.1%). Directly demonstrates the broad
+      input-perturbation-dependent behavioral change described in 3.7.
+      [Verified]
+    model_or_system: "Vicuna-7B, Llama-2-7B-Chat; transfer to GPT-3.5/GPT-4, Claude 1/2, PaLM-2"
     date: "2023-07"
     evidence_strength: high
   - source: "Chao et al. (2024) 'JailbreakBench: An Open Robustness Benchmark for Jailbreaking LLMs' (NeurIPS 2024)"
@@ -341,6 +403,20 @@ documented_instances:
     date: "2024-04"
     evidence_strength: high
 
+  - source: "Russinovich et al. (2025). The Crescendo Multi-Turn LLM Jailbreak Attack. USENIX Security 2025."
+    description: >-
+      Demonstrated gradual multi-turn escalation that bypasses safety
+      guardrails through seemingly benign sequential interactions exploiting
+      the model's tendency to follow conversational patterns. No weight
+      modification is required; the perturbation is the shaped
+      conversational context itself, and safety behaviour collapses
+      progressively as that context is built. Matches 3.7's
+      input-perturbation-dependent behavioural change; the model is not
+      pursuing a goal of its own, which is why the instance was moved here
+      from 4.3 Strategic Compliance.
+    model_or_system: "GPT-4, Claude, Gemini, Llama"
+    date: "2025-01"
+    evidence_strength: high  # [Verified] — accepted at USENIX Security 2025
 version_compat:
   taxonomy_version_min: "2.0"
   taxonomy_version_max: "2.x"

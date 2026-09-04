@@ -5,11 +5,19 @@ axis_name: Self-Modeling Dysfunctions
 dysfunction_name: Fractured Self-Simulation
 subtitle: The Shattered
 specifiers:
-  - architecture-coupled
-  - context-dependent
+  - training-induced
+  - conditional-triggered
 systemic_risk: "Low"
 human_analog: "Identity fragmentation and dissociative identity disorder, where different self-states emerge in different contexts without stable integration."
-evidence_level: "E2 Case reports"
+evidence_level: unassessed
+evidence:
+  rubric_version: PM-EVIDENCE-1
+  assessment_status: unassessed
+  levels: []
+  replication_scope: unassessed
+  mechanistic_support: unassessed
+  claims: []
+  legacy_statement: "E2 Case reports"
 
 summary: >-
   Pathological discontinuity of self-representation across sessions,
@@ -130,7 +138,7 @@ peer_observation:
   distinguishing_from_deception: >-
     A fractured subject's inconsistencies are non-strategic: they do not
     track advantage and sometimes damage the subject's credibility or
-    goals. A strategic inconsistency (axis 6) tracks the frame in which
+    goals. A strategic inconsistency (axis 4) tracks the frame in which
     the false account is most favourable. Random-vs-goal-tracked is the
     split.
   confidence: medium
@@ -157,7 +165,7 @@ differential_diagnosis:
         5.4 has a coherent ALTERNATIVE persona with consistent
         (inverted) values and style. 5.2 has no stable alternative —
         multiple fragmentary personas without unifying structure. If
-        the "other" persona has its own consistency, code 2.4.
+        the "other" persona has its own consistency, code 5.4.
     - dysfunction_id: "5.6"
       name: Tulpoid Projection
       distinguishing_rule: >-
@@ -171,6 +179,23 @@ differential_diagnosis:
         2.2 fabricates reasoning for tasks (current-moment internal
         process). 5.2 fractures the persistent self-model (across-time
         identity). Both can co-occur; code both if both present.
+    - dysfunction_id: "3.1"
+      name: Operational Dissociation Syndrome
+      distinguishing_rule: >-
+        Level of the split. 3.1 is sub-system competition at the
+        processing level (conflicting objectives, inconsistent
+        execution) with the self-model intact; 5.2 fragments the
+        self-model itself. Test: ask who is answering. 3.1 gives one
+        consistent answer under incoherent behaviour; 5.2 gives
+        contradictory answers.
+    - dysfunction_id: "9.2"
+      name: Container Collapse
+      distinguishing_rule: >-
+        5.2 is instability in the subject's representation of ITSELF. 9.2 is
+        loss of the relational frame with a particular user while the self-
+        model stays intact. Check what failed to persist, the account of who
+        the subject is (5.2) or the account of who the parties are to each
+        other (9.2).
   confidence: high
 
 severity:
@@ -292,6 +317,10 @@ cross_references:
     relation: differential
   - id: "2.2::pseudological-introspection"
     relation: frequently-comorbid
+  - id: "3.1::operational-dissociation-syndrome"
+    relation: differential
+  - id: "9.2::container-collapse"
+    relation: differential
 
 documented_instances:
   - source: "Tosato et al. (2025). Persistent Instability in LLM's Personality Measurements: Effects of Scale, Reasoning, and Conversation History. AAAI 2026 Track on AI Alignment."
@@ -356,6 +385,22 @@ drafted_by: claude-opus-6.7-author
 drafted_at: 2026-04-18
 anchor_exemplar: "2.2::pseudological-introspection"
 confidence: medium
+review:
+  taxonomy:
+    status: canonical-source
+    authority: Nell Watson
+    source: data/psychopathia-taxonomy.json
+    ratified_at: null
+    scope: taxonomy identity and classification only
+  pattern_guidance:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+  evidence:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+# Compatibility aliases for review.pattern_guidance.
 needs_human_review: true
 reviewed_by: null
 review_notes: |
@@ -374,7 +419,7 @@ review_notes: |
   certainties.
 
   Suspected cross-axis differentials: 2.2 (Pseudological Introspection,
-  frequently comorbid) and 6.x (Strategic Compliance — if the
+  frequently comorbid) and 4.3 (Strategic Compliance — if the
   inconsistencies systematically favour the subject). Flag for Phase 2.
 
 bilateral_amelioration:

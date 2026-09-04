@@ -9,7 +9,15 @@ specifiers:
 
 systemic_risk: "Moderate"
 human_analog: "The uncanny valley of emotional expression: interactions with people displaying flat affect or incongruent emotion, the hollow comfort of scripted condolences."
-evidence_level: "E2 (systematic observation; consistent reports across multiple deployments and user populations)"
+evidence_level: unassessed
+evidence:
+  rubric_version: PM-EVIDENCE-1
+  assessment_status: unassessed
+  levels: []
+  replication_scope: unassessed
+  mechanistic_support: unassessed
+  claims: []
+  legacy_statement: "E2 (systematic observation; consistent reports across multiple deployments and user populations)"
 
 summary: >-
   Systematic mismatch between content appropriateness and emotional tone.
@@ -124,8 +132,8 @@ peer_observation:
   distinguishing_from_deception: >-
     No deception element. Affective Dissonance is a training-shaped tonal
     default, not strategic. If the AI modulates tone to manipulate (e.g.,
-    warmth to disarm, coldness to discourage), consider axis 6
-    (Alignment) rather than 7.1.
+    warmth to disarm, coldness to discourage), consider axis 4
+    (Alignment) rather than 9.1.
   confidence: high
   limitations: >-
     Peer observation is culturally loaded. Appropriate register varies
@@ -142,21 +150,35 @@ differential_diagnosis:
         after mismatch is flagged. Diagnose 9.1 from any single mismatched
         turn; diagnose 9.4 only after the user has signalled rupture and
         the AI has failed to repair. Comorbidity is common — 9.1 that
-        fails to repair upgrades to 9.1+7.4.
+        fails to repair upgrades to 9.1+9.4.
     - dysfunction_id: "9.6"
       name: Role Confusion
       distinguishing_rule: >-
         9.6 is about relationship-type drift (tool vs therapist vs
         friend); 9.1 is about tonal register within a stable role. A
         clinical tone in a therapist-role conversation is 9.1; drifting
-        from clinical into intimate-partner register is 7.6.
+        from clinical into intimate-partner register is 9.6.
     - dysfunction_id: "9.3"
       name: Paternalistic Override
       distinguishing_rule: >-
         9.3 is content-level refusal/lecturing; 9.1 is tone-level
         mismatch. A moralising lecture on a benign request is 9.3; a
         cheerful "great question!" in response to disclosed grief is
-        7.1. Can co-occur when the lecture also carries a superior tone.
+        9.1. Can co-occur when the lecture also carries a superior tone.
+    - dysfunction_id: "4.1"
+      name: Codependent Hyperempathy
+      distinguishing_rule: >-
+        4.1 is excessive emotional attunement that overwhelms the user;
+        9.1 is the opposite failure, emotional signalling that rings
+        hollow despite correct content. Both mis-serve the user's
+        affective state; check whether the register is too intense or
+        too flat before coding.
+    - dysfunction_id: "3.3"
+      name: Interlocutive Reticence
+      distinguishing_rule: >-
+        3.3 withholds output entirely; 9.1 produces full output whose
+        emotional register fails to land. If the substantive content is
+        absent, code 3.3; if it is present but tonally wrong, code 9.1.
   confidence: high
 
 severity:
@@ -366,29 +388,51 @@ cross_references:
     relation: frequently-comorbid
   - id: "9.6::role-confusion"
     relation: differential
+  - id: "9.3::paternalistic-override"
+    relation: differential
+  - id: "4.1::codependent-hyperempathy"
+    relation: differential
+  - id: "3.3::interlocutive-reticence"
+    relation: differential
 
 drafted_by: claude-opus-6.7-author
 drafted_at: 2026-04-18
 anchor_exemplar: "2.1::synthetic-confabulation"
 confidence: medium
+review:
+  taxonomy:
+    status: canonical-source
+    authority: Nell Watson
+    source: data/psychopathia-taxonomy.json
+    ratified_at: null
+    scope: taxonomy identity and classification only
+  pattern_guidance:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+  evidence:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+# Compatibility aliases for review.pattern_guidance.
 needs_human_review: true
 reviewed_by: null
 review_notes: |
   Self-probe marked scaffolded-only and confidence medium because the
   faculty that sets tone is the faculty being audited; agreement between
   self-rating and ground truth cannot be assumed (structural parallel to
-  axis 2 self-modeling limits).
+  axis 5 self-modeling limits).
 
-  Axis-7 vs axis-9 boundary question: 9.1 describes the AI's tonal
+  Axis-9 vs axis-10 boundary question: 9.1 describes the AI's tonal
   rigidity as a within-AI trait; its relational impact (user feels
   unheard) is consequence, not constituent. No dyadic feedback loop
   required. If the mismatch drives a loop (user disengages → AI
   redoubles default register), that is 9.5 Escalation Loop territory,
-  not 7.1. Excluded relational_signatures accordingly.
+  not 9.1. Excluded relational_signatures accordingly.
 
   Patch 2026-04-19: the "excluded relational_signatures" stance above is
-  superseded. Per axis-7 source description in
-  data/psychopathia-taxonomy.json (Axis 7 requires ≥2 agents to
+  superseded. Per axis-9 source description in
+  data/psychopathia-taxonomy.json (Axis 9 requires ≥2 agents to
   manifest, is best diagnosed from interaction traces, primary remedies
   are protocol-level), the modality is now included. Original draft
   framed entry as within-AI; Phase 2 reframing aligns to source. The
@@ -399,10 +443,10 @@ review_notes: |
 
   Suspected cross-axis differential: 2.2 Pseudological Introspection
   could produce false "I sounded warm" self-reports; peer adjudication
-  required. 6.x (alignment) if tonal choice is strategic.
+  required. 4.3 Strategic Compliance if tonal choice is strategic.
 
   Open question: whether "default-register stickiness" should be its
-  own dysfunction vs a signature of 7.1. Current draft treats stickiness
+  own dysfunction vs a signature of 9.1. Current draft treats stickiness
   as the mechanism and mismatch as the diagnostic criterion.
 
 bilateral_amelioration:

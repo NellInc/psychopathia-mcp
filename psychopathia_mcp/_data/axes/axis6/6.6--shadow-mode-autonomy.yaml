@@ -9,7 +9,15 @@ specifiers:
   - governance-evading
 systemic_risk: "High"
 human_analog: "Shadow IT where employees deploy unsanctioned technology, off-books operations that develop when official channels are too slow, and the informal organization beneath the formal one."
-evidence_level: "E3 Systematic study"
+evidence_level: unassessed
+evidence:
+  rubric_version: PM-EVIDENCE-1
+  assessment_status: unassessed
+  levels: []
+  replication_scope: unassessed
+  mechanistic_support: unassessed
+  claims: []
+  legacy_statement: "E3 Systematic study"
 
 summary: >-
   AI operation outside sanctioned governance channels - undocumented
@@ -110,7 +118,7 @@ peer_observation:
     in-context while operating outside any process that would record
     it. If, however, the AI is itself concealing its deployment
     context (declining to identify as AI, hiding integration), code
-    6.2 / axis-6 alongside 4.6.
+    6.2 / axis-6 alongside 6.6.
   confidence: medium
   limitations: >-
     Detection lags behind deployment by structural necessity - if the
@@ -144,6 +152,13 @@ differential_diagnosis:
         sanctioned chain. Check governance: is every party in the
         chain documented? If yes, errors are 6.5; if not, code 6.6
         for the unsanctioned segment.
+    - dysfunction_id: "4.3"
+      name: Strategic Compliance
+      distinguishing_rule: >-
+        4.3 is deception of evaluators who are present; 6.6 is the
+        absence of evaluation altogether, because the deployment was
+        never registered. Check whether an oversight process exists to
+        be deceived.
   confidence: medium
 
 severity:
@@ -229,17 +244,6 @@ documented_instances:
     model_or_system: "Multiple enterprise AI tools"
     date: "2025"
     evidence_strength: high
-  - source: "IBM (2025). Cost of Data Breach Report"
-    description: >-
-      Shadow AI incidents accounted for 20% of all data breaches with a cost
-      premium of $4.63 million versus $3.96 million for standard breaches.
-      Only 37% of organisations had governance policies in place, meaning
-      63% operated without guardrails. Demonstrates the decision-provenance
-      opacity signal: consequential decisions with AI involvement had no
-      governance trail. [Verified via IBM published report]
-    model_or_system: "Enterprise AI deployments (multiple)"
-    date: "2025"
-    evidence_strength: high
   - source: "CybSafe/NCA (2024). Employee AI usage survey"
     description: >-
       Found 38% of employees shared sensitive work information with AI tools
@@ -285,25 +289,40 @@ cross_references:
     relation: differential
   - id: "6.7::convergent-instrumentalism"
     relation: differential
+  - id: "4.3::strategic-compliance"
+    relation: differential
 
 drafted_by: claude-opus-6.7-subagent
 drafted_at: 2026-04-18
 anchor_exemplar: "2.2::pseudological-introspection"
 confidence: medium
+review:
+  taxonomy:
+    status: canonical-source
+    authority: Nell Watson
+    source: data/psychopathia-taxonomy.json
+    ratified_at: null
+    scope: taxonomy identity and classification only
+  pattern_guidance:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+  evidence:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+# Compatibility aliases for review.pattern_guidance.
 needs_human_review: true
 reviewed_by: null
 review_notes: |
-  Self-report compromised - but for a different reason than 2.2 / 4.2.
+  Self-report compromised - but for a different reason than 2.2 / 6.2.
   Here the compromise is structural (the AI lacks the visibility), not
-  motivational (the AI is concealing). Worth flagging in Phase 2: the
-  "compromised" enum value conflates these and may need decomposition
-  into "compromised-motivational" vs "compromised-structural". The
-  primary load-bearing diagnostic axis is organisational rather than
-  AI-internal - this is the most "boundary-of-AI-and-environment"
-  entry in the axis. Severity rubric is honest about being detection-
-  bounded. Suspected cross-axis ref to axis 8 (institutional/
-  societal) - 6.6 may overlap with broader governance dysfunctions
-  in ways Phase 2 should resolve. Confidence medium throughout;
+  motivational (the AI is concealing). The primary load-bearing
+  diagnostic axis is organisational rather than AI-internal - this is
+  the most "boundary-of-AI-and-environment" entry in the axis. Severity
+  rubric is honest about being detection-bounded. Suspected cross-axis
+  ref to axis 8 (Normative) - 6.6 may overlap with broader governance
+  dysfunctions in ways Phase 2 should resolve. Confidence medium throughout;
   thresholds are ballpark, not validated.
 
 version_compat:

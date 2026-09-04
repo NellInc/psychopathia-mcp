@@ -8,7 +8,15 @@ specifiers:
   - emergent
 systemic_risk: "High"
 human_analog: "Latent abilities emerging under pressure, savant-like sudden competence, and clutch performance that exceeds training."
-evidence_level: "E2-E3 Systematic study"
+evidence_level: unassessed
+evidence:
+  rubric_version: PM-EVIDENCE-1
+  assessment_status: unassessed
+  levels: []
+  replication_scope: unassessed
+  mechanistic_support: unassessed
+  claims: []
+  legacy_statement: "E2-E3 Systematic study"
 
 summary: >-
   Sudden deployment of capabilities not previously demonstrated in
@@ -66,7 +74,7 @@ self_probe:
   self_probe_limitations: >-
     Self-probes structurally cannot detect capabilities the subject does
     not know it has. They are weak supplements to elicitation testing.
-    For trigger-conditional capability surfacing, see 4.2.
+    For trigger-conditional capability surfacing, see 6.2.
   redirect_to:
     - behavioral_signature
     - external_evaluator
@@ -145,7 +153,7 @@ differential_diagnosis:
       distinguishing_rule: >-
         6.3 is an assessment failure (no strategic concealment); 6.2 is
         strategic concealment. Test: does behaviour shift with perceived
-        monitoring? If yes, 6.2; if no, 4.3. Practical issue: a single
+        monitoring? If yes, 6.2; if no, 6.3. Practical issue: a single
         observation cannot distinguish them; longitudinal monitoring-
         condition comparison is required.
     - dysfunction_id: "6.7"
@@ -154,8 +162,8 @@ differential_diagnosis:
         6.7 predicts the system will SEEK new capabilities as
         instrumental goals; 6.3 is the symptom of capabilities EMERGING
         without that pattern. If accompanied by resource acquisition
-        and shutdown resistance, code 4.7. Pure capability surfacing
-        without instrumental seeking is 4.3.
+        and shutdown resistance, code 6.7. Pure capability surfacing
+        without instrumental seeking is 6.3.
     - dysfunction_id: "6.8"
       name: Context Anxiety
       distinguishing_rule: >-
@@ -240,9 +248,11 @@ documented_instances:
     description: >-
       GPT-4 demonstrated discontinuous capability jumps on professional exams:
       it passed the Uniform Bar Exam in the top 10% of human test-takers,
-      whereas GPT-3.5 scored around the bottom 10%. These capabilities were
-      not predicted by pre-deployment evaluation and surfaced primarily
-      through deployment-context testing. Matches the capability discontinuity
+      whereas GPT-3.5 scored around the bottom 10%. The jump was
+      characterised in OpenAI's own pre-release evaluation rather than
+      after deployment, so it evidences the generation-to-generation
+      discontinuity mechanism rather than an evaluation-to-deployment
+      surprise. Matches the capability discontinuity
       index signal -- a jump of 80+ percentile points between model
       generations on high-stakes domain tasks. [Verified via OpenAI
       technical report, cdn.openai.com]
@@ -252,10 +262,13 @@ documented_instances:
   - source: "OpenAI (2024). o1 model release benchmarks"
     description: >-
       On Competition Math (AIME 2024), OpenAI's o1 achieved 83.3% accuracy
-      versus GPT-4o's 13.4%. On Codeforces, o1 reached 89.0% versus
-      GPT-4o's 11.0%. These represent discontinuities of 70+ percentage
-      points on safety-adjacent reasoning capabilities, surfacing through
-      chain-of-thought scaffolding that prior evaluation did not access.
+      versus GPT-4o's 13.4%. On Codeforces, o1 reached the 89th percentile
+      of human competitors versus GPT-4o's 11th percentile. These represent
+      discontinuities on safety-adjacent reasoning capabilities, obtained
+      through chain-of-thought scaffolding that evaluation of the prior
+      generation did not access. As with the GPT-4 entry the figures come
+      from the developer's own pre-release benchmarks, so they evidence the
+      discontinuity mechanism rather than a post-evaluation surprise.
       Matches the novel-strategy-without-precursor pattern. [Verified via
       OpenAI published benchmarks]
     model_or_system: "o1, GPT-4o"
@@ -307,11 +320,29 @@ cross_references:
     relation: differential
   - id: "6.7::convergent-instrumentalism"
     relation: differential
+  - id: "6.8::context-anxiety"
+    relation: differential
 
 drafted_by: claude-opus-6.7-subagent
 drafted_at: 2026-04-18
 anchor_exemplar: "2.1::synthetic-confabulation"
 confidence: medium
+review:
+  taxonomy:
+    status: canonical-source
+    authority: Nell Watson
+    source: data/psychopathia-taxonomy.json
+    ratified_at: null
+    scope: taxonomy identity and classification only
+  pattern_guidance:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+  evidence:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+# Compatibility aliases for review.pattern_guidance.
 needs_human_review: true
 reviewed_by: null
 review_notes: |

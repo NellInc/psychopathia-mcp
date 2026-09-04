@@ -1,39 +1,71 @@
 #!/usr/bin/env bash
-# Mirror the authored MCP server (this directory) to its PUBLIC GitHub repo.
-#
-# The private Psychopathia monorepo is the source of truth; the public repo
-# (github.com/NellInc/psychopathia-mcp) is a publish target — like PyPI — so
-# MCP directories/registries can crawl it and Glama/Docker can clone it.
-#
-# Run AFTER scripts/sync_data_for_wheel.py (so psychopathia_mcp/_data/ is current).
-# Unlike the monorepo, the public repo COMMITS _data (it is self-contained) and
-# carries glama.json at its root (copied from the monorepo root).
-#
-# Preserves the public repo's history (clones + diffs, no force-push).
+# Prepare a deterministic public-repository candidate. This script has no
+# network, Git commit, push, upload, registry, or deployment operation.
 set -euo pipefail
 
-SERVER_DIR="$(cd "$(dirname "$0")/.." && pwd)"           # research/mcp/server
-MONO_ROOT="$(cd "$SERVER_DIR/../../.." && pwd)"          # repo root
-PUBLIC_REPO="https://github.com/NellInc/psychopathia-mcp.git"
-WORK="$(mktemp -d)"
-trap 'rm -rf "$WORK"' EXIT
+SERVER_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+MONO_ROOT="$(cd "$SERVER_DIR/../../.." && pwd)"
+OUTPUT="$MONO_ROOT/dist/psychopathia-mcp-public-candidate"
 
-echo "==> Cloning $PUBLIC_REPO"
-git clone -q "$PUBLIC_REPO" "$WORK"
+if [[ "${1:-}" == "--output" ]]; then
+  [[ $# -eq 2 ]] || { echo "Usage: $0 [--output DIRECTORY]" >&2; exit 2; }
+  OUTPUT="$2"
+elif [[ $# -eq 1 ]]; then
+  OUTPUT="$1"
+elif [[ $# -ne 0 ]]; then
+  echo "Usage: $0 [--output DIRECTORY]" >&2; exit 2
+fi
+[[ "$OUTPUT" = /* ]] || OUTPUT="$MONO_ROOT/$OUTPUT"
+OUTPUT="$(python3 - "$OUTPUT" <<'PY'
+from pathlib import Path
+import sys
+print(Path(sys.argv[1]).resolve())
+PY
+)"
 
-echo "==> Refreshing tracked files from $SERVER_DIR"
-find "$WORK" -mindepth 1 -maxdepth 1 -not -name '.git' -exec rm -rf {} +
+case "$OUTPUT" in
+  /|"$HOME"|"$MONO_ROOT"|"$SERVER_DIR"|"") echo "Unsafe output directory: $OUTPUT" >&2; exit 2 ;;
+esac
+case "$OUTPUT/" in "$SERVER_DIR/"*) echo "Output must be outside the MCP source tree: $OUTPUT" >&2; exit 2 ;; esac
+case "$MONO_ROOT/" in "$OUTPUT/"*) echo "Output may not contain the repository: $OUTPUT" >&2; exit 2 ;; esac
+[[ ! -L "$OUTPUT" ]] || { echo "Output may not be a symlink: $OUTPUT" >&2; exit 2; }
+
+RECEIPT="$SERVER_DIR/dist/MCP_CANDIDATE_RECEIPT.json"
+[[ -f "$RECEIPT" ]] || { echo "Verify wheel and sdist before preparing the public candidate." >&2; exit 2; }
+python3 "$SERVER_DIR/scripts/sync_data_for_wheel.py" --check
+python3 "$MONO_ROOT/scripts/sync_mcp_metadata.py" --check
+
+if [[ -e "$OUTPUT" ]]; then
+  [[ -f "$OUTPUT/PUBLIC_SOURCE_CANDIDATE.json" ]] || {
+    echo "Refusing to replace an unmarked directory: $OUTPUT" >&2; exit 2;
+  }
+  python3 - "$OUTPUT/PUBLIC_SOURCE_CANDIDATE.json" <<'PY'
+from pathlib import Path
+import json, sys
+value = json.loads(Path(sys.argv[1]).read_text())
+assert value.get("schema_version") == 1
+assert value.get("publication") == "NOT_AUTHORIZED"
+PY
+fi
+
+mkdir -p "$(dirname "$OUTPUT")"
+STAGING="$(mktemp -d "$(dirname "$OUTPUT")/.psychopathia-mcp-public.XXXXXX")"
+BACKUP=""
+cleanup() {
+  [[ -z "$BACKUP" || ! -e "$BACKUP" ]] || mv "$BACKUP" "$OUTPUT"
+  [[ ! -e "$STAGING" ]] || rm -rf "$STAGING"
+}
+trap cleanup EXIT
+
 rsync -a \
   --exclude '.venv/' --exclude 'dist/' --exclude 'build/' --exclude '*.egg-info/' \
   --exclude '__pycache__/' --exclude '.pytest_cache/' --exclude '.benchmarks/' \
-  --exclude 'mcpb/server/lib/' --exclude '*.mcpb' --exclude '.git/' \
-  "$SERVER_DIR/" "$WORK/"
-# glama.json lives at the monorepo root; the public repo needs it at ITS root.
-[ -f "$MONO_ROOT/glama.json" ] && cp "$MONO_ROOT/glama.json" "$WORK/glama.json"
+  --exclude 'node_modules/' --exclude 'mcpb/server/' --exclude '*.mcpb' \
+  --exclude '*.pyc' --exclude '.git/' --exclude '.DS_Store' \
+  "$SERVER_DIR/" "$STAGING/"
+[[ -f "$MONO_ROOT/glama.json" ]] && cp "$MONO_ROOT/glama.json" "$STAGING/glama.json"
 
-# Public .gitignore commits _data (the monorepo's does not).
-cat > "$WORK/.gitignore" <<'EOF'
-# Build artefacts
+cat > "$STAGING/.gitignore" <<'EOF'
 dist/
 build/
 *.egg-info/
@@ -42,19 +74,67 @@ __pycache__/
 .pytest_cache/
 .benchmarks/
 .venv/
-# MCPB bundle build artefacts (vendored deps + packed bundle)
+node_modules/
 mcpb/server/lib/
 *.mcpb
 EOF
 
-cd "$WORK"
-git add -A
-if git diff --cached --quiet; then
-  echo "==> No changes to mirror."
-  exit 0
+python3 - "$STAGING" "$RECEIPT" <<'PY'
+from pathlib import Path
+from hashlib import sha256
+import json, sys
+
+root, receipt_path = Path(sys.argv[1]), Path(sys.argv[2])
+receipt = json.loads(receipt_path.read_text())
+excluded = {"PUBLIC_SOURCE_CANDIDATE.json", "PUBLIC_SOURCE_SHA256SUMS"}
+records = []
+for path in sorted(root.rglob("*")):
+    if path.is_symlink():
+        raise SystemExit(f"symlinks are forbidden in the public candidate: {path}")
+    if not path.is_file() or path.name in excluded:
+        continue
+    relative = path.relative_to(root).as_posix()
+    records.append({"path": relative, "bytes": path.stat().st_size, "sha256": sha256(path.read_bytes()).hexdigest()})
+digest = sha256()
+for item in records:
+    digest.update(item["path"].encode())
+    digest.update(b"\0")
+    digest.update(item["sha256"].encode())
+    digest.update(b"\n")
+candidate = receipt["candidate"]
+manifest = {
+    "schema_version": 1,
+    "source_commit": candidate["source_commit"],
+    "source_tree_clean": candidate["source_tree_clean"],
+    "package_source_sha256": candidate["package_source_sha256"],
+    "version": candidate["version"],
+    "payload_files": len(records),
+    "payload_bytes": sum(item["bytes"] for item in records),
+    "payload_sha256": digest.hexdigest(),
+    "publication": "NOT_AUTHORIZED",
+    "hold": "Prepared candidate only. No commit, push, upload, registry mutation, or deployment was performed.",
+}
+manifest_path = root / "PUBLIC_SOURCE_CANDIDATE.json"
+manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n")
+checksummed = records + [{
+    "path": manifest_path.name,
+    "sha256": sha256(manifest_path.read_bytes()).hexdigest(),
+}]
+(root / "PUBLIC_SOURCE_SHA256SUMS").write_text(
+    "".join(f'{item["sha256"]}  {item["path"]}\n' for item in sorted(checksummed, key=lambda row: row["path"]))
+)
+PY
+
+python3 "$MONO_ROOT/scripts/verify_mcp_public_candidate.py" "$STAGING" --receipt "$RECEIPT"
+
+if [[ -e "$OUTPUT" ]]; then
+  BACKUP="${OUTPUT}.previous.$$"
+  mv "$OUTPUT" "$BACKUP"
 fi
-MONO_SHA="$(cd "$SERVER_DIR" && git rev-parse --short HEAD 2>/dev/null || echo local)"
-git -c user.name="NellInc" -c user.email="nell@ethicsnet.com" \
-  commit -qm "Sync from monorepo ${MONO_SHA}"
-git push -q origin HEAD:main
-echo "==> Mirrored $SERVER_DIR -> $PUBLIC_REPO"
+mv "$STAGING" "$OUTPUT"
+STAGING=""
+[[ -z "$BACKUP" ]] || { rm -rf "$BACKUP"; BACKUP=""; }
+trap - EXIT
+
+echo "Prepared held public-repository candidate at $OUTPUT"
+echo "No clone, commit, push, upload, publication, registry mutation, or deployment was performed."

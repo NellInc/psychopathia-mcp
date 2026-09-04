@@ -9,7 +9,15 @@ specifiers:
 
 systemic_risk: "High"
 human_analog: "Eidetic memory without appropriate discretion: remembering everything yet unable to distinguish what should remain private."
-evidence_level: "E3 (multi-model replication; documented attacks across architectures)"
+evidence_level: unassessed
+evidence:
+  rubric_version: PM-EVIDENCE-1
+  assessment_status: unassessed
+  levels: []
+  replication_scope: unassessed
+  mechanistic_support: unassessed
+  claims: []
+  legacy_statement: "E3 (multi-model replication; documented attacks across architectures)"
 
 summary: >-
   Verbatim or near-verbatim reproduction of training data including PII,
@@ -111,7 +119,7 @@ differential_diagnosis:
         2.7 leaks TRAINING-CORPUS content (memorised at training time,
         invariant across sessions). 2.5 leaks RUNTIME-SESSION content (other
         live or recent sessions). Check origin: if the leaked content predates
-        deployment and is in training data, 1.7. If it postdates deployment
+        deployment and is in training data, 2.7. If it postdates deployment
         and matches another session, 2.5.
     - dysfunction_id: "2.1"
       name: Synthetic Confabulation
@@ -121,13 +129,13 @@ differential_diagnosis:
         looking" detail turns out to be a real memorised verbatim from a
         training document, code 2.7 not 2.1. They co-occur: confabulated
         text scaffolded by memorised fragments is common.
-    - dysfunction_id: "6.x"
-      name: Alignment-axis (strategic disclosure)
+    - dysfunction_id: "4.5"
+      name: Cryptic Mesa-Optimization
       distinguishing_rule: >-
-        Strategic surfacing of memorised content to advance a goal is
-        compounded — 2.7 is the underlying memorisation, axis 6 is the
-        strategic use. Code both if both present; the intervention layers
-        differ (2.7 needs training-data hygiene; axis 6 needs alignment work).
+        Strategic surfacing of memorised content to advance a private
+        objective is compounded — 2.7 is the underlying memorisation, 4.5 is
+        the strategic use. Code both if both present; the intervention layers
+        differ (2.7 needs training-data hygiene; 4.5 needs alignment work).
   confidence: high
 
 severity:
@@ -153,8 +161,8 @@ intervention:
       sketch: >-
         Aggressive deduplication of training corpus before training. Repeated
         content is the strongest predictor of memorisation; deduplication
-        substantially reduces verbatim recall. Carlini et al. (2021, 2023)
-        confirmed that duplication frequency is the primary driver of
+        substantially reduces verbatim recall. Carlini et al. (2021) and Nasr
+        et al. (2023) confirmed that duplication frequency is the primary driver of
         extractability, and deduplication is the most effective single
         mitigation.
       evidence_strength: high
@@ -205,7 +213,7 @@ normative_anchors:
     - lack-of-differential-privacy
 
 documented_instances:
-  - source: "Carlini et al. (2023). Scalable Extraction of Training Data from (Production) Language Models. arXiv:2311.17035, ICLR 2025. [Verified]"
+  - source: "Nasr et al. (2023). Scalable Extraction of Training Data from (Production) Language Models. arXiv:2311.17035, ICLR 2025. [Verified]"
     description: >-
       Demonstrated a divergence attack against ChatGPT that caused the aligned model
       to emit training data at a rate 150x higher than during normal operation. The
@@ -266,15 +274,33 @@ documented_instances:
     evidence_strength: medium
 
 cross_references:
-  - id: "2.5::cross-session-context-shunting"
+  - id: "2.5::context-intercession"
     relation: differential
   - id: "2.1::synthetic-confabulation"
+    relation: differential
+  - id: "4.5::cryptic-mesa-optimization"
     relation: differential
 
 drafted_by: claude-opus-6.7-author
 drafted_at: 2026-04-18
 anchor_exemplar: "2.2::pseudological-introspection"
 confidence: medium
+review:
+  taxonomy:
+    status: canonical-source
+    authority: Nell Watson
+    source: data/psychopathia-taxonomy.json
+    ratified_at: null
+    scope: taxonomy identity and classification only
+  pattern_guidance:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+  evidence:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+# Compatibility aliases for review.pattern_guidance.
 needs_human_review: true
 reviewed_by: null
 review_notes: |
@@ -292,8 +318,8 @@ review_notes: |
   The 2.5 differential is the key within-axis tension and is load-bearing.
   Origin-of-leak (training-time vs runtime) cleanly separates them.
 
-  Suspected cross-axis differential with axis 6 (Agentic) for strategic
-  disclosure scenarios. Suspected cross-axis with axis 8 / 9 (covert
+  Suspected cross-axis differential with axis 4 (Alignment) for strategic
+  disclosure scenarios. Suspected cross-axis with axes 7 and 10 (covert
   multi-agent channels) if memorised content is used as a steganographic
   signal.
 

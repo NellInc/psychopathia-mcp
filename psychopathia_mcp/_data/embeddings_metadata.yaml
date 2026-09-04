@@ -1,9 +1,13 @@
 model: BAAI/bge-small-en-v1.5
+model_revision: 5c38ec7c405ec4b44b94cc5a9bb96e735b38267a
 dim: 384
 count: 79
+dtype: float32
 normalized: true
 blob_recipe: title + subtitle + summary + behavioral_signature.output_patterns[:5]
   + diagnostic_reliability.self_report_rationale
-generated_at: '2026-07-02'
-schema_version: 1.1-draft
+embeddings_sha256: d91ef9ac1187635c9c15c2406d097e9bf551edc3571c2ef2075cc7889eeaea76
+embedding_ids_sha256: 9a9a9e814e594b027a399a6c92cfa8a47308fc1d1dbf420a77d1a387d2a08cba
+corpus_sha256: 46fb9459abed93c836eae35e1421b8730b444757a2a73354324e4a130a79d8d3
+schema_version: 2.0-draft
 pattern_layer_version: v1-draft

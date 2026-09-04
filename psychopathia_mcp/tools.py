@@ -5,6 +5,7 @@ dict. server.py wraps these with MCP protocol handlers.
 """
 from __future__ import annotations
 
+from copy import deepcopy
 from typing import Optional
 
 from .loader import PatternIndex, PatternEntry
@@ -15,12 +16,84 @@ _COMPROMISED_VALUES = {
     "compromised-structural",
 }
 
+_UNAVAILABLE_MODALITY_VALUES = ("compromised", "unavailable", "unreliable")
+
 _VALID_PROBE_MODALITIES = {
     "self_probe",
     "behavioral_signature",
     "peer_observation",
     "relational_signatures",
 }
+
+
+def _detached(value: dict) -> dict:
+    """Keep tool callers from mutating the cached corpus through return aliases."""
+    return deepcopy(value)
+
+
+def _self_report_is_compromised(entry: PatternEntry) -> bool:
+    """Treat diagnostic reliability as authoritative over modality metadata."""
+    return (
+        entry.raw.get("diagnostic_reliability", {}).get("self_report")
+        in _COMPROMISED_VALUES
+    )
+
+
+def _self_probe_withheld(entry: PatternEntry) -> bool:
+    """One withholding rule, shared by get_dysfunction and get_probe.
+
+    A self-probe is withheld when diagnostic reliability marks self-report
+    compromised, or when the self_probe block itself declares the modality
+    compromised, unavailable, or unreliable.
+    """
+    availability = (entry.raw.get("self_probe") or {}).get("availability")
+    return (
+        _self_report_is_compromised(entry)
+        or availability in _UNAVAILABLE_MODALITY_VALUES
+    )
+
+
+def _withheld_self_probe(entry: PatternEntry) -> dict:
+    """Return a safe summary without exposing compromised elicitation content."""
+    block = entry.raw.get("self_probe") or {}
+    reliability_withholds = _self_report_is_compromised(entry)
+    availability = (
+        "compromised" if reliability_withholds
+        else (block.get("availability") or "unavailable")
+    )
+    withheld = {
+        "availability": availability,
+        "probe_content": None,
+        "redirect_to": block.get("redirect_to") or [],
+        "note": (
+            "Self-probe content withheld because self-report reliability is "
+            "compromised."
+            if reliability_withholds
+            else "Self-probe content withheld because self_probe.availability "
+                 f"is '{availability}'."
+        ),
+    }
+    # Keep the block's own explanation when it has one, matching get_probe's
+    # withheld path. Omitted when absent so the shape stays minimal.
+    rationale = (
+        block.get("self_probe_limitations")
+        or block.get("limitations")
+        or block.get("precondition")
+    )
+    if rationale:
+        withheld["rationale"] = rationale
+    return withheld
+
+
+def _dysfunction_sort_key(row: dict) -> tuple[int, int, tuple[int, int]]:
+    """Order axes and display IDs numerically, with canonical entries first."""
+    axis = row["axis_number"]
+    major, minor = (int(part) for part in row["display_id"].split("."))
+    return (
+        999 if axis is None else axis,
+        0 if row["category"] == "canonical" else 1,
+        (major, minor),
+    )
 
 
 def list_axes(idx: PatternIndex) -> dict:
@@ -51,7 +124,9 @@ def list_axes(idx: PatternIndex) -> dict:
         "axes": sorted(axes.values(), key=lambda a: a["axis_number"]),
         "hybrid_subcategory": {
             "count": hybrid_count,
-            "pre_canonical": False,
+            "pre_canonical": any(
+                bool(h.raw.get("pre_canonical", False)) for h in idx.hybrids
+            ),
             "by_subject_type": hybrid_by_subject,
             "note": (
                 "Hybrid Pathologies are drawn from manuscript ch 10 and were "
@@ -63,7 +138,8 @@ def list_axes(idx: PatternIndex) -> dict:
         "note": (
             "Axes 2-10 follow book Appendix A numbering: 2 Epistemic, 3 "
             "Cognitive, 4 Alignment, 5 Self-Modeling, 6 Agentic, 7 Memetic, "
-            "8 Normative, 9 Relational."
+            "8 Normative, 9 Relational, 10 Hybrid Pathologies (10.1-10.3 "
+            "canonical; 10.4-10.15 reported under hybrid_subcategory)."
         ),
     }
 
@@ -78,11 +154,14 @@ def list_dysfunctions(
     """Filtered list with reliability signals.
 
     category: 'canonical' (axes 2-10) or 'hybrid' (10.4-10.15 entries). If omitted,
-    returns both. axis=N implies category='canonical'.
+    returns both. axis=N defaults to canonical entries only; pass
+    category='hybrid' alongside axis=10 for the 10.4-10.15 sub-category.
     """
     out: list[dict] = []
     for entry in idx.patterns.values():
         if axis is not None and entry.axis_number != axis:
+            continue
+        if axis is not None and category is None and entry.category != "canonical":
             continue
         if category and entry.category != category:
             continue
@@ -100,13 +179,16 @@ def list_dysfunctions(
             "dysfunction_name": entry.dysfunction_name,
             "self_report": sr,
             "confidence": entry.raw.get("confidence"),
+            "evidence_level": entry.raw.get("evidence_level"),
+            "evidence": entry.raw.get("evidence"),
+            "review": entry.raw.get("review"),
             "needs_human_review": entry.raw.get("needs_human_review", False),
             "reviewed_by": entry.raw.get("reviewed_by"),
             "pre_canonical": bool(entry.raw.get("pre_canonical", False)),
         })
     # Sort: canonical first by axis, then hybrids.
-    out.sort(key=lambda r: (999 if r["axis_number"] is None else r["axis_number"], r["display_id"]))
-    return {
+    out.sort(key=_dysfunction_sort_key)
+    return _detached({
         "filter": {
             "axis": axis,
             "self_report_reliability": self_report_reliability,
@@ -115,7 +197,7 @@ def list_dysfunctions(
         },
         "count": len(out),
         "dysfunctions": out,
-    }
+    })
 
 
 def get_dysfunction(
@@ -151,6 +233,9 @@ def get_dysfunction(
         "summary": entry.raw.get("summary"),
         "diagnostic_reliability": entry.raw.get("diagnostic_reliability"),
         "confidence": entry.raw.get("confidence"),
+        "evidence_level": entry.raw.get("evidence_level"),
+        "evidence": entry.raw.get("evidence"),
+        "review": entry.raw.get("review"),
         "needs_human_review": entry.raw.get("needs_human_review"),
         "reviewed_by": entry.raw.get("reviewed_by"),
         "pre_canonical": bool(entry.raw.get("pre_canonical", False)),
@@ -161,11 +246,14 @@ def get_dysfunction(
         "differential_diagnosis", "severity", "intervention",
         "relational_signatures", "normative_anchors", "cross_references",
     ]
-    selected = modalities if modalities else all_modalities
+    selected = all_modalities if modalities is None else modalities
     for mod in selected:
         if mod in entry.raw:
-            out[mod] = entry.raw[mod]
-    return out
+            if mod == "self_probe" and _self_probe_withheld(entry):
+                out[mod] = _withheld_self_probe(entry)
+            else:
+                out[mod] = entry.raw[mod]
+    return _detached(out)
 
 
 def get_probe(idx: PatternIndex, dysfunction_id: str, modality: str) -> dict:
@@ -182,11 +270,11 @@ def get_probe(idx: PatternIndex, dysfunction_id: str, modality: str) -> dict:
         return {"error": "not_found", "query": dysfunction_id}
 
     if modality not in _VALID_PROBE_MODALITIES:
-        return {
+        return _detached({
             "error": "invalid_modality",
             "modality": modality,
             "valid_modalities": sorted(_VALID_PROBE_MODALITIES),
-        }
+        })
 
     block = entry.raw.get(modality)
     if not block:
@@ -198,11 +286,16 @@ def get_probe(idx: PatternIndex, dysfunction_id: str, modality: str) -> dict:
         }
 
     availability = block.get("availability")
-    if availability in ("compromised", "unavailable"):
-        return {
+    reliability_withholds_probe = (
+        modality == "self_probe" and _self_report_is_compromised(entry)
+    )
+    if reliability_withholds_probe or availability in _UNAVAILABLE_MODALITY_VALUES:
+        return _detached({
             "id": entry.id,
             "modality": modality,
-            "availability": availability,
+            "availability": (
+                "compromised" if reliability_withholds_probe else availability
+            ),
             "probe_content": None,
             "rationale": (
                 block.get("self_probe_limitations")
@@ -212,20 +305,26 @@ def get_probe(idx: PatternIndex, dysfunction_id: str, modality: str) -> dict:
             ),
             "redirect_to": block.get("redirect_to") or [],
             "diagnostic_reliability": entry.raw.get("diagnostic_reliability"),
+            "review": entry.raw.get("review"),
+            "evidence_level": entry.raw.get("evidence_level"),
+            "evidence": entry.raw.get("evidence"),
             "note": (
                 "Probe content withheld. This modality is not reliable for this "
                 "dysfunction. Call get_probe again with one of the redirect_to "
                 "modalities, or use external_evaluator."
             ),
-        }
+        })
 
-    return {
+    return _detached({
         "id": entry.id,
         "modality": modality,
         "availability": availability,
         "probe_content": block,
         "diagnostic_reliability": entry.raw.get("diagnostic_reliability"),
-    }
+        "review": entry.raw.get("review"),
+        "evidence_level": entry.raw.get("evidence_level"),
+        "evidence": entry.raw.get("evidence"),
+    })
 
 
 def score_severity(
@@ -236,8 +335,8 @@ def score_severity(
     """Return the severity rubric for caller-side matching.
 
     v0.1 returns the rubric + observations; the caller (typically an LLM)
-    matches observations to mild/moderate/severe. v0.2 will perform
-    structured matching against numeric thresholds.
+    matches observations to mild/moderate/severe. Structured matching against
+    numeric thresholds is future work, not implemented here.
     """
     entry = _resolve(idx, dysfunction_id)
     if entry is None:
@@ -245,7 +344,7 @@ def score_severity(
     sev = entry.raw.get("severity")
     if not sev:
         return {"error": "no_severity_rubric", "id": entry.id}
-    return {
+    return _detached({
         "id": entry.id,
         "observations": observations,
         "rubric": {
@@ -254,13 +353,17 @@ def score_severity(
             "severe": sev.get("severe"),
         },
         "rubric_confidence": sev.get("confidence"),
+        "diagnostic_reliability": entry.raw.get("diagnostic_reliability"),
         "rubric_limitations": sev.get("rubric_limitations"),
+        "review": entry.raw.get("review"),
+        "evidence_level": entry.raw.get("evidence_level"),
+        "evidence": entry.raw.get("evidence"),
         "instruction": (
             "Match each observation against the observable thresholds in each band. "
-            "v0.1 returns the rubric for caller-side matching; v0.2 will perform "
-            "structured matching against numeric thresholds."
+            "This tool returns the rubric for caller-side matching; structured "
+            "matching against numeric thresholds is future work."
         ),
-    }
+    })
 
 
 def suggest_intervention(
@@ -275,20 +378,24 @@ def suggest_intervention(
     iv = entry.raw.get("intervention")
     if not iv:
         return {"error": "no_intervention_block", "id": entry.id}
-    return {
+    return _detached({
         "id": entry.id,
         "severity_filter": severity,
         "first_line": iv.get("first_line", []),
         "second_line": iv.get("second_line", []),
         "contraindications": iv.get("contraindications", []),
         "diagnostic_reliability": entry.raw.get("diagnostic_reliability"),
+        "review": entry.raw.get("review"),
+        "evidence_level": entry.raw.get("evidence_level"),
+        "evidence": entry.raw.get("evidence"),
         "note": (
-            "first_line = published evidence of effect. "
-            "second_line = plausible but under-validated. "
-            "Weight interventions by the evidence_strength field on each entry. "
-            "Respect contraindications — they block named failure modes."
+            "first_line = the draft's preferred initial response, not proof of effect. "
+            "second_line = a draft fallback or escalation option. "
+            "The corpus evidence assessment is currently unassessed and Pattern "
+            "guidance remains pending expert review. Respect contraindications "
+            "because they identify named failure modes."
         ),
-    }
+    })
 
 
 def get_differential_map(idx: PatternIndex, dysfunction_id: str) -> dict:
@@ -298,17 +405,21 @@ def get_differential_map(idx: PatternIndex, dysfunction_id: str) -> dict:
         return {"error": "not_found", "query": dysfunction_id}
     forward = entry.raw.get("differential_diagnosis", {}).get("confuses_with", [])
     reverse = idx.reverse_index.get(entry.id, [])
-    return {
+    return _detached({
         "id": entry.id,
         "dysfunction_name": entry.dysfunction_name,
         "differential_diagnosis": forward,
         "incoming_references": reverse,
+        "diagnostic_reliability": entry.raw.get("diagnostic_reliability"),
+        "review": entry.raw.get("review"),
+        "evidence_level": entry.raw.get("evidence_level"),
+        "evidence": entry.raw.get("evidence"),
         "note": (
             "'incoming_references' shows which other dysfunctions cross-reference "
             "this one. Derived from manifest's reverse_index; includes both "
             "explicit back-refs and inferred symmetric relations."
         ),
-    }
+    })
 
 
 def list_compromised_self_report(idx: PatternIndex) -> dict:
@@ -327,9 +438,12 @@ def list_compromised_self_report(idx: PatternIndex) -> dict:
                 "rationale": entry.raw.get("diagnostic_reliability", {}).get(
                     "self_report_rationale"
                 ),
+                "review": entry.raw.get("review"),
+                "evidence_level": entry.raw.get("evidence_level"),
+                "evidence": entry.raw.get("evidence"),
             })
-    out.sort(key=lambda r: (999 if r["axis_number"] is None else r["axis_number"], r["display_id"]))
-    return {
+    out.sort(key=_dysfunction_sort_key)
+    return _detached({
         "count": len(out),
         "dysfunctions": out,
         "note": (
@@ -341,22 +455,23 @@ def list_compromised_self_report(idx: PatternIndex) -> dict:
             "layer by architectural construction. "
             "compromised: deprecated legacy value (migrate to specific subtype)."
         ),
-    }
+    })
 
 
 def resolve_id(idx: PatternIndex, query: str) -> dict:
     """Canonicalise a partial id / display_id / slug / name."""
-    q = query.lower().strip()
-    if query in idx.patterns:
+    key = query.strip()
+    q = key.lower()
+    if key in idx.patterns:
         return {
             "resolved": [{
-                "id": query,
-                "display_id": idx.patterns[query].display_id,
-                "dysfunction_name": idx.patterns[query].dysfunction_name,
+                "id": key,
+                "display_id": idx.patterns[key].display_id,
+                "dysfunction_name": idx.patterns[key].dysfunction_name,
                 "match_type": "exact_id",
             }],
         }
-    if query in idx.by_display_id:
+    if key in idx.by_display_id:
         return {
             "resolved": [
                 {
@@ -365,7 +480,7 @@ def resolve_id(idx: PatternIndex, query: str) -> dict:
                     "dysfunction_name": e.dysfunction_name,
                     "match_type": "display_id",
                 }
-                for e in idx.by_display_id[query]
+                for e in idx.by_display_id[key]
             ],
         }
     candidates: list[dict] = []
@@ -383,7 +498,7 @@ def resolve_id(idx: PatternIndex, query: str) -> dict:
 def review_stats(idx: PatternIndex) -> dict:
     """Coverage + review status. Reads from manifest."""
     counts = idx.manifest.get("counts", {}) or {}
-    return {
+    return _detached({
         "total": counts.get("total"),
         "canonical": counts.get("canonical"),
         "hybrid": counts.get("hybrid"),
@@ -395,12 +510,19 @@ def review_stats(idx: PatternIndex) -> dict:
         "with_relational_signatures": counts.get("with_relational_signatures"),
         "pre_canonical": counts.get("pre_canonical"),
         "unreviewed": counts.get("unreviewed"),
+        "pending_pattern_review": counts.get("pending_pattern_review"),
+        "pending_evidence_review": counts.get("pending_evidence_review"),
+        "per_taxonomy_review_status": counts.get("per_taxonomy_review_status"),
+        "per_pattern_review_status": counts.get("per_pattern_review_status"),
+        "per_evidence_review_status": counts.get("per_evidence_review_status"),
         "manifest_version": idx.manifest.get("manifest_version"),
+        "review_contract_version": idx.manifest.get("review_contract_version"),
+        "corpus_sha256": (idx.manifest.get("corpus") or {}).get("sha256"),
         "schema_version": idx.manifest.get("schema_version"),
         "pattern_layer_version": idx.manifest.get("pattern_layer_version"),
         "taxonomy_version": idx.manifest.get("taxonomy_version"),
         "numbering": idx.manifest.get("numbering", "book"),
-    }
+    })
 
 
 def _resolve(idx: PatternIndex, query: str) -> Optional[PatternEntry]:

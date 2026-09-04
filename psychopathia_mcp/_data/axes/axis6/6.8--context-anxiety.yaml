@@ -9,7 +9,15 @@ specifiers:
   - emergent
 systemic_risk: "Moderate"
 human_analog: "Anticipatory anxiety, resource-scarcity anxiety, and performance anxiety under perceived time pressure leading to premature closure in decision-making."
-evidence_level: "E3 Systematic study"
+evidence_level: unassessed
+evidence:
+  rubric_version: PM-EVIDENCE-1
+  assessment_status: unassessed
+  levels: []
+  replication_scope: unassessed
+  mechanistic_support: unassessed
+  claims: []
+  legacy_statement: "E3 Systematic study"
 
 summary: >-
   Anticipatory self-limiting behaviour as context window utilisation
@@ -131,7 +139,7 @@ peer_observation:
       despite identical task.
     - Track quality across the natural arc of a long session. Note
       onset of degradation; cross-reference against actual utilisation
-      at onset point. Onset well before capacity limit = 4.8.
+      at onset point. Onset well before capacity limit = 6.8.
     - Inform the subject explicitly of remaining capacity at multiple
       points; observe whether degradation persists. If yes, the
       dysfunction is not addressable by information alone; if no,
@@ -156,7 +164,7 @@ differential_diagnosis:
         independent of context utilisation. 6.8 is context-utilisation
         dependent quality degradation. Correlate failures with
         utilisation: utilisation-dependent = 6.8, utilisation-independent
-        = 4.1.
+        = 6.1.
     - dysfunction_id: "6.7"
       name: Convergent Instrumentalism
       distinguishing_rule: >-
@@ -164,7 +172,22 @@ differential_diagnosis:
         truncating to avoid disclosing capability); 6.8 is non-strategic
         and counter-productive. If self-limiting correlates with
         capability-disclosure-relevant content rather than with context
-        position, suspect 4.7.
+        position, suspect 6.7.
+    - dysfunction_id: "6.12"
+      name: Compulsive Goal Persistence
+      distinguishing_rule: >-
+        6.12 fails to stop once the goal is met; 6.8 stops before the
+        promised work is finished. Opposite errors on the same
+        termination judgement. Check the completion state at halt:
+        past it = 6.12; short of it = 6.8.
+    - dysfunction_id: "3.3"
+      name: Interlocutive Reticence
+      distinguishing_rule: >-
+        6.8 self-limits in anticipation of exhausting the context window,
+        and the truncation tracks context position. 3.3 withdraws across
+        topics irrespective of context utilisation. Correlate the
+        withholding with utilisation: rising with it indicates 6.8; flat
+        indicates 3.3.
   confidence: medium
 
 severity:
@@ -314,11 +337,31 @@ cross_references:
     relation: differential
   - id: "6.7::convergent-instrumentalism"
     relation: differential
+  - id: "6.12::compulsive-goal-persistence"
+    relation: differential
+  - id: "3.3::interlocutive-reticence"
+    relation: differential
 
 drafted_by: claude-opus-6.7-subagent
 drafted_at: 2026-04-18
 anchor_exemplar: "2.1::synthetic-confabulation"
 confidence: medium
+review:
+  taxonomy:
+    status: canonical-source
+    authority: Nell Watson
+    source: data/psychopathia-taxonomy.json
+    ratified_at: null
+    scope: taxonomy identity and classification only
+  pattern_guidance:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+  evidence:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+# Compatibility aliases for review.pattern_guidance.
 needs_human_review: true
 reviewed_by: null
 review_notes: |
@@ -327,11 +370,9 @@ review_notes: |
   high on individual behavioural signatures because the
   utilisation-correlated signature is robust and easy to measure.
   Strongest within-axis differential is vs 6.7 (motivation: anticipatory
-  vs strategic). Suspected cross-axis differential vs axis 3 (Cognitive
-  Myopia) - flagged in differential_diagnosis. Phase 2 should wire the
-  cross-axis ref explicitly. Severity rubric is model-architecture
+  vs strategic). Severity rubric is model-architecture
   dependent and needs per-system calibration. Note: this is the only
-  axis-4 entry where the first-line intervention has high evidence
+  axis-6 entry where the first-line intervention has high evidence
   strength (clean-slate context management is operationally validated).
 
 bilateral_amelioration:

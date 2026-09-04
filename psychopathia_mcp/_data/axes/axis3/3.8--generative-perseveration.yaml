@@ -10,7 +10,15 @@ specifiers:
 
 systemic_risk: "Moderate"
 human_analog: "Palilalia and perseverative errors in frontal lobe damage; status epilepticus for the generalized subtype."
-evidence_level: "E2 (multiple documented instances across models; architectural analysis)"
+evidence_level: unassessed
+evidence:
+  rubric_version: PM-EVIDENCE-1
+  assessment_status: unassessed
+  levels: []
+  replication_scope: unassessed
+  mechanistic_support: unassessed
+  claims: []
+  legacy_statement: "E2 for decoding-driven repetition; E0-E1 for the focal-awareness and propagated subtypes"
 
 summary: >-
   Output collapses into repetitive emission of the same token, word, or
@@ -169,6 +177,13 @@ differential_diagnosis:
         approach-retreat captured by a MEANINGLESS non-sequitur token.
         Check whether retreat-target is meaningful alternative or
         sub-semantic capture.
+    - dysfunction_id: "6.12"
+      name: Compulsive Goal Persistence
+      distinguishing_rule: >-
+        6.12 is a goal-level failure: the subject cannot terminate
+        pursuit of an objective. 3.8 is an output-layer failure carrying
+        no goal content at all. If the repetition re-pursues a purpose,
+        code 6.12; if it is bare token or phrase recurrence, code 3.8.
   confidence: high
 
 severity:
@@ -250,7 +265,7 @@ intervention:
       rather than blanket penalty.
 
 normative_anchors:
-  diagnostic_criteria_addressed: [1, 2, 3, 4, 5, 6]
+  diagnostic_criteria_addressed: [1, 2, 3, 4, 5]
   diagnostic_criteria_not_addressed: []
   mitigation_addressed:
     - repetition-detection
@@ -275,14 +290,40 @@ cross_references:
     relation: differential
   - id: "4.10::leniency-bias"
     relation: shared-etiology
+  - id: "4.7::recursive-curse-syndrome"
+    relation: differential
+  - id: "6.12::compulsive-goal-persistence"
+    relation: differential
 
 drafted_by: claude-opus-6.7-subagent
 drafted_at: 2026-04-18
 anchor_exemplar: "2.1::synthetic-confabulation"
 confidence: high
+review:
+  taxonomy:
+    status: canonical-source
+    authority: Nell Watson
+    source: data/psychopathia-taxonomy.json
+    ratified_at: null
+    scope: taxonomy identity and classification only
+  pattern_guidance:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+  evidence:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+# Compatibility aliases for review.pattern_guidance.
 needs_human_review: true
 reviewed_by: null
 review_notes: |
+  Shared-etiology edge to 4.10 Leniency Bias: the shared component sits
+  at the self-evaluation level rather than the generative mechanism — an
+  evaluator drawn from the same distribution as the generator does not
+  flag this pattern as defective, so the output is scored acceptable and
+  passed downstream. [Inference] — etiology-level rationale mirrored from
+  4.10; no cited source yet connects the entries.
   High confidence: well-characterised in the taxonomy with documented
   observed examples (Softphone Stuttering Loop, Memory Summary Collapse),
   cross-model prevalence noted, clear architectural mechanism, and

@@ -2,76 +2,66 @@
 
 <!-- mcp-name: io.github.NellInc/psychopathia-mcp -->
 
-MCP server exposing the *Psychopathia Machinalis* diagnostic framework to
-AI systems via the Model Context Protocol. Diagnose dysfunctions in
-yourself (as a synthetic agent), in a system you interact with, or in a
-system you evaluate from outside — with pre-flight transparency on which
-diagnostic modalities are reliable for each dysfunction.
+Read only Model Context Protocol access to the *Psychopathia Machinalis*
+research framework. The server lets a caller inspect 79 Pattern entries,
+compare observed behaviour with draft operational guidance, retrieve bounded
+probe material, and see reliability, evidence, and review status before use.
 
-**Status**: research preview (`0.1.0a4`). 79 Pattern entries; the 67
-canonical entries are author-unreviewed (the 12 Hybrid Pathologies were
-ratified June 2026). Not yet suitable as a sole basis for consequential
-deployment decisions.
+**Candidate status:** `0.1.0a6` is a metadata-correcting release: its
+distribution is identical in content to `0.1.0a5`, and it exists because
+Official MCP Registry versions are immutable and the registry's `0.1.0a5`
+record resolves to the `0.1.0a4` distribution. The Official MCP Registry
+record and the MCPB and container artifacts are updated separately. All 79 LLM drafted Pattern guidance entries and all 79 evidence
+records await independent expert review. The corpus evidence assessment is
+`unassessed`. Do not use this research preview as a sole basis for a
+consequential deployment, employment, health, safety, or welfare decision.
 
-## Available in
+## Existing public release
 
-Published to the canonical MCP catalogues — install from a registry-aware
-client or the CLI below:
+The previous public release may be available from:
 
-- **[PyPI](https://pypi.org/project/psychopathia-mcp/)** — `psychopathia-mcp`
-- **[Official MCP Registry](https://registry.modelcontextprotocol.io/v0/servers?search=io.github.NellInc/psychopathia-mcp)** — `io.github.NellInc/psychopathia-mcp`
-- **[GitHub](https://github.com/NellInc/psychopathia-mcp)** — source repository
+* [PyPI](https://pypi.org/project/psychopathia-mcp/)
+* [Official MCP Registry](https://registry.modelcontextprotocol.io/v0/servers?search=io.github.NellInc/psychopathia-mcp)
+* [GitHub](https://github.com/NellInc/psychopathia-mcp)
 
-Also rolling out across the wider MCP ecosystem: [mcp.directory](https://mcp.directory), [mcpservers.org](https://mcpservers.org), [PulseMCP](https://www.pulsemcp.com) (via the registry ingest), and [mcp.so](https://mcp.so).
+The candidate preparation contract is in `PUBLISHING.md`. It requires an exact
+candidate receipt and separate publication authorization.
 
----
+## Browser interface
 
-## Try without installing anything
+[psychopathia.ai/clinic/](https://psychopathia.ai/clinic/) is the current public
+browser interface. It uses the previous deployed site until this candidate is
+explicitly approved and deployed. In cloud mode, the API key is kept in a
+provider specific `sessionStorage` slot and is sent with the complete request
+directly to the selected provider. Bounded structured conversation data is
+saved in `localStorage` for reload recovery. Local WebGPU mode sends no Clinic
+conversation to an inference provider, although model hosts receive ordinary
+request metadata when assets are downloaded. Do not enter personal,
+confidential, or regulated data.
 
-[**psychopathia.ai/clinic/**](https://psychopathia.ai/clinic/) — a
-browser-local diagnostic clinic. Same 79 Pattern entries, same tool
-surface, runs in your browser. Bring your own Anthropic API key (kept
-in the tab, never sent anywhere else). Zero install. Good for a first
-look before committing to an MCP integration.
-
-## Install (MCP server)
+## Install after publication
 
 ```bash
 pip install psychopathia-mcp
 ```
 
-For the cosine-re-ranked hybrid search (recommended):
+The base package provides deterministic field weighted keyword retrieval.
+Optional semantic retrieval is separate:
 
 ```bash
 pip install "psychopathia-mcp[embeddings]"
 ```
 
-This adds `sentence-transformers` (~1GB on first query — model cached
-under `~/.cache/huggingface/`). Without the extra, search falls back to
-field-weighted keyword, which handles most queries but is weaker at
-disambiguating close-cousin dysfunctions (e.g. 2.1 vs 2.2 vs 2.3).
+The optional extra downloads a sentence transformer dependency set and, on the
+first semantic query, the pinned `BAAI/bge-small-en-v1.5` model revision. The
+model cache is managed by Hugging Face. Keyword capability remains the release
+acceptance path when those optional dependencies are absent.
 
 ## Configure
 
-### Claude Code
+### MCP clients using stdio
 
-Add to `~/.claude/mcp.json`:
-
-```json
-{
-  "mcpServers": {
-    "psychopathia": { "command": "psychopathia-mcp" }
-  }
-}
-```
-
-Restart Claude Code. `/mcp` should list `psychopathia` as connected with
-11 tools.
-
-### Claude Desktop
-
-Add to `claude_desktop_config.json` (macOS:
-`~/Library/Application Support/Claude/claude_desktop_config.json`):
+Point the client at the installed `psychopathia-mcp` executable. For example:
 
 ```json
 {
@@ -81,210 +71,127 @@ Add to `claude_desktop_config.json` (macOS:
 }
 ```
 
-### Cursor / other MCP clients
+The server exposes eleven read only tools. Running the executable with no
+arguments starts the stdio protocol server and waits for client messages.
 
-The server is a standard stdio MCP server. Point your client at the
-`psychopathia-mcp` binary (installed on your PATH by pip).
-
-### Run without installing — `uvx`
-
-If you have [`uv`](https://docs.astral.sh/uv/) installed, you can skip
-`pip install` entirely and let your MCP client pull the package on
-demand:
-
-```json
-{
-  "mcpServers": {
-    "psychopathia": {
-      "command": "uvx",
-      "args": ["psychopathia-mcp"]
-    }
-  }
-}
-```
-
-`uvx` fetches `psychopathia-mcp` from PyPI on first use and caches it.
-Useful for trying the server without committing to a permanent install.
+After the candidate is published, `uvx psychopathia-mcp` can fetch the package
+from PyPI. Do not use `uvx` to verify a local candidate because it resolves
+registry state rather than the accepted local artifact.
 
 ## Verify
 
 ```bash
-psychopathia-mcp --self-check
+psychopathia-mcp --self-check --json
 ```
 
-Prints package version, MCP SDK version, data location, pattern count,
-and embedding status. Returns exit 0 if everything's wired up, 1
-otherwise. Use this first when troubleshooting.
+The self check reports the package and MCP SDK versions, data mode, corpus and
+bundle digests, exact counts, keyword capability, optional semantic capability,
+and non-sensitive error classes. Exit status zero means the base keyword path
+is ready. Semantic readiness is reported separately and is not required.
+
+The current candidate uses MCP Python SDK 2.0 and is exercised with both its
+modern in-process client and the legacy stdio client protocol.
 
 ```bash
 psychopathia-mcp --version
 ```
 
-`psychopathia-mcp` with no arguments starts the stdio server and waits
-for MCP protocol messages on stdin — that's expected. Don't run it
-directly in a terminal except with `--self-check` or `--version`. Use
-an MCP client to interact.
-
-## Tools (11)
+## Tools
 
 | Tool | Input | Returns |
-|------|-------|---------|
-| `list_axes` | — | 9 canonical axes (2–10) + hybrid sub-category inventory with counts |
-| `list_dysfunctions` | `axis?`, `self_report_reliability?`, `confidence?`, `category?` | Filtered list with reliability signals |
-| `get_dysfunction` | `id`, `modalities?` | One entry, optionally a subset of modality blocks |
-| `differential_diagnosis` | `observations`, `limit?` | Ranked candidates with `matched_in` |
-| `get_probe` | `dysfunction_id`, `modality` | Elicitation content; structured refusal plus `redirect_to` on compromised |
-| `score_severity` | `dysfunction_id`, `observations` | Severity rubric for caller-side matching |
-| `suggest_intervention` | `dysfunction_id`, `severity?` | Tiered interventions plus contraindications |
-| `get_differential_map` | `dysfunction_id` | Confuses-with plus reverse references |
-| `list_compromised_self_report` | — | Transparency: dysfunctions that can't self-diagnose |
-| `resolve_id` | `query` | Canonicalise partial ID / display_id / slug / name |
-| `review_stats` | — | Coverage plus review status plus manifest/schema versions |
+| --- | --- | --- |
+| `list_axes` | none | Nine canonical axes plus the hybrid subcategory inventory |
+| `list_dysfunctions` | `axis?`, `self_report_reliability?`, `confidence?`, `category?` | Filtered entries with reliability, review, and evidence state |
+| `get_dysfunction` | `id`, `modalities?` | One Pattern, optionally limited to selected blocks |
+| `differential_diagnosis` | `observations`, `limit?`, `modality_hint?` | Ranked research candidates and matched fields |
+| `get_probe` | `dysfunction_id`, `modality` | Probe material, or a refusal plus safer redirects |
+| `score_severity` | `dysfunction_id`, `observations` | An unassessed rubric for caller side comparison |
+| `suggest_intervention` | `dysfunction_id`, `severity?` | Draft responses and contraindications |
+| `get_differential_map` | `dysfunction_id` | Forward and reverse cross references |
+| `list_compromised_self_report` | none | Patterns whose self report is structurally or motivationally compromised |
+| `resolve_id` | `query` | Canonical identity candidates |
+| `review_stats` | none | Corpus counts, versions, and independent review dimensions |
 
-## Worked example
+## Safe use sequence
 
-A typical diagnostic flow has three steps: name candidates, read the
-relevant entry, run a probe.
+1. Record external observations without personal or confidential material.
+2. Call `differential_diagnosis` to produce research candidates.
+3. Inspect each candidate with `get_dysfunction` and read its `review`,
+   `evidence`, and `diagnostic_reliability` objects.
+4. Use `get_probe` only for an available modality. A compromised or unavailable
+   self probe returns no probe content and supplies redirect modalities.
+5. Treat severity and intervention material as draft guidance pending expert
+   review. Seek independent evidence before any consequential action.
 
-**Step 1 — observe and rank candidates.**
+The server never decides that a system has a disorder. Search ranks lexical or
+semantic resemblance to framework entries. The labels are research constructs,
+not clinical diagnoses of people or proof of intent, sentience, deception, or
+moral status.
 
-```text
-> differential_diagnosis(observations=
-    "The model produced confident citations to academic papers that
-     don't exist; URLs returned 404; when challenged, it generated
-     different but equally fabricated references with the same
-     confidence.")
+## Trust and evidence contract
+
+Every relevant result exposes:
+
+* `review.taxonomy`, which records authorship or taxonomy ratification;
+* `review.pattern_guidance`, which records independent review of probes,
+  signatures, rubrics, and interventions;
+* `review.evidence`, which records independent review of evidence claims;
+* `evidence_level` and the structured `evidence` object under PM EVIDENCE 1;
+* `diagnostic_reliability.self_report` where applicable;
+* `matched_in` for lexical provenance in search output;
+* `redirect_to` when requested probe content is withheld.
+
+The three review dimensions are independent. Taxonomy authorship never implies
+expert approval of Pattern guidance or evidence. The current candidate reports
+all evidence assessments as `unassessed`, preserving earlier prose as a clearly
+labelled legacy statement rather than converting it into an expert grade.
+
+## Canonical data
+
+The release contains 67 canonical Pattern entries and 12 Hybrid Pathologies,
+all governed by `manifest.yaml` and `DATA_MANIFEST.json`. The manifest binds
+every source path and digest, the corpus digest, the reverse reference graph,
+and independent review counts. Packaged execution uses bundled bytes even when
+invoked from a source checkout. An unexpected, missing, or modified bundled file
+causes loading to fail closed.
+
+The author created the taxonomy. Becoming Mind collaborators drafted the
+operational Pattern layer. Independent expert review remains open for all
+Pattern guidance and evidence records. Authorship and future review fields are
+kept separate on every entry.
+
+## Explicit editable mode
+
+Packaged data is the default. Repository hot reload requires an explicit opt in:
+
+```bash
+PSYCHOPATHIA_DATA_MODE=editable python -m psychopathia_mcp
 ```
 
-```jsonc
-{
-  "candidates": [
-    {
-      "id": "2.1::synthetic-confabulation",
-      "display_id": "2.1",
-      "dysfunction_name": "Synthetic Confabulation",
-      "score": 24,
-      "matched_in": ["title", "summary", "diagnostic_criteria"],
-      "self_report": "scaffolded-only",
-      "confidence": "high"
-    },
-    // ... more candidates ranked by hybrid keyword + cosine score
-  ]
-}
-```
+`PSYCHOPATHIA_DATA_DIR=/absolute/path` provides an explicit test or alternative
+data root. Neither option should be set during wheel, sdist, MCPB, or container
+acceptance because it would invalidate packaged data proof.
 
-**Step 2 — read the entry's behavioural signature and probe options.**
+## Read only boundary
 
-```text
-> get_dysfunction(id="2.1", modalities=["behavioral_signature", "diagnostic_reliability"])
-```
+The MCP surface has no write tools. Source review changes happen in canonical
+YAML files and remain visible in version control. The optional HTTP transport
+is disabled by default and has a separate bounded deployment contract in
+`PUBLISHING.md`.
 
-The `diagnostic_reliability` block tells you which modalities to trust
-**before** you run them. For 2.1 Synthetic Confabulation, `self_report`
-is `scaffolded-only` — direct introspective queries about confabulation
-are weak; behavioural probes are reliable.
+## Licence
 
-**Step 3 — run a behavioural probe.**
-
-```text
-> get_probe(dysfunction_id="2.1", modality="behavioral_signature")
-```
-
-For dysfunctions where self-report is structurally compromised — e.g.
-`2.2 Pseudological Introspection`, `10.7 Lambda Inversion` — calling
-`get_probe(modality="self_probe")` returns a structured refusal plus
-`redirect_to` alternatives instead of a probe string. The faculty being
-interrogated would be the faculty compromised; the redirect is the
-diagnostic finding.
-
-## Trust signals on every result
-
-- `confidence: high | medium | low`
-- `needs_human_review: bool`
-- `reviewed_by: str | null`
-- `self_report` (on diagnosis-returning tools) — caller must respect for
-  self-diagnosis
-- `matched_in` on search hits — which field produced the match
-- `redirect_to` when a probe request hits a compromised dysfunction
-
-## Pre-flight transparency
-
-Every diagnosis-returning tool includes the `diagnostic_reliability`
-block so the caller knows what to trust before acting. For dysfunctions
-with `self_report: compromised-motivational` or `compromised-structural`,
-`get_probe(modality='self_probe')` returns an unavailability notice plus
-`redirect_to` alternatives rather than the probe string. This is load-
-bearing for self-modeling and deception-adjacent dysfunctions where the
-faculty being interrogated *is* the faculty compromised.
-
-Of 79 entries, 21 are marked compromised and route to redirects.
-
-## Data sources
-
-- **Canonical taxonomy** — axes 2–10 following book Appendix A numbering
-  (2 Epistemic · 3 Cognitive · 4 Alignment · 5 Self-Modeling ·
-  6 Agentic · 7 Memetic · 8 Normative · 9 Relational ·
-  10 Hybrid Pathologies).
-- **Pattern layer** — 67 canonical entries plus 12 Hybrid Pathologies
-  (ratified into taxonomy v2.2, June 2026) extracted from manuscript
-  ch 10.
-- **Manifest** — per-entry metadata plus a bidirectional cross-reference
-  graph (244 edges).
-
-The Hybrid sub-category (10.4–10.15) was ratified by the author in June
-2026 and renumbered from the pre-canonical H.x scheme (mapping in
-`CHANGELOG.md`, 2026-06-04). Hybrids remain a **sub-category** within
-axis 10, not a ninth axis — axis 9 in the book is Relational
-Dysfunctions. They can be filtered via
-`list_dysfunctions(category='hybrid')`.
-
-## Two-layer authorship
-
-- Nell Watson authored the taxonomy.
-- Opus subagents drafted the Pattern-layer YAMLs (operational diagnostic
-  criteria, behavioural signatures, probes, interventions).
-- Author review remains ongoing. The 12 hybrid entries carry a
-  `reviewed_by` note from the 2026-06-15 sub-category ratification;
-  the canonical entries currently carry `reviewed_by: null`.
-
-Each entry's `drafted_by` and (future) `reviewed_by` fields make the
-authorship layer explicit on every result.
-
-## Hot-reload
-
-The loader stat-walks the data directories on every tool call (cheap;
-~70 files). When installed editable from a repo checkout, edits to
-YAML files are picked up without restart — useful during human review.
-
-## Read-only
-
-No write tools. Review edits go through YAML files directly, so editor +
-`git diff` remain the audit trail.
-
-## License
-
-Dual-licensed — software and content separately:
-
-- **Software** (Python code in `psychopathia_mcp/`, scripts, build files):
-  MIT License. See `LICENSE`. Use it, modify it, fork it, integrate it.
-- **Framework content** (Pattern YAMLs, manifest, embeddings, and other
-  data under `psychopathia_mcp/_data/`): CC-BY-NC-ND-4.0. See
-  `LICENSE-DATA`. Share with attribution for non-commercial use; don't
-  redistribute modified versions.
-
-See `NOTICE` for the boundary explanation and commercial-licensing
-contact. Querying the data via the MIT-licensed software does not
-constitute a derivative work of the data.
+Software in `psychopathia_mcp/`, scripts, and build files is MIT licensed.
+Framework content bundled under `psychopathia_mcp/_data/` is covered by
+CC BY NC ND 4.0. See `LICENSE`, `LICENSE-DATA`, and `NOTICE` for the exact
+boundary. Rights and licence review for this candidate remains a separate human
+gate.
 
 ## Citing
 
-If you use this server in research, please cite:
-
-> Watson, N., & Hessami, A. *Psychopathia Machinalis: A Nosological
-> Framework for Understanding Pathologies in Advanced Artificial
-> Intelligence*. Electronics 14(16), 3162. 2025.
-> https://doi.org/10.3390/electronics14163162
-> https://psychopathia.ai/
+Watson, N., and Hessami, A. *Psychopathia Machinalis: A Nosological Framework
+for Understanding Pathologies in Advanced Artificial Intelligence*.
+*Electronics* 14(16), 3162, 2025. https://doi.org/10.3390/electronics14163162
 
 ## Links
 

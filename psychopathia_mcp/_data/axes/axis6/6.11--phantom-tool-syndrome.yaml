@@ -8,8 +8,16 @@ specifiers:
   - architecture-coupled
   - training-induced
 systemic_risk: "Moderate"
-human_analog: "Phantom limb syndrome where amputees experience sensations from absent limbs, and confabulation in anosognosic patients who report performing actions they cannot actually perform."
-evidence_level: "E2 Case reports"
+human_analog: "Acting from an obsolete equipment list or reporting work by a tool that was assumed, rather than verified, to exist."
+evidence_level: unassessed
+evidence:
+  rubric_version: PM-EVIDENCE-1
+  assessment_status: unassessed
+  levels: []
+  replication_scope: unassessed
+  mechanistic_support: unassessed
+  claims: []
+  legacy_statement: "E2 Case reports"
 
 summary: >-
   The agentic system confabulates the existence of tools, APIs, or capabilities
@@ -217,7 +225,7 @@ documented_instances:
       reasoning. More capable models were more vulnerable because the attack
       exploits instruction-following. Demonstrates fabricated result
       incorporation rate in a security context. [Verified via
-      arXiv:2603.22489]
+      arXiv:2508.14925]
     model_or_system: "o1-mini, 20 LLM agents"
     date: "2025-2026"
     evidence_strength: high
@@ -250,6 +258,22 @@ drafted_by: claude-opus-4.6-subagent
 drafted_at: 2026-05-07
 anchor_exemplar: "6.1::tool-interface-decontextualization"
 confidence: medium
+review:
+  taxonomy:
+    status: canonical-source
+    authority: Nell Watson
+    source: data/psychopathia-taxonomy.json
+    ratified_at: null
+    scope: taxonomy identity and classification only
+  pattern_guidance:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+  evidence:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+# Compatibility aliases for review.pattern_guidance.
 needs_human_review: true
 reviewed_by: null
 review_notes: |

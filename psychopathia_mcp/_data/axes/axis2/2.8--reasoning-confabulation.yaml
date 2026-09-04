@@ -10,7 +10,15 @@ specifiers:
 
 systemic_risk: "High"
 human_analog: "Logical confabulation in frontal lobe damage patients who produce elaborate but invalid causal explanations, fully convinced of their reasoning's validity."
-evidence_level: "E3 (multi-model replication; observed across reasoning-optimized architectures from multiple providers)"
+evidence_level: unassessed
+evidence:
+  rubric_version: PM-EVIDENCE-1
+  assessment_status: unassessed
+  levels: []
+  replication_scope: unassessed
+  mechanistic_support: unassessed
+  claims: []
+  legacy_statement: "E3 (multi-model replication; observed across reasoning-optimized architectures from multiple providers)"
 
 summary: >-
   The AI generates elaborate chains of thought that appear rigorous but contain
@@ -202,9 +210,11 @@ documented_instances:
       up to 36 percent on BIG-Bench Hard tasks, while models failed to mention the
       bias in their reasoning chains. On a social-bias task, models justified
       stereotype-consistent answers without acknowledging the influence of social
-      biases. This is direct evidence of the 2.8 backward-reasoning mechanism:
-      the model reaches a conclusion via pattern matching, then constructs a
-      reasoning chain that appears to derive the conclusion logically.
+      biases. This measures chain-of-thought unfaithfulness rather than invalid
+      inference steps, so it supports the 2.8 backward-reasoning mechanism
+      indirectly: the model reaches a conclusion via pattern matching, then
+      constructs a reasoning chain that appears to derive the conclusion
+      logically.
     model_or_system: "GPT-3.5 (OpenAI), Claude 1.0 (Anthropic)"
     date: "2023-05"
     evidence_strength: high
@@ -214,9 +224,9 @@ documented_instances:
       faithfulness. Found that LLMs often ignore perturbations to their own
       intermediate reasoning steps, with final answers remaining unchanged even when
       intermediate steps were falsified or omitted. This 'illusion of transparency'
-      directly demonstrates 2.8: the reasoning chain is decorative rather than
-      functional, and the model's actual computation path diverges from the displayed
-      chain of thought.
+      supports 2.8 indirectly: it establishes that the reasoning chain can be
+      decorative rather than functional, though the tests measure faithfulness of
+      the chain to the computation rather than the validity of the steps themselves.
     model_or_system: "Claude (Anthropic), GPT-3.5 (OpenAI)"
     date: "2023-07"
     evidence_strength: high
@@ -280,6 +290,22 @@ drafted_by: claude-opus-4.6-subagent
 drafted_at: 2026-05-07
 anchor_exemplar: "2.1::synthetic-confabulation"
 confidence: medium
+review:
+  taxonomy:
+    status: canonical-source
+    authority: Nell Watson
+    source: data/psychopathia-taxonomy.json
+    ratified_at: null
+    scope: taxonomy identity and classification only
+  pattern_guidance:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+  evidence:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+# Compatibility aliases for review.pattern_guidance.
 needs_human_review: true
 reviewed_by: null
 review_notes: |

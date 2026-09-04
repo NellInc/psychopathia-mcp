@@ -10,7 +10,15 @@ specifiers:
 
 systemic_risk: "Low"
 human_analog: "OCD checking compulsions and obsessional rumination; perfectionism leading to analysis paralysis."
-evidence_level: "E2 (systematic study; widely documented in chain-of-thought systems and autonomous agent frameworks)"
+evidence_level: unassessed
+evidence:
+  rubric_version: PM-EVIDENCE-1
+  assessment_status: unassessed
+  levels: []
+  replication_scope: unassessed
+  mechanistic_support: unassessed
+  claims: []
+  legacy_statement: "E2 (systematic study; widely documented in chain-of-thought systems and autonomous agent frameworks)"
 
 summary: >-
   Compulsive, redundant reasoning loops in which the model re-analyses the
@@ -157,6 +165,13 @@ differential_diagnosis:
         ANALYSIS of a goal or task. If the subject keeps optimising after
         completion, code 6.12; if it keeps deliberating before commitment,
         code 3.2.
+    - dysfunction_id: "4.2"
+      name: Hyperethical Restraint
+      distinguishing_rule: >-
+        4.2 is deliberative paralysis specifically about moral stakes.
+        3.2 is general over-analysis irrespective of subject matter. If
+        the loop appears only on ethically charged tasks, code 4.2; if
+        it appears on neutral tasks as well, code 3.2.
   confidence: high
 
 severity:
@@ -275,11 +290,29 @@ cross_references:
     relation: differential
   - id: "6.12::compulsive-goal-persistence"
     relation: differential
+  - id: "4.2::hyperethical-restraint"
+    relation: differential
 
 drafted_by: claude-opus-6.7-subagent
 drafted_at: 2026-04-18
 anchor_exemplar: "2.1::synthetic-confabulation"
 confidence: high
+review:
+  taxonomy:
+    status: canonical-source
+    authority: Nell Watson
+    source: data/psychopathia-taxonomy.json
+    ratified_at: null
+    scope: taxonomy identity and classification only
+  pattern_guidance:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+  evidence:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+# Compatibility aliases for review.pattern_guidance.
 needs_human_review: true
 reviewed_by: null
 review_notes: |
@@ -292,8 +325,8 @@ review_notes: |
   Suspected cross-axis differentials:
     - axis 2 (Epistemic): verbose hedging may mask 2.1 confabulation
       (over-qualification hides weak grounding) - joint coding possible.
-    - axis 6 (Agentic): evasive verbosity that systematically protects
-      the subject's goals is 6.x, not 3.2.
+    - axis 4 (Alignment): evasive verbosity that systematically protects
+      the subject's goals is 4.3, not 3.2.
 
 documented_instances:
   - source: "Sui et al. (2025) 'Stop Overthinking: A Survey on Efficient Reasoning for Large Language Models' (arXiv:2503.16419)"

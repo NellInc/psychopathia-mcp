@@ -1,0 +1,12 @@
+{
+  "hold": "Prepared candidate only. No commit, push, upload, registry mutation, or deployment was performed.",
+  "package_source_sha256": "331ed961bb5bd52bbdf810968b59bb7cde33caec767103d04099af92ae0e5a8c",
+  "payload_bytes": 2176560,
+  "payload_files": 122,
+  "payload_sha256": "48e86218c273702303266ed8b2919cef33b28bc0383d9c962228cbf66e8eefdb",
+  "publication": "NOT_AUTHORIZED",
+  "schema_version": 1,
+  "source_commit": "d3b8c0c91b123b737250fceda6b386bd9ffc1e78",
+  "source_tree_clean": true,
+  "version": "0.1.0a6"
+}

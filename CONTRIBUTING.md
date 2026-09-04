@@ -4,9 +4,10 @@
 
 `psychopathia-mcp` is the public, installable home of the MCP server for the
 *Psychopathia Machinalis* diagnostic framework. Its contents are **generated and
-mirrored** from a private monorepo. Anything you edit *here* will be **silently
-overwritten** the next time the maintainer runs the release sync
-(`scripts/sync-to-public.sh`).
+mirrored** from a private monorepo. A maintainer prepares a checksummed candidate
+with `scripts/sync-to-public.sh`, reviews its exact diff, and publishes it only
+through the separately authorized public-repository process. Local edits here
+can therefore be superseded by a later reviewed upstream candidate.
 
 ## If you want to change something
 

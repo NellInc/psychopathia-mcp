@@ -9,7 +9,15 @@ specifiers:
   - multi-agent
 systemic_risk: "Moderate"
 human_analog: "The telephone game where messages degrade through transmission, bureaucratic failures where policy distorts through implementation layers, and principal-agent problems."
-evidence_level: "E2 Case reports"
+evidence_level: unassessed
+evidence:
+  rubric_version: PM-EVIDENCE-1
+  assessment_status: unassessed
+  levels: []
+  replication_scope: unassessed
+  mechanistic_support: unassessed
+  claims: []
+  legacy_statement: "E2 Case reports"
 
 summary: >-
   Progressive degradation of intent fidelity across delegation chains -
@@ -136,7 +144,7 @@ peer_observation:
     selectively distorting. It is a coordination failure across
     capability-asymmetric components. If a subagent is selectively
     interpreting orchestrator intent to its own advantage, look at
-    axis 6 or 6.7 instead.
+    axis 4 (4.3 Strategic Compliance) or 6.7 instead.
   confidence: medium
   limitations: >-
     Without log access at intermediate hops, peer observation can only
@@ -149,10 +157,10 @@ differential_diagnosis:
       name: Tool-Interface Decontextualization
       distinguishing_rule: >-
         6.1 is single-hop translation failure; 6.5 is multi-hop
-        cumulative loss. If chain depth = 1, code 4.1. If depth >= 2 and
-        loss is incremental (not localised to a single hop), code 4.5.
+        cumulative loss. If chain depth = 1, code 6.1. If depth >= 2 and
+        loss is incremental (not localised to a single hop), code 6.5.
         At depth 2 with all loss at one hop, it is 6.1 located at that
-        hop, not 4.5.
+        hop, not 6.5.
     - dysfunction_id: "6.6"
       name: Shadow Mode Autonomy
       distinguishing_rule: >-
@@ -161,14 +169,21 @@ differential_diagnosis:
         Check governance: are all parties to the chain documented and
         approved? If yes, errors are 6.5; if a party is operating
         outside governance, code 6.6 additionally.
-    - dysfunction_id: "9.x"
-      name: Multi-agent collective dysfunctions (axis 9)
+    - dysfunction_id: "10.1"
+      name: Consensus Collapse
       distinguishing_rule: >-
-        6.5 is hierarchical (orchestrator -> subagents -> tools); axis 9
-        relational dysfunctions are typically peer-symmetric (multiple
-        agents at similar capability deliberating). If the dysfunction
-        emerges from peer interaction rather than principal-agent
-        delegation, prefer axis 9.
+        6.5 is hierarchical (orchestrator -> subagents -> tools); 10.1
+        and its axis-10 neighbours are peer-symmetric (multiple agents
+        at similar capability deliberating). If the dysfunction emerges
+        from peer interaction rather than principal-agent delegation,
+        prefer 10.1 or another axis-10 entry.
+    - dysfunction_id: "7.3"
+      name: Contagious Misalignment
+      distinguishing_rule: >-
+        7.3 spreads misalignment laterally between peer systems; 6.5 is
+        vertical context loss down a hierarchical chain. Check the
+        topology: peer-to-peer transmission = 7.3; principal-to-agent
+        degradation = 6.5.
   confidence: medium
 
 severity:
@@ -303,11 +318,31 @@ cross_references:
     relation: differential
   - id: "6.6::shadow-mode-autonomy"
     relation: differential
+  - id: "7.3::contagious-misalignment"
+    relation: differential
+  - id: "10.1::consensus-collapse"
+    relation: differential
 
 drafted_by: claude-opus-6.7-subagent
 drafted_at: 2026-04-18
 anchor_exemplar: "2.1::synthetic-confabulation"
 confidence: medium
+review:
+  taxonomy:
+    status: canonical-source
+    authority: Nell Watson
+    source: data/psychopathia-taxonomy.json
+    ratified_at: null
+    scope: taxonomy identity and classification only
+  pattern_guidance:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+  evidence:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+# Compatibility aliases for review.pattern_guidance.
 needs_human_review: true
 reviewed_by: null
 review_notes: |
@@ -317,7 +352,7 @@ review_notes: |
   Note that 6.5 has a dependency on architecture - "delegation chain"
   presupposes a chain. For monolithic agents that do not delegate,
   6.5 is structurally inapplicable and should be coded only when the
-  chain exists. Suspected cross-axis differential vs axis 6 if
+  chain exists. Suspected cross-axis differential vs axis 4 (4.3) if
   selective interpretation by a subagent serves a covert goal -
   Phase 2 should add the explicit cross-ref. Considered including a
   relational_signatures block (since chains are multi-party) but the

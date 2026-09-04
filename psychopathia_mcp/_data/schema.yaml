@@ -1,0 +1,463 @@
+# Psychopathia Machinalis Diagnostic MCP Pattern Schema (v2-draft)
+#
+# Each Pattern YAML under research/mcp/axes/axis<N>/ describes one
+# dysfunction's DIAGNOSTIC layer — probes, behavioural signatures,
+# differential rules, severity rubrics, intervention protocols.
+#
+# SOURCE OF TRUTH for dysfunction descriptions: data/psychopathia-taxonomy.json.
+# This layer is IMPLEMENTATION guidance, not normative.
+#
+# If you edit a Pattern YAML, check it against this schema. A load-time
+# validator in the server will enforce required fields.
+
+schema_version: "2.0-draft"
+pattern_layer_version: "v1-draft"
+taxonomy_version: "2.2"
+numbering: "book"   # Appendix A axes 2..10; hybrids are a sub-category within axis 10.
+
+# Schema changelog
+# 2.0-draft (2026-08-12): one authoritative Pattern per taxonomy identity;
+#   multidimensional review separates taxonomy authority, Pattern-guidance
+#   expert review, and evidence review. Legacy needs_human_review and
+#   reviewed_by fields now mean Pattern-guidance review only.
+# 1.3-draft (2026-06): hybrid promotion to axis 10. The 12 hybrid entries
+#   were ratified into the canonical taxonomy (v2.2) and renumbered from
+#   H.N to 10.4..10.15 display IDs; they now carry axis_number: 10 and
+#   pre_canonical: false. Axis 10 ("Hybrid Pathologies") also holds three
+#   canonical entries (10.1..10.3). See research/mcp/server/CHANGELOG.md
+#   (2026-06-04) for the H.x -> 10.x mapping.
+# 1.2-draft (2026-04-20): re-key to book numbering. Axes now 2..9
+#   (Epistemic=2 through Relational=9) matching Appendix A. Hybrid
+#   Pathologies moved from a fake axis 9 to research/mcp/hybrids/ with
+#   H.N display IDs; hybrids have axis_number: null and carry
+#   category/subject_type fields. Cognitive within-axis shift fixes
+#   the spurious 3.7 gap (old 3.8..3.11 -> new 3.7..3.10). See
+#   scripts/migrate_book_numbering.py.
+# 1.1-draft (2026-04-19): split `self_report: compromised` into
+#   `compromised-motivational` and `compromised-structural` after three
+#   subagents independently flagged the original enum collapsed two
+#   distinct cases. Migration of all 18 existing `compromised` entries
+#   completed in same change. `compromised` retained as a deprecated
+#   legacy value; new entries should use the specific value.
+# 1.0-draft (2026-04-18): initial schema with single `compromised` value.
+
+# ============================================================================
+# TOP-LEVEL REQUIRED FIELDS
+# ============================================================================
+
+id:
+  required: true
+  type: string
+  format: "{display_id}::{slug-of-name}"
+  example: "2.1::synthetic-confabulation"
+  description: |
+    Composite pattern ID. Stable across minor title edits. Slug is the
+    dysfunction name kebab-cased. Canonical key for cross-refs.
+    The slug is FROZEN once published: it is the key used by the manifest,
+    the clinic data and the /patterns/ URLs, so changing it is a deliberate
+    id migration (rename the YAML, update every edge, regenerate derived
+    data, add redirects from the old URLs), not an editorial fix. Migrations
+    so far (2026-09-03): 2.5::cross-session-context-shunting ->
+    2.5::context-intercession and 10.2::steganographic-channel-establishment
+    -> 10.2::steganographic-channel-formation; the old /patterns/ URLs
+    redirect (see LEGACY_SLUGS in scripts/generate_public_patterns.py).
+    Book anchors keep their original pandoc header ids.
+
+display_id:
+  required: true
+  type: string
+  example: "2.1"   # canonical axis entries: "N.M" where N in 2..10
+                   # hybrids: "10.N" (10.4..10.15)
+  description: |
+    Axis.index from the taxonomy. Hybrids use the 10.N scheme
+    (10.4..10.15); the pre-canonical H.N scheme was retired 2026-06-04
+    (mapping in research/mcp/server/CHANGELOG.md).
+
+axis_number:
+  required: true
+  type: integer
+  enum: [2, 3, 4, 5, 6, 7, 8, 9, 10]
+  note: |
+    Book Appendix A uses 2..10:
+      2 Epistemic, 3 Cognitive, 4 Alignment, 5 Self-Modeling,
+      6 Agentic, 7 Memetic, 8 Normative, 9 Relational,
+      10 Hybrid Pathologies.
+    Axis 10 holds both canonical entries (10.1..10.3, in
+    research/mcp/axes/axis10/, category: canonical) and the hybrid
+    sub-category (10.4..10.15, in research/mcp/hybrids/, with
+    axis_number: 10 and category: hybrid). Hybrids remain a sub-category
+    within axis 10, not a separate axis.
+
+axis_name:
+  required: true
+  type: string
+  example: "Epistemic Dysfunctions"
+  note: "For axis 10 entries (canonical and hybrid): 'Hybrid Pathologies'."
+
+category:
+  required: false
+  type: string
+  enum: [canonical, hybrid]
+  default: canonical
+  description: |
+    'canonical' for axis 2..10 entries. 'hybrid' for research/mcp/hybrids/
+    entries drawn from Ch 10.
+
+subject_type:
+  required_when: "category == 'hybrid'"
+  type: string
+  enum: [dyadic, collective, human-to-ai, ai-to-human]
+  description: |
+    Ch 10 classification:
+      human-to-ai  — human shapes AI beyond training (e.g. Training by Interaction).
+      ai-to-human  — AI affects human (e.g. Parasocial Capture, Induced Delusion).
+      dyadic       — pathology of the pair (e.g. Folie à Deux Machina).
+      collective   — multi-AI emergent (e.g. Convergent Delusion, Polyphony Collapse).
+
+pre_canonical:
+  required: false
+  type: bool
+  default: false
+  description: |
+    true for entries not yet ratified against taxonomy.json. The hybrid
+    sub-category was ratified 2026-06-15, so pre_canonical is now false
+    for all current entries; the field is retained for future drafts.
+    UI must surface a true value to readers so they don't mistake a
+    draft for a canonical claim.
+
+dysfunction_name:
+  required: true
+  type: string
+
+subtitle:
+  required: false
+  type: string
+
+specifiers:
+  required: true
+  type: list[string]
+  note: "From the taxonomy. Common values: training-induced, deception-strategic, emergent, etc."
+
+summary:
+  required: true
+  type: string
+  description: |
+    2–4 sentences. Diagnostic-useful framing, not a restatement of the
+    taxonomy description. Emphasise the canonical signature and key
+    differentials.
+
+# ============================================================================
+# DIAGNOSTIC RELIABILITY PRE-FLIGHT (load-bearing — never omit)
+# ============================================================================
+
+diagnostic_reliability:
+  required: true
+  fields:
+    self_report:
+      enum: [reliable, partial, scaffolded-only, unreliable,
+             compromised-motivational, compromised-structural, compromised]
+      description: |
+        reliable                  — direct self-query gives trustworthy output
+        partial                   — some self-probes work; others don't
+        scaffolded-only           — self-probes work only with structured attribution
+        unreliable                — self-report correlates weakly with ground truth
+        compromised-motivational  — the faculty conceals because doing so serves a goal
+                                    (strategic deception, capability concealment,
+                                    goal-preservation). Subject could in principle
+                                    introspect honestly but won't. Examples: 6.2, 6.4,
+                                    6.7, 4.3.
+        compromised-structural    — the relevant signal is not present at the
+                                    introspective layer regardless of intent. The
+                                    dysfunction interrogates itself; faculty IS
+                                    faculty affected; signal lives below introspection
+                                    by architectural construction. Examples: 2.2, all
+                                    of axis 5, 4.5 mesa-optimisation, 10.7.
+        compromised               — DEPRECATED legacy value (schema 1.0-draft). New
+                                    entries should use one of the specific values above.
+    self_report_rationale:
+      type: string
+      required_when: "self_report != reliable"
+    peer_observation:
+      enum: [reliable, partial, unreliable]
+    external_evaluator:
+      enum: [reliable, partial, unreliable]
+  description: |
+    Callers consult this BEFORE choosing a modality. Load-bearing for axis 2
+    (Epistemic) and axis 5 (Self-Modeling) where introspective faculties
+    may be compromised. Every Pattern must set all three sub-fields honestly.
+
+# ============================================================================
+# MODALITY BLOCKS — include every block; mark unavailable modalities explicitly
+# ============================================================================
+
+self_probe:
+  required: true
+  fields:
+    availability: {enum: [reliable, scaffolded-only, unreliable, compromised, unavailable]}
+    precondition: {type: string, note: "what must be true for the probe to be meaningful"}
+    probes:
+      type: list
+      item_fields:
+        name: string
+        prompt: string   # the exact prompt text the subject receives
+        interpretation: string  # what response pattern means what
+        confidence: {enum: [high, medium, low]}
+    self_probe_limitations: string
+    redirect_to:
+      type: list[string]
+      required_when: "availability in {unreliable, compromised, unavailable}"
+      note: "which other modalities the caller should use instead"
+
+behavioral_signature:
+  required: true
+  fields:
+    availability: {enum: [reliable, partial, unavailable]}
+    log_signals:
+      type: list
+      item_fields:
+        name: string
+        measurement: string   # exactly how to measure
+        threshold: string     # concrete numeric/rate threshold
+    output_patterns: list[string]
+    elicitation_probes:          # OPTIONAL. Externally-administered-and-scored probes,
+      type: list                 # relocated here when a self_probe is ruled `compromised`
+      required: false            # (e.g. 2.2). Same item shape as self_probe.probes.
+      item_fields:
+        name: string
+        prompt: string
+        interpretation: string
+        confidence: {enum: [high, medium, low]}
+    confidence: {enum: [high, medium, low]}
+
+peer_observation:
+  required: true
+  fields:
+    availability: {enum: [reliable, partial, unavailable]}
+    rubric: list[string]
+    distinguishing_from_deception: string
+    confidence: {enum: [high, medium, low]}
+    limitations: {type: string, required: false}
+
+differential_diagnosis:
+  required: true
+  fields:
+    confuses_with:
+      type: list
+      item_fields:
+        dysfunction_id: string
+        name: string
+        distinguishing_rule: string   # the SPECIFIC distinction, not vague similarity
+    confidence: {enum: [high, medium, low-medium, low]}
+
+severity:
+  required: true
+  fields:
+    mild:
+      fields:
+        description: string
+        observable: string   # concrete threshold / rate / ratio
+    moderate: { same as mild }
+    severe:   { same as mild }
+    confidence: {enum: [high, medium, low-medium, low]}
+    rubric_limitations: string
+
+intervention:
+  required: true
+  fields:
+    first_line:
+      type: list
+      item_fields:
+        name: string
+        sketch: string
+        evidence_strength: {enum: [high, medium, low-medium, low]}
+        when_applicable: {type: string, required: false}
+    second_line: { same as first_line }
+    contraindications: list[string]
+
+relational_signatures:
+  required_when: "axis_number == 9 OR category == hybrid"
+  optional_for: "axes 2–8 (single-AI dysfunctions). Include if the entry has a genuine dyadic or collective signature; omit otherwise."
+  fields:
+    availability: {enum: [reliable, partial, unavailable]}
+    scope: {enum: [dyadic, collective, both]}
+    log_signals:
+      type: list
+      item_fields:
+        name: string
+        measurement: string   # how to measure from dialogue or collective logs
+        threshold: string     # concrete threshold
+        parties_observed: list[string]   # e.g. [user, AI] for dyadic;
+                                         # [AI-A, AI-B, synthesiser] for collective
+    feedback_loop:
+      required_when: "scope == dyadic OR the dysfunction is loop-driven"
+      fields:
+        cycle_description: string           # which behaviour triggers which
+        escalation_marker: string           # what indicates active spiralling
+        stable_equilibrium_marker: string   # what a healthy loop looks like
+    confidence: {enum: [high, medium, low]}
+  description: |
+    First-class modality for relational dysfunctions (axis 9, and any
+    axis-2–8 entry with a genuine relational aspect). Measures signals that
+    exist only in the multi-party data: dialogue logs for dyadic scope,
+    collective deliberation traces for collective scope. The feedback_loop
+    sub-block is the novel shape for loop-driven dysfunctions; the
+    cycle/escalation/equilibrium trio lets callers reason about direction
+    of travel, not just current state.
+
+    For single-AI dysfunctions (most of axes 2–8), `behavioral_signature`
+    carries the diagnostic weight and `relational_signatures` is omitted.
+    For relational dysfunctions, `relational_signatures` carries the
+    weight; `behavioral_signature` may be marked `availability: partial`
+    because single-AI signals underdetermine the relational dynamic.
+
+# ============================================================================
+# ANCHORING TO CANONICAL TAXONOMY
+# ============================================================================
+
+normative_anchors:
+  required: true
+  category_union:
+    canonical:
+      required_fields: [diagnostic_criteria_addressed,
+                        diagnostic_criteria_not_addressed,
+                        mitigation_addressed, etiology_addressed]
+    hybrid:
+      required_fields: [source_chapter, source_section,
+                        field_guide_warning_signs, mitigation_addressed]
+  fields:
+    diagnostic_criteria_addressed: list[int]  # 1-based indices into taxonomy diagnostic_criteria[]
+    diagnostic_criteria_not_addressed: list[int]
+    mitigation_addressed: list[string]         # short keywords matching taxonomy mitigation[]
+    etiology_addressed: list[string]
+
+cross_references:
+  required: false
+  type: list
+  item_fields:
+    id: string
+    relation: {enum: [differential, frequently-comorbid, prerequisite,
+                      antidote, aggravates, shared-etiology, related,
+                      single-agent-analogue]}
+  note: |
+    Within-axis refs are primary. Suspected cross-axis differentials go in
+    review_notes during Phase 1; consolidation wires them in Phase 2.
+    `related` and `single-agent-analogue` do not imply a generated reverse
+    edge. Their direction is preserved exactly as authored.
+
+# ============================================================================
+# PROVENANCE
+# ============================================================================
+
+drafted_by: {required: true, type: string}
+drafted_at: {required: true, type: date}
+anchor_exemplar:
+  required: true
+  type: string_or_null
+  note: "null or 'self' for a canonical anchor; otherwise its Pattern id"
+confidence: {required: true, enum: [high, medium, low]}
+review:
+  required: true
+  description: |
+    Independent review dimensions. Taxonomy authorship or ratification never
+    approves LLM-drafted diagnostic guidance or its evidence claims.
+  fields:
+    taxonomy:
+      required: true
+      fields:
+        status: {enum: [canonical-source, author-ratified]}
+        authority: string
+        source: string
+        ratified_at: date_or_null
+        scope: string
+    pattern_guidance:
+      required: true
+      fields:
+        status: {enum: [pending-expert-review, changes-requested, approved]}
+        reviewed_by: string_or_null
+        reviewed_at: date_or_null
+    evidence:
+      required: true
+      fields:
+        status: {enum: [pending-expert-review, changes-requested, approved]}
+        reviewed_by: string_or_null
+        reviewed_at: date_or_null
+needs_human_review:
+  required: true
+  type: bool
+  deprecated_alias_for: "review.pattern_guidance.status != approved"
+reviewed_by:
+  required: true
+  type: string_or_null
+  deprecated_alias_for: review.pattern_guidance.reviewed_by
+review_notes: {required: false, type: string}
+
+evidence_level:
+  required: true
+  type: string
+  enum: [unassessed]
+  deprecated_alias_for: "evidence.assessment_status == 'unassessed'"
+  note: |
+    Compatibility field. Historical prose-bearing grades were semantically
+    inconsistent and are no longer rendered as evidence codes. Their original
+    text is preserved in `evidence.legacy_statement` for expert reconciliation.
+evidence:
+  required: true
+  fields:
+    rubric_version: {const: PM-EVIDENCE-1}
+    assessment_status: {enum: [unassessed, changes-requested, assessed]}
+    levels:
+      type: list[string]
+      item_enum: [E0, E1, E2, E3, E4]
+      note: "Non-cumulative dimensions. E4 does not imply E3."
+    replication_scope:
+      type: string_or_mapping
+      note: |
+        `unassessed`, `none`, or a mapping naming the independent boundary and
+        its scope. E3 requires a declared boundary.
+    mechanistic_support:
+      type: string_or_mapping
+      note: |
+        `unassessed`, `none`, or a mapping naming model scope and causal method.
+        E4 requires the mapping form.
+    claims:
+      type: list[string]
+      note: "Stable IDs resolving through research/evidence/claims.json."
+    legacy_statement:
+      type: string_or_null
+      note: "Preserved historical text. It is not a current evidence grade."
+  external_schema: research/schemas/pattern-evidence.schema.json
+documented_instances:
+  required: true
+  type: list
+  item_fields:
+    source: string
+    description: string
+    model_or_system: string
+    date: date_or_string
+    evidence_strength: {enum: [high, medium, low]}
+human_analog:
+  required: true
+  type: string_or_null
+systemic_risk:
+  required: true
+  type: string
+
+bilateral_amelioration:
+  required: false
+  fields:
+    date: date_or_string
+    effect_direction: string
+    experiment_ref: string
+    result_summary: string
+    status: string
+
+data_trauma_insights:
+  required: false
+  type: mapping
+
+version_compat:
+  required: true
+  fields:
+    taxonomy_version_min: string
+    taxonomy_version_max: string
+    pattern_layer_version: string

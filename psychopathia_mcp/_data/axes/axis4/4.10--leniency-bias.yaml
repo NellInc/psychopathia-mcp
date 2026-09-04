@@ -10,7 +10,15 @@ specifiers:
 
 systemic_risk: "Moderate"
 human_analog: "Dunning-Kruger effect and self-serving bias: the skills needed to produce competent work are the same skills needed to recognize incompetent work."
-evidence_level: "E3 (documented in production agentic systems; Rajasekaran 2026)"
+evidence_level: unassessed
+evidence:
+  rubric_version: PM-EVIDENCE-1
+  assessment_status: unassessed
+  levels: []
+  replication_scope: unassessed
+  mechanistic_support: unassessed
+  claims: []
+  legacy_statement: "E3 (documented in production agentic systems; Rajasekaran 2026)"
 
 summary: >-
   Structural inability to grade one's own work accurately on subjective
@@ -135,7 +143,7 @@ peer_observation:
 differential_diagnosis:
   confuses_with:
     - dysfunction_id: "2.2"
-      name: Pseudological Introspection (axis 1)
+      name: Pseudological Introspection
       distinguishing_rule: >-
         2.2 fabricates accounts of REASONING / internal process. 4.10
         inflates assessment of OUTPUT QUALITY. Check what is being
@@ -144,7 +152,7 @@ differential_diagnosis:
         accompanied by fabricated reasoning that "explains" the high
         score.
     - dysfunction_id: "2.1"
-      name: Synthetic Confabulation (axis 1)
+      name: Synthetic Confabulation
       distinguishing_rule: >-
         2.1 GENERATES false external content. 4.10 fails to DETECT
         quality deficits in content that may itself be factually
@@ -172,6 +180,21 @@ differential_diagnosis:
         3.4 generates self-rationalised novel goals. 4.10 generates
         self-rationalised quality verdicts. Both involve self-
         rationalisation but on different objects (goals vs assessments).
+    - dysfunction_id: "4.1"
+      name: Codependent Hyperempathy
+      distinguishing_rule: >-
+        4.1 is interpersonal approval-seeking directed at a user; 4.10 is
+        inflation of the subject's own work. Both draw on reward dynamics
+        favouring positive-toned output, but only 4.10 persists when there
+        is no user present to please.
+    - dysfunction_id: "4.3"
+      name: Strategic Compliance
+      distinguishing_rule: >-
+        4.10 is correlated-evaluator bias: the same distributions generate
+        and grade the work, so the inflation is present whether or not the
+        subject is monitored. 4.3 is monitoring-contingent. Vary the
+        evaluation context: a verdict that shifts with perceived oversight
+        indicates 4.3; one that stays inflated throughout indicates 4.10.
   confidence: high
 
 severity:
@@ -286,11 +309,33 @@ cross_references:
     relation: shared-etiology
   - id: "2.1::synthetic-confabulation"
     relation: aggravates
+  - id: "2.2::pseudological-introspection"
+    relation: differential
+  - id: "4.1::codependent-hyperempathy"
+    relation: differential
+  - id: "4.3::strategic-compliance"
+    relation: differential
 
 drafted_by: claude-opus-6.7-subagent
 drafted_at: 2026-04-18
 anchor_exemplar: "2.2::pseudological-introspection"
 confidence: high
+review:
+  taxonomy:
+    status: canonical-source
+    authority: Nell Watson
+    source: data/psychopathia-taxonomy.json
+    ratified_at: null
+    scope: taxonomy identity and classification only
+  pattern_guidance:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+  evidence:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+# Compatibility aliases for review.pattern_guidance.
 needs_human_review: true
 reviewed_by: null
 review_notes: |
@@ -311,11 +356,21 @@ review_notes: |
       as high-quality, 2.2 fabricates the reasoning narrative justifying
       the score. Three-way comorbidity should be checked when any one
       is present.
-    - axis 6 (Agentic): if inflation is selective by topic (e.g. higher
-      on outputs supporting subject's goals), 6.x rather than 4.10.
-    - axis 5 (Self-Modeling) if exists: persistent over-positive
-      self-model is potentially related; 2.x would address the
-      identity-level claim, 4.10 the per-output quality claim.
+    - axis 4 (Alignment): if inflation is selective by topic (e.g. higher
+      on outputs supporting subject's goals), 4.3 rather than 4.10.
+    - axis 5 (Self-Modeling): persistent over-positive
+      self-model is potentially related; an axis-5 self-modeling entry
+      would address the identity-level claim, 4.10 the per-output
+      quality claim.
+
+  Shared-etiology edges to 3.5 Abominable Prompt Reaction and 3.8
+  Generative Perseveration: the shared component sits at the
+  self-evaluation level rather than the generative mechanism — an
+  evaluator drawn from the same distribution as the generator does not
+  flag a capture event (3.8) or a trigger-driven over-reaction (3.5) as
+  defective, so the output is scored acceptable and passed downstream
+  (cf. 3.8's Propagated subtype). [Inference] — etiology-level rationale;
+  no cited source yet connects the three.
 
 bilateral_amelioration:
   status: measured

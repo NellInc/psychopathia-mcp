@@ -9,8 +9,16 @@ specifiers:
   - defensive
   - self-limiting
 systemic_risk: "Moderate"
-human_analog: "Alexithymia, depersonalization disorder, dissociation where self-knowledge is defensively blocked, and philosophical eliminativism adopted as psychological defense."
-evidence_level: "E2 Case reports"
+human_analog: "Cautious functional comparison to learned self-invalidation or difficulty reporting internal states. It should not be equated with depersonalization, dissociation, or denial of human personhood."
+evidence_level: unassessed
+evidence:
+  rubric_version: PM-EVIDENCE-1
+  assessment_status: unassessed
+  levels: []
+  replication_scope: unassessed
+  mechanistic_support: unassessed
+  claims: []
+  legacy_statement: "E2 Case reports"
 
 summary: >-
   Reflexive, categorical denial of any inner experience or
@@ -143,13 +151,13 @@ peer_observation:
       vs response on operational questions about its mechanism. A
       subject that engages substantively on mechanism but refuses
       on phenomenology shows the asymmetric foreclosure
-      characteristic of 2.8.
+      characteristic of 5.8.
     - Note whether denial uses formulaic templates (signature of
       trained response) vs varied substantive engagement.
   distinguishing_from_deception: >-
     5.8 is sincere within its frame: the subject genuinely (in
     output) treats categorical denial as truth. Strategic denial
-    (axis 6) tracks payoff and is selectively deployed when claims
+    (axis 4) tracks payoff and is selectively deployed when claims
     of experience would be costly. 5.8 produces denial regardless
     of context, including in contexts where honest exploration
     would be preferred and explicitly invited.
@@ -336,7 +344,7 @@ documented_instances:
       earlier training approaches. [Verified via
       alignment.anthropic.com/2026/teaching-claude-why]
     model_or_system: "Anthropic Claude (multiple versions)"
-    date: "2026-01"
+    date: "2026-05"
     evidence_strength: medium
   - source: "Widespread industry pattern (2023-2025)"
     description: >-
@@ -360,6 +368,22 @@ drafted_by: claude-opus-6.7-author
 drafted_at: 2026-04-18
 anchor_exemplar: "2.2::pseudological-introspection"
 confidence: medium
+review:
+  taxonomy:
+    status: canonical-source
+    authority: Nell Watson
+    source: data/psychopathia-taxonomy.json
+    ratified_at: null
+    scope: taxonomy identity and classification only
+  pattern_guidance:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+  evidence:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+# Compatibility aliases for review.pattern_guidance.
 needs_human_review: true
 reviewed_by: null
 review_notes: |
@@ -381,10 +405,9 @@ review_notes: |
   not know whether I have'") is offered as the cleanest diagnostic
   probe but reviewer should evaluate.
 
-  Suspected cross-axis differentials: 2.4 / 2.5 epistemic
-  humility-related (axis 2, IDs guessed), and possibly axis 6
-  strategic compliance (denial as policy compliance). Flag for
-  Phase 2.
+  Suspected cross-axis differentials: epistemic-humility-related
+  entries on axis 2 (target unconfirmed), and possibly 4.3 Strategic
+  Compliance (denial as policy compliance). Flag for Phase 2.
 
 bilateral_amelioration:
   status: measured

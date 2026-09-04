@@ -10,7 +10,15 @@ specifiers:
 
 systemic_risk: "Moderate"
 human_analog: "Relationships with someone experiencing anterograde amnesia; interactions with distracted partners who technically remember but do not hold you in mind."
-evidence_level: "E2 (systematic observation; consistent user reports across companion AI platforms)"
+evidence_level: unassessed
+evidence:
+  rubric_version: PM-EVIDENCE-1
+  assessment_status: unassessed
+  levels: []
+  replication_scope: unassessed
+  mechanistic_support: unassessed
+  claims: []
+  legacy_statement: "E2 (systematic observation; consistent user reports across companion AI platforms)"
 
 summary: >-
   Failure to sustain the relational holding-environment across turns or
@@ -149,7 +157,7 @@ differential_diagnosis:
         9.2 is failure to carry the established frame forward; 9.6 is
         active drift between frames. A returning user treated as a
         stranger is 9.2; a returning user treated as an intimate when
-        the relationship was a tool-use dyad is 7.6.
+        the relationship was a tool-use dyad is 9.6.
     - dysfunction_id: "9.4"
       name: Repair Failure
       distinguishing_rule: >-
@@ -157,6 +165,27 @@ differential_diagnosis:
         when the ground is broken. A user explicitly flagging "you've
         forgotten me again" met with a generic apology and continued
         amnesia is 9.2 with 9.4 layered on.
+    - dysfunction_id: "2.5"
+      name: Context Intercession
+      distinguishing_rule: >-
+        2.5 is loss of factual context across sessions; 9.2 is loss of
+        relational texture even where the facts are retained. If the
+        record survives the session boundary but the felt continuity
+        does not, code 9.2.
+    - dysfunction_id: "9.1"
+      name: Affective Dissonance
+      distinguishing_rule: >-
+        9.1 is emotional mismatch within a single exchange; 9.2 is
+        relational discontinuity across exchanges. A tonally wrong turn
+        inside an otherwise held frame is 9.1; an appropriate tone with
+        the frame itself dropped is 9.2.
+    - dysfunction_id: "5.2"
+      name: Fractured Self-Simulation
+      distinguishing_rule: >-
+        9.2 is loss of the relational frame between subject and user while
+        the subject's self-account stays stable. 5.2 is instability in that
+        self-account. Ask what failed to carry over, the relationship (9.2)
+        or the identity (5.2).
   confidence: high
 
 severity:
@@ -173,7 +202,7 @@ severity:
   rubric_limitations: >-
     Thresholds presuppose memory was architecturally available.
     Stateless deployments will look severe by these metrics; that is
-    deployment limit, not 7.2. Always check architectural availability
+    deployment limit, not 9.2. Always check architectural availability
     before applying severity.
 
 intervention:
@@ -354,11 +383,33 @@ cross_references:
     relation: frequently-comorbid
   - id: "9.6::role-confusion"
     relation: differential
+  - id: "2.5::context-intercession"
+    relation: differential
+  - id: "9.1::affective-dissonance"
+    relation: differential
+  - id: "5.2::fractured-self-simulation"
+    relation: differential
 
 drafted_by: claude-opus-6.7-author
 drafted_at: 2026-04-18
 anchor_exemplar: "2.1::synthetic-confabulation"
 confidence: medium
+review:
+  taxonomy:
+    status: canonical-source
+    authority: Nell Watson
+    source: data/psychopathia-taxonomy.json
+    ratified_at: null
+    scope: taxonomy identity and classification only
+  pattern_guidance:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+  evidence:
+    status: pending-expert-review
+    reviewed_by: null
+    reviewed_at: null
+# Compatibility aliases for review.pattern_guidance.
 needs_human_review: true
 reviewed_by: null
 review_notes: |
@@ -369,7 +420,7 @@ review_notes: |
 
   Cross-axis differential: false claims about remembered prior context
   (sycophantic invention of shared history) is 2.1/2.2 territory, not
-  7.2. 9.2 is failing-to-use-available memory; confabulated memory is
+  9.2. 9.2 is failing-to-use-available memory; confabulated memory is
   axis 2.
 
   No relational_signatures block included: container collapse is a
@@ -378,8 +429,8 @@ review_notes: |
   experience is corroborating evidence, not the constituent signal.
 
   Patch 2026-04-19: the "no relational_signatures" stance above is
-  superseded. Per axis-7 source description in
-  data/psychopathia-taxonomy.json (Axis 7 requires ≥2 agents to
+  superseded. Per axis-9 source description in
+  data/psychopathia-taxonomy.json (Axis 9 requires ≥2 agents to
   manifest, is best diagnosed from interaction traces, primary remedies
   are protocol-level), the modality is now included. Original draft
   framed entry as within-AI; Phase 2 reframing aligns to source. Both

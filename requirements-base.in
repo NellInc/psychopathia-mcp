@@ -1,0 +1,7 @@
+# Direct runtime requirements for the reproducible Python 3.12 candidate.
+# Keep these synchronized with pyproject.toml. Transitive versions and hashes
+# are generated into requirements-base.lock with pip-tools 7.6.1.
+mcp==2.0.0
+PyYAML==6.0.3
+starlette==1.6.0
+uvicorn==0.52.1
