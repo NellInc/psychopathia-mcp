@@ -68,10 +68,11 @@ assert current_count == candidate["package_source_file_count"]
 PY
 
 echo "==> Preparing an MCPB v0.4 uv project around the local wheel"
-"$PYTHON_BIN" - "$SERVER_DIR/mcpb/server" "$WHEEL" "$VERSION" "$SERVER_DIR/requirements-base.lock" <<'PY'
+"$PYTHON_BIN" - "$SERVER_DIR/mcpb/server" "$WHEEL" "$VERSION" "$SERVER_DIR/requirements-base.lock" "$SERVER_DIR/pyproject.toml" <<'PY'
 from pathlib import Path
-import re, shutil, sys
+import re, shutil, sys, tomllib
 target, wheel, version, base_lock = Path(sys.argv[1]), Path(sys.argv[2]), sys.argv[3], Path(sys.argv[4])
+server_pyproject = Path(sys.argv[5])
 if target.exists():
     shutil.rmtree(target)
 target.mkdir(parents=True)
@@ -85,14 +86,20 @@ shutil.copy2(wheel, target / name)
 # uv/base comparison then verifies the constraint held rather than racing it.
 pins = re.findall(r"^([A-Za-z0-9_.-]+)==([^\\\s]+)", base_lock.read_text(encoding="utf-8"), re.M)
 constraints = ",\n".join(f'  "{pkg}=={ver}"' for pkg, ver in pins)
+# The HTTP transport pins live in the server's own [project.optional-dependencies].
+# Repeating them here as literals meant a uvicorn bump produced a bundle whose declared
+# dependency contradicted the constraint list built from the base lock.
+http_extra = ",\n".join(
+    f'  "{entry}"'
+    for entry in tomllib.loads(server_pyproject.read_text(encoding="utf-8"))["project"]["optional-dependencies"]["http"]
+)
 (target / "pyproject.toml").write_text(f'''[project]
 name = "psychopathia-mcp-bundle"
 version = "{version}"
 requires-python = ">=3.11"
 dependencies = [
   "psychopathia-mcp=={version}",
-  "starlette==1.6.0",
-  "uvicorn==0.52.1",
+{http_extra}
 ]
 
 [tool.uv]

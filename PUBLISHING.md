@@ -4,7 +4,7 @@ This document is the current release contract for `psychopathia-mcp`.
 
 ## Current candidate
 
-Version `0.1.0a6` is the current candidate: a metadata-correcting release whose distribution is identical in content to `0.1.0a5` (uploaded to PyPI on 2026-09-04 from commit 31deaeb, receipt in `dist/MCP_CANDIDATE_RECEIPT.json`). It exists because Official MCP Registry versions are immutable and the registry's `0.1.0a5` record — published before the `a5` wheel existed — resolves to the `0.1.0a4` distribution, so registry clients installed the pre-sweep corpus. Publishing `0.1.0a6` against the current wheel corrects that, after which the `a5` registry record is marked deprecated with `mcp-publisher status`. MCPB, container and public-repository mirroring remain separate held actions.
+Version `0.1.0a6` was published to PyPI on 2026-09-04 from commit d3b8c0c (receipt in `dist/MCP_CANDIDATE_RECEIPT.json`). It is a metadata-correcting release: its distribution is identical in content to `0.1.0a5`, and it exists because Official MCP Registry versions are immutable and the registry's `0.1.0a5` record — published before the `a5` wheel existed — resolved to the `0.1.0a4` distribution, so registry clients installed the pre-sweep corpus. The registry record for `0.1.0a6` is published and `isLatest`; `0.1.0a5` is marked deprecated. The public mirror `NellInc/psychopathia-mcp`, which every registry record names as `repository.url`, is synced. MCPB and container artifacts remain separate held actions.
 
 The public page reads the served version from `PUBLISHED_VERSION` and the candidate version from `pyproject.toml`. The invariant is that the *deployed* page never names a version PyPI does not serve: `PUBLISHED_VERSION` may be bumped in the same change as the candidate, but the distribution must be uploaded and verified on PyPI before `scripts/publish.sh` runs. Existing registry and package versions are historical external state and do not prove this candidate.
 
@@ -83,6 +83,46 @@ No machine check can set a human or publication state to approved.
 After Nell verifies and explicitly authorizes the exact receipt, publish only the accepted bytes. Uploading to PyPI, mirroring the public repository, publishing MCPB or container artifacts, updating the Official MCP Registry or other catalogues, changing remote HTTP hosting, tagging, pushing, or deploying are outside candidate preparation and require fresh authorization.
 
 Never combine build and upload in one command or script. Never rebuild from PyPI to create MCPB or container artifacts. Never use an unpinned `npx --yes` in a release path.
+
+## The hosted endpoint the registry advertises
+
+`server.json` advertises `https://mcp.psychopathia.ai/mcp`. That endpoint runs
+from staged source on the shared `mcp-siblings` VM, not from the PyPI wheel, so
+**upgrading the package does not refresh it** — the corpus is whatever was last
+staged to `/opt/psychopathia/src/research/mcp`. Publishing a record without
+refreshing the box points clients at corrected metadata over a stale corpus.
+
+Upgrading it from `0.1.0a4` needs three things the old install did not, each of
+which fails differently and none of which `systemctl is-active` catches:
+
+1. **Dependencies.** `0.1.0a5+` needs MCP SDK 2.0 (`ServerRequestContext`).
+   Installing the editable package with `--no-deps` leaves SDK 1.x in place and
+   the unit crash-loops on import while `is-active` still reports `activating`.
+   Install `requirements-base.lock` plus the `http` extra pins.
+2. **`MCP_HTTP_ALLOWED_HOSTS`.** The HTTP transport enforces a Host allowlist
+   defaulting to loopback only. The public proxy forwards the original Host, so
+   the served name must be declared or every proxied request answers
+   `400 Unrecognised Host`.
+3. **`PSYCHOPATHIA_DATA_DIR`.** The loader takes an explicit data dir, else
+   bundled `_data/`, else a walk-up only under `PSYCHOPATHIA_DATA_MODE=editable`.
+   A staged-source install carries no `_data/`, so the corpus root must be named
+   or every tool call returns `tool_failure`.
+
+Both environment settings live in a systemd drop-in at
+`/etc/systemd/system/psychopathia-mcp.service.d/allowed-hosts.conf`.
+
+**What the box is staged from, as of 2026-09-04:** commit `d3b8c0c`, package
+`0.1.0a6`, MCP SDK `2.0.0` in its own venv. Main has since moved to SDK `2.1.1`
+(`0.1.0a7` candidate), so main and the endpoint have diverged on the SDK. That
+is safe — the box installs from its own pinned lock and nothing pulls main into
+it — but it is only safe while it is written down. Re-staging is a deliberate
+act: record the commit, package version and SDK here when you do it, so the next
+person can tell what is actually running from what main happens to say.
+
+The check that proves a refresh landed is a corpus assertion through the public
+name, not a liveness probe: `GET /mcp/` returning 405 and a successful
+`initialize` both pass against a stale corpus. Call `resolve_id` for a migrated
+id — `2.5` must answer `2.5::context-intercession`.
 
 ## Post-publication verification
 

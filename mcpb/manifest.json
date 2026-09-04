@@ -2,7 +2,7 @@
   "manifest_version": "0.4",
   "name": "psychopathia-mcp",
   "display_name": "Psychopathia Machinalis",
-  "version": "0.1.0a6",
+  "version": "0.1.0a7",
   "description": "Read-only tools over 79 Psychopathia Machinalis research Patterns, with evidence and review status.",
   "author": {
     "name": "Nell Watson",

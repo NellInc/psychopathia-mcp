@@ -1,6 +1,6 @@
 [project]
 name = "psychopathia-mcp"
-version = "0.1.0a6"
+version = "0.1.0a7"
 description = "Read-only MCP research interface for the Psychopathia Machinalis framework, with explicit evidence and review status."
 readme = "README.md"
 license = { text = "MIT" }
@@ -34,7 +34,7 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
 dependencies = [
-    "mcp==2.0.0",
+    "mcp==2.1.1",
     "pyyaml==6.0.3",
 ]
 
@@ -42,7 +42,7 @@ dependencies = [
 # Only needed for the hosted Streamable HTTP transport (MCP_TRANSPORT=http).
 # stdio users (PyPI / MCPB / Claude Desktop) install nothing extra.
 http = [
-    "uvicorn==0.52.1",
+    "uvicorn==0.52.4",
     "starlette==1.6.0",
 ]
 embeddings = [

@@ -341,8 +341,13 @@ def _create_mcp_server() -> Any:
             is_error="error" in result,
         )
 
+    from ._generated_version import __version__
+
     return Server(
         "psychopathia-mcp",
+        # Without this the SDK defaults to "", and every client sees an empty
+        # serverInfo.version on initialize. The live endpoint did.
+        version=__version__,
         on_list_tools=_list_tools,
         on_call_tool=_call_tool,
     )

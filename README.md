@@ -7,7 +7,7 @@ research framework. The server lets a caller inspect 79 Pattern entries,
 compare observed behaviour with draft operational guidance, retrieve bounded
 probe material, and see reliability, evidence, and review status before use.
 
-**Candidate status:** `0.1.0a6` is a metadata-correcting release: its
+**Candidate status:** `0.1.0a7` is a metadata-correcting release: its
 distribution is identical in content to `0.1.0a5`, and it exists because
 Official MCP Registry versions are immutable and the registry's `0.1.0a5`
 record resolves to the `0.1.0a4` distribution. The Official MCP Registry
