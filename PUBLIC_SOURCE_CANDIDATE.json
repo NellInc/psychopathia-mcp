@@ -1,12 +1,12 @@
 {
   "hold": "Prepared candidate only. No commit, push, upload, registry mutation, or deployment was performed.",
-  "package_source_sha256": "a5407adc9e99cb1930686ba206894158e1886d29d54ca1eff2999950ece59331",
-  "payload_bytes": 2181085,
+  "package_source_sha256": "7efda84cbecfa048ce4bbad2e3e42747ad9cc142eeace358f84b1210fbbb1bc1",
+  "payload_bytes": 2182089,
   "payload_files": 122,
-  "payload_sha256": "2577966446bf101194f86d36b3dfc973bb06b6c99170ce8ae9b2d6615e9ac936",
+  "payload_sha256": "7827167107abd973b5fd2aa48a7fc6b7c37d4b68ea9a94bb1c21abacf2d0b82e",
   "publication": "NOT_AUTHORIZED",
   "schema_version": 1,
-  "source_commit": "ce313688bcd2e22c96b1e4d71f32a911a0f767d8",
+  "source_commit": "1e040979f7ccf58681607997dc5bdb4a20962bce",
   "source_tree_clean": true,
   "version": "0.1.0a7"
 }

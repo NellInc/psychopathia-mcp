@@ -7,11 +7,12 @@ research framework. The server lets a caller inspect 79 Pattern entries,
 compare observed behaviour with draft operational guidance, retrieve bounded
 probe material, and see reliability, evidence, and review status before use.
 
-**Candidate status:** `0.1.0a7` is a metadata-correcting release: its
-distribution is identical in content to `0.1.0a5`, and it exists because
-Official MCP Registry versions are immutable and the registry's `0.1.0a5`
-record resolves to the `0.1.0a4` distribution. The Official MCP Registry
-record and the MCPB and container artifacts are updated separately. All 79 LLM drafted Pattern guidance entries and all 79 evidence
+**Version:** this distribution is `0.1.0a7`. What changed in it is recorded in
+`CHANGELOG.md`, and which versions are publicly available is shown by the PyPI
+and Official MCP Registry pages linked below — this file ships inside the
+distribution, so it cannot say which release is current without going out of
+date. The Official MCP Registry record and the MCPB and container artifacts are
+updated separately. All 79 LLM drafted Pattern guidance entries and all 79 evidence
 records await independent expert review. The corpus evidence assessment is
 `unassessed`. Do not use this research preview as a sole basis for a
 consequential deployment, employment, health, safety, or welfare decision.
@@ -89,8 +90,9 @@ bundle digests, exact counts, keyword capability, optional semantic capability,
 and non-sensitive error classes. Exit status zero means the base keyword path
 is ready. Semantic readiness is reported separately and is not required.
 
-The current candidate uses MCP Python SDK 2.0 and is exercised with both its
-modern in-process client and the legacy stdio client protocol.
+The MCP Python SDK version is pinned in `requirements-base.lock`, and the
+server is exercised with both the SDK's modern in-process client and the legacy
+stdio client protocol.
 
 ```bash
 psychopathia-mcp --version

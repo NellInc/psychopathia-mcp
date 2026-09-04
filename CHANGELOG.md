@@ -5,9 +5,7 @@ All notable changes to `psychopathia-mcp` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.1.0a7] — unreleased
-
-Candidate only. `0.1.0a6` remains the version PyPI serves.
+## [0.1.0a7] — 2026-09-04
 
 ### Changed
 - MCP SDK 2.0.0 to 2.1.1 and uvicorn 0.52.1 to 0.52.4, with both hash-locks

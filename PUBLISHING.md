@@ -4,7 +4,9 @@ This document is the current release contract for `psychopathia-mcp`.
 
 ## Current candidate
 
-Version `0.1.0a6` was published to PyPI on 2026-09-04 from commit d3b8c0c (receipt in `dist/MCP_CANDIDATE_RECEIPT.json`). It is a metadata-correcting release: its distribution is identical in content to `0.1.0a5`, and it exists because Official MCP Registry versions are immutable and the registry's `0.1.0a5` record — published before the `a5` wheel existed — resolved to the `0.1.0a4` distribution, so registry clients installed the pre-sweep corpus. The registry record for `0.1.0a6` is published and `isLatest`; `0.1.0a5` is marked deprecated. The public mirror `NellInc/psychopathia-mcp`, which every registry record names as `repository.url`, is synced. MCPB and container artifacts remain separate held actions.
+Version `0.1.0a7` was published to PyPI on 2026-09-04 from commit `ce31368` (receipt in `dist/MCP_CANDIDATE_RECEIPT.json`). It carries the MCP SDK 2.0.0 to 2.1.1 and uvicorn bumps, and the fix that makes the server advertise its own version on initialize instead of an empty string. `0.1.0a6` before it was a metadata-correcting release, published because Official MCP Registry versions are immutable and the registry's `0.1.0a5` record — written before the `a5` wheel existed — resolved to the `0.1.0a4` distribution; that `a5` record is deprecated. The public mirror `NellInc/psychopathia-mcp`, which every registry record names as `repository.url`, is synced at `0463633`. MCPB and container artifacts remain separate held actions.
+
+Two sentences inside the published `0.1.0a7` artifacts are wrong and cannot be corrected, because PyPI files are immutable. The sdist's changelog section says "Candidate only. `0.1.0a6` remains the version PyPI serves", and the README that becomes the project page describes a7 as "a metadata-correcting release: its distribution is identical in content to `0.1.0a5`" — a6's rationale, reprinted under a7's number by a version substitution that edited the token inside hand-written prose. The distributed bytes are correct and the claim is only about the release's own description, so a7 is not yanked: yanking would resolve `pip install --pre` back to a6, which lacks the `serverInfo.version` fix. The generator now derives that sentence in full and `scripts/verify_mcp_packages.py` rejects an artifact whose README, METADATA, or changelog section makes a claim publication falsifies. Whether to spend an `0.1.0a8` on correcting the frozen project page is Nell's decision, not a maintenance default.
 
 The public page reads the served version from `PUBLISHED_VERSION` and the candidate version from `pyproject.toml`. The invariant is that the *deployed* page never names a version PyPI does not serve: `PUBLISHED_VERSION` may be bumped in the same change as the candidate, but the distribution must be uploaded and verified on PyPI before `scripts/publish.sh` runs. Existing registry and package versions are historical external state and do not prove this candidate.
 
@@ -111,13 +113,7 @@ which fails differently and none of which `systemctl is-active` catches:
 Both environment settings live in a systemd drop-in at
 `/etc/systemd/system/psychopathia-mcp.service.d/allowed-hosts.conf`.
 
-**What the box is staged from, as of 2026-09-04:** commit `d3b8c0c`, package
-`0.1.0a6`, MCP SDK `2.0.0` in its own venv. Main has since moved to SDK `2.1.1`
-(`0.1.0a7` candidate), so main and the endpoint have diverged on the SDK. That
-is safe — the box installs from its own pinned lock and nothing pulls main into
-it — but it is only safe while it is written down. Re-staging is a deliberate
-act: record the commit, package version and SDK here when you do it, so the next
-person can tell what is actually running from what main happens to say.
+**What the box is staged from, as of 2026-09-04:** commit `ce31368`, package `0.1.0a7`, MCP SDK `2.1.1` — the released version, matching main. It does not follow main on its own: this state exists because it was re-staged deliberately, installing `requirements-base.lock` rather than `--no-deps`, which is what makes the SDK move with the release. Record the commit, package version and SDK here whenever you re-stage, so the next person can tell what is actually running from what main happens to say.
 
 The check that proves a refresh landed is a corpus assertion through the public
 name, not a liveness probe: `GET /mcp/` returning 405 and a successful
